@@ -10,6 +10,7 @@ import SwiftUI
 struct BookMarkView: View {
     
     @Environment(\.presentationMode) var presentationMode
+    @State private var presentAlert = false
     
     @FetchRequest(fetchRequest: BookMarkCategory.all) private var  bookMarkCategorys:FetchedResults<BookMarkCategory>
     
@@ -44,7 +45,7 @@ struct BookMarkView: View {
                     .listStyle(.plain)
                 }
             }
-                .navigationTitle("BookMark")
+                .navigationTitle("bookmark")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -57,11 +58,25 @@ struct BookMarkView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
 
                         Button {
-
+                            
+                            presentAlert = true
                         } label: {
 
                             Image("delete")
 
+                        }
+                        .alert(isPresented: $presentAlert) {
+                            Alert(
+                                title: Text("Clear all bookmark？"),
+                                message: Text(""),
+                                primaryButton: .default(Text("Cancle"), action: {
+                                    
+                                }),
+                                secondaryButton: .destructive(Text("Delete"), action: {
+                                    //删除所有书签
+                                    deleteAllBookMark()
+                                })
+                            )
                         }
 
                     }
@@ -69,6 +84,11 @@ struct BookMarkView: View {
                 }
         }
     
+    }
+    
+    func deleteAllBookMark()  {
+        
+//        viewContext.delete(searchHistoryCategorys)
     }
 }
 

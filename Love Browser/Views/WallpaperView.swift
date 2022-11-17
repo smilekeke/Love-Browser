@@ -46,10 +46,14 @@ struct WallpaperView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: imageWidth, height: 218)
+                            .overlay(alignment: .bottom) {
+                                Caption()
+                            }
                             
                     }
                         .frame(width: imageWidth, height: 218)
                         .cornerRadius(12)
+                    
 
                 }
             }
@@ -58,6 +62,18 @@ struct WallpaperView: View {
     
         }
     
+    }
+}
+
+struct Caption: View {
+    var body: some View {
+
+        Text("正在使用")
+            .padding()
+            .foregroundColor(Color.white)
+            .background(Color.black.opacity(0.75),
+                        in: RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+
     }
 }
 

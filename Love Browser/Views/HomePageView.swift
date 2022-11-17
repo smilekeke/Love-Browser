@@ -14,9 +14,20 @@ struct HomePageView: View {
     var reloadWebView: (String) -> Void
     
     let rows = [GridItem(.fixed(80)), GridItem(.fixed(80)), GridItem(.fixed(80)), GridItem(.fixed(80))]
+    
+    
+//    init() {
+//        self.applyLighthTheme()
+//    }
+//
+//    private func applyLighthTheme() {
+//        ThemeManager.shared.applyTheme(theme: LightTheme())
+//    }
 
     
     var body: some View {
+        
+//        let theme = ThemeManager.shared.getTheme()
         
         VStack {
             

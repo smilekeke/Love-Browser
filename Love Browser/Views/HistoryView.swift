@@ -17,6 +17,7 @@ struct HistoryView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
+    @State private var presentAlert = false
     
     
     @FetchRequest(fetchRequest: SearchHistoryCategory.all) private var searchHistoryCategorys:FetchedResults<SearchHistoryCategory>
@@ -83,12 +84,25 @@ struct HistoryView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                     
                         Button {
-                                
-                            deleteAllHistory()
-                        
+                            
+                            presentAlert = true
                         } label: {
                             Image("delete")
                         }
+                        .alert(isPresented: $presentAlert) {
+                            Alert(
+                                title: Text("Clear all history？"),
+                                message: Text(""),
+                                primaryButton: .default(Text("Cancle"), action: {
+                                    
+                                }),
+                                secondaryButton: .destructive(Text("Delete"), action: {
+                                    //删除浏览历史
+                                    deleteAllHistory()
+                                })
+                            )
+                        }
+                
                    
                     }
                 

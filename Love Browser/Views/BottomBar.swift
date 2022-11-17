@@ -44,7 +44,7 @@ struct BottomBar: View {
                 } label: {
                     
                        
-                    Image(canBack ? "back_black" : "back")
+                    Image(canBack ? "back_black" : "back_white")
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -60,7 +60,7 @@ struct BottomBar: View {
                     
                 } label: {
                     
-                    Image(canForward ? "forward_black" : "forward")
+                    Image(canForward ? "forward_black" : "forward_white")
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)

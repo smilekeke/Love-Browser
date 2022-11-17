@@ -14,12 +14,12 @@ struct MenuView: View {
     @Environment(\.presentationMode) var presentationMode
     
     
-    let ItemModels = [MenuItemModel(logo: "history", title: "history"),
-                      MenuItemModel(logo: "wallpaper", title: "Bookmark"),
-                      MenuItemModel(logo: "wallpaper", title: "Add Bookmark"),
-                      MenuItemModel(logo: "wallpaper", title: "Wallpaper"),
-                      MenuItemModel(logo: "history", title: "Setting"),
-                      MenuItemModel(logo: "history", title: "Quit")]
+    let ItemModels = [MenuItemModel(logo: "menu_history", title: "history"),
+                      MenuItemModel(logo: "menu_bookmark", title: "Bookmark"),
+                      MenuItemModel(logo: "menu_addbookmark", title: "Add Bookmark"),
+                      MenuItemModel(logo: "menu_wallpaper", title: "Wallpaper"),
+                      MenuItemModel(logo: "menu_setting", title: "Setting"),
+                      MenuItemModel(logo: "menu_quit", title: "Quit")]
     
     let rows = [GridItem(.fixed(120)), GridItem(.fixed(120)), GridItem(.fixed(120))]
 
