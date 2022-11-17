@@ -13,21 +13,22 @@ struct WallpaperView: View {
     
     var changeWallpaper: (String) -> Void
     
-    let imageWidth = (UIScreen.main.bounds.width - 45) / 2
+    let screenWidth = UIScreen.main.bounds.width
     
     var body: some View {
         
-        let rows = [GridItem(.fixed(imageWidth)), GridItem(.fixed(imageWidth))]
+        let rows = [GridItem(.fixed((screenWidth - 45) / 2)), GridItem(.fixed((screenWidth - 45) / 2))]
         
         Color.black.opacity(0.3).edgesIgnoringSafeArea(.all)
             .onTapGesture {
                 
                 presentationMode.wrappedValue.dismiss()
             }
-        
-        Text("Wallpaper")
+
         
         ScrollView {
+            
+            Text("Wallpaper")
             
             LazyVGrid(columns: rows, spacing: 15) {
        
@@ -45,22 +46,37 @@ struct WallpaperView: View {
                         Image("bg"+String(value))
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: imageWidth, height: 218)
+                            .frame(width: (screenWidth - 45) / 2, height: 218)
                             .overlay(alignment: .bottom) {
                                 Caption()
                             }
                             
                     }
-                        .frame(width: imageWidth, height: 218)
+                        .frame(width: (screenWidth - 45) / 2, height: 218)
                         .cornerRadius(12)
-                    
+                        .background(Color.white)
 
                 }
             }
-            .padding(.top,24)
-            .background(Color.white)
+            .padding(.top, 20)
+            
+            Button {
+                
+                changeWallpaper("")
+                
+            } label: {
+                
+                Text("Defaut")
+                
+            }
+            
+            .frame(width: screenWidth-40, height: 40, alignment: .center)
+            .background(Color("F5F5F7"))
+            .foregroundColor(Color("222222"))
+            .cornerRadius(8.0)
     
         }
+        .background(Color.white)
     
     }
 }

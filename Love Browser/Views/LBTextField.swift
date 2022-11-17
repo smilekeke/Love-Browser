@@ -14,6 +14,8 @@ struct LBTextField: UIViewRepresentable {
     
     @Binding var text: String
     
+    let textField: UITextField
+    
     var textBeginEditing: () -> Void
     var textDidChange:() -> Void
     var pressReturn:() -> Void
@@ -21,7 +23,7 @@ struct LBTextField: UIViewRepresentable {
     
     func makeUIView(context: Context) -> some UITextField {
         
-        let textField = TextFieldWithPadding()
+//        let textField = TextFieldWithPadding()
         textField.delegate = context.coordinator
         textField.placeholder = "search or enter url"
         textField.returnKeyType = .go
@@ -114,6 +116,25 @@ struct LBTextField: UIViewRepresentable {
             return true
         }
         
+    }
+    
+}
+
+class TextFieldManger: ObservableObject {
+
+    let textField: TextFieldWithPadding
+
+    init(){
+        
+        textField = TextFieldWithPadding()
+    }
+    
+    func resignFirstResponder() {
+        textField.resignFirstResponder()
+    }
+    
+    func becomeFirstResponder() {
+        textField.becomeFirstResponder()
     }
     
 }

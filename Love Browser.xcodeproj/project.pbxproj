@@ -14,9 +14,11 @@
 		171E4371291FA810007D1648 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4370291FA810007D1648 /* TabsView.swift */; };
 		171E4373291FB6F7007D1648 /* WallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4372291FB6F7007D1648 /* WallpaperView.swift */; };
 		171E4379292246A6007D1648 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4378292246A6007D1648 /* CoreDataManager.swift */; };
-		171E437B29224D75007D1648 /* HomePageModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E437A29224D75007D1648 /* HomePageModelManager.swift */; };
+		171E437B29224D75007D1648 /* HomePageItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E437A29224D75007D1648 /* HomePageItemModel.swift */; };
 		171E437F2922A7F8007D1648 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E437E2922A7F8007D1648 /* Theme.swift */; };
 		171E43812922AA16007D1648 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E43802922AA16007D1648 /* ThemeManager.swift */; };
+		176778622926771E00EDF706 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176778612926771E00EDF706 /* TabManager.swift */; };
+		17677864292677AF00EDF706 /* TabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17677863292677AF00EDF706 /* TabsModel.swift */; };
 		177EE2392922AD8A00CCACEB /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE2382922AD8A00CCACEB /* LightTheme.swift */; };
 		177EE23B2922AD9800CCACEB /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE23A2922AD9800CCACEB /* DarkTheme.swift */; };
 		177EE24229236F3100CCACEB /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE24129236F3100CCACEB /* String+Extensions.swift */; };
@@ -27,7 +29,6 @@
 		177EE24F2923B75800CCACEB /* HomePageCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE24E2923B75800CCACEB /* HomePageCategory+CoreDataClass.swift */; };
 		177EE27E2923DD6C00CCACEB /* DataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 177EE27C2923DD6C00CCACEB /* DataBase.xcdatamodeld */; };
 		177EE2802923DE0B00CCACEB /* SearchWordsCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE27F2923DE0B00CCACEB /* SearchWordsCategory+CoreDataClass.swift */; };
-		177EE2822923E33B00CCACEB /* SearchHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE2812923E33B00CCACEB /* SearchHistoryView.swift */; };
 		177EE2842923EFF600CCACEB /* BookMarkCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE2832923EFF600CCACEB /* BookMarkCategory+CoreDataClass.swift */; };
 		177EE2862923F00B00CCACEB /* SearchHistoryCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE2852923F00B00CCACEB /* SearchHistoryCategory+CoreDataClass.swift */; };
 		1780EE44291916EB006B9FFC /* Love_BrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1780EE43291916EB006B9FFC /* Love_BrowserApp.swift */; };
@@ -51,9 +52,11 @@
 		171E4370291FA810007D1648 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
 		171E4372291FB6F7007D1648 /* WallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperView.swift; sourceTree = "<group>"; };
 		171E4378292246A6007D1648 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		171E437A29224D75007D1648 /* HomePageModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageModelManager.swift; sourceTree = "<group>"; };
+		171E437A29224D75007D1648 /* HomePageItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageItemModel.swift; sourceTree = "<group>"; };
 		171E437E2922A7F8007D1648 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		171E43802922AA16007D1648 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		176778612926771E00EDF706 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
+		17677863292677AF00EDF706 /* TabsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsModel.swift; sourceTree = "<group>"; };
 		177EE2382922AD8A00CCACEB /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
 		177EE23A2922AD9800CCACEB /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
 		177EE24129236F3100CCACEB /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -64,7 +67,6 @@
 		177EE24E2923B75800CCACEB /* HomePageCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomePageCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		177EE27D2923DD6C00CCACEB /* DataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataBase.xcdatamodel; sourceTree = "<group>"; };
 		177EE27F2923DE0B00CCACEB /* SearchWordsCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchWordsCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
-		177EE2812923E33B00CCACEB /* SearchHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryView.swift; sourceTree = "<group>"; };
 		177EE2832923EFF600CCACEB /* BookMarkCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookMarkCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		177EE2852923F00B00CCACEB /* SearchHistoryCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchHistoryCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1780EE40291916EB006B9FFC /* Love Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Love Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,7 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				171E4378292246A6007D1648 /* CoreDataManager.swift */,
-				171E437A29224D75007D1648 /* HomePageModelManager.swift */,
+				176778612926771E00EDF706 /* TabManager.swift */,
+				17677863292677AF00EDF706 /* TabsModel.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -133,7 +136,6 @@
 				1780EE5A29191783006B9FFC /* ContentView.swift */,
 				1780EE5B29191783006B9FFC /* HomePageView.swift */,
 				177EE2472923939B00CCACEB /* HomeSearchView.swift */,
-				177EE2812923E33B00CCACEB /* SearchHistoryView.swift */,
 				177EE245292390B100CCACEB /* HomeWebView.swift */,
 				1780EE5829191783006B9FFC /* WebSearchView.swift */,
 				171E4359291E3556007D1648 /* LBTextField.swift */,
@@ -172,6 +174,7 @@
 				177EE27F2923DE0B00CCACEB /* SearchWordsCategory+CoreDataClass.swift */,
 				177EE2832923EFF600CCACEB /* BookMarkCategory+CoreDataClass.swift */,
 				177EE2852923F00B00CCACEB /* SearchHistoryCategory+CoreDataClass.swift */,
+				171E437A29224D75007D1648 /* HomePageItemModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -337,18 +340,19 @@
 				177EE2482923939B00CCACEB /* HomeSearchView.swift in Sources */,
 				177EE24F2923B75800CCACEB /* HomePageCategory+CoreDataClass.swift in Sources */,
 				1780EE5D29191783006B9FFC /* BottomBar.swift in Sources */,
-				171E437B29224D75007D1648 /* HomePageModelManager.swift in Sources */,
+				171E437B29224D75007D1648 /* HomePageItemModel.swift in Sources */,
 				1780EE5E29191783006B9FFC /* WebSearchView.swift in Sources */,
 				177EE24229236F3100CCACEB /* String+Extensions.swift in Sources */,
 				171E436D291F815B007D1648 /* MenuView.swift in Sources */,
 				177EE2802923DE0B00CCACEB /* SearchWordsCategory+CoreDataClass.swift in Sources */,
 				1780EE6329192D9D006B9FFC /* HistoryView.swift in Sources */,
-				177EE2822923E33B00CCACEB /* SearchHistoryView.swift in Sources */,
 				177EE246292390B100CCACEB /* HomeWebView.swift in Sources */,
 				1780EE6129191783006B9FFC /* HomePageView.swift in Sources */,
 				1780EE5F29191783006B9FFC /* WebView.swift in Sources */,
+				17677864292677AF00EDF706 /* TabsModel.swift in Sources */,
 				171E436F291FA434007D1648 /* BookMarkView.swift in Sources */,
 				171E4373291FB6F7007D1648 /* WallpaperView.swift in Sources */,
+				176778622926771E00EDF706 /* TabManager.swift in Sources */,
 				171E43812922AA16007D1648 /* ThemeManager.swift in Sources */,
 				177EE2842923EFF600CCACEB /* BookMarkCategory+CoreDataClass.swift in Sources */,
 			);

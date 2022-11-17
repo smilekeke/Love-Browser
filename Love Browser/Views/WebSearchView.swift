@@ -20,12 +20,13 @@ struct WebSearchView: View {
     var cancleLoadQuery: () -> Void
     
     @Environment(\.managedObjectContext) private var viewContext
+    @ObservedObject var textFieldManger = TextFieldManger()
 
     var body: some View {
             
         HStack {
 
-            LBTextField(text: $text) {
+            LBTextField(text: $text, textField: textFieldManger.textField) {
                 
                 showMore = false
                 
@@ -62,7 +63,7 @@ struct WebSearchView: View {
 
                     Button {
                         
-                        saveHomePageCategory(itemModel: ItemModel(title: "Twitter", icon: "twitter", link: ""))
+                        saveHomePageCategory(itemModel: HomePageItemModel(title: "google", icon: "twitter", link: text))
 
                     } label: {
                         Image("addHomePage")
@@ -98,11 +99,16 @@ struct WebSearchView: View {
             }
                 .padding(.leading, -90)
                 .opacity(showMore ? 1 : 0)
+            
+        }.onAppear {
+            // 加载URL
+            loadQuery(text)
         }
         
         if showList {
-            SearchHistoryView()
+            SearchWordsView()
                 .padding(.top, -8)
+    
         }
            
       
@@ -110,7 +116,7 @@ struct WebSearchView: View {
     
        
     // 添加到首页
-    private func saveHomePageCategory(itemModel: ItemModel) {
+    private func saveHomePageCategory(itemModel: HomePageItemModel) {
 
         let homePageCategory = HomePageCategory(context: viewContext)
         homePageCategory.title = itemModel.title

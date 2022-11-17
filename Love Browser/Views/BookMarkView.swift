@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct BookMarkView: View {
     
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) private var viewContext
     @State private var presentAlert = false
     
-    @FetchRequest(fetchRequest: BookMarkCategory.all) private var  bookMarkCategorys:FetchedResults<BookMarkCategory>
+    @FetchRequest(fetchRequest: BookMarkCategory.all) private var bookMarkCategorys:FetchedResults<BookMarkCategory>
     
     var body: some View {
         
@@ -88,7 +90,7 @@ struct BookMarkView: View {
     
     func deleteAllBookMark()  {
         
-//        viewContext.delete(searchHistoryCategorys)
+       
     }
 }
 

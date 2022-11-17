@@ -12,12 +12,11 @@ struct TabsView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    let ItemModels = [HomePageItemModel(logo: "search", title: "wallpaper", linkUrl: "http://baidu.com"),
-                      HomePageItemModel(logo: "search", title: "Instagram", linkUrl: "http://baidu.com"),
-                      HomePageItemModel(logo: "search", title: "Twitter", linkUrl: "http://baidu.com"),
-                      HomePageItemModel(logo: "search", title: "hh", linkUrl: "http://baidu.com"),
-                      HomePageItemModel(logo: "search", title: "gg", linkUrl: "http://baidu.com"),
-                      HomePageItemModel(logo: "search", title: "kk", linkUrl: "http://baidu.com")]
+    let gridWidth = (UIScreen.main.bounds.width - 45) / 2
+    
+    let tabsModel = [TabsModel(title: "", image: Image("placeHolderImage")),
+                     TabsModel(title: "", image: Image("placeHolderImage"))
+                    ]
     
     let rows = [GridItem(.fixed((UIScreen.main.bounds.width - 45) / 2)), GridItem(.fixed((UIScreen.main.bounds.width - 45) / 2))]
     
@@ -29,21 +28,40 @@ struct TabsView: View {
                 
                 LazyVGrid(columns: rows, spacing: 15) {
            
-                    ForEach(ItemModels, id: \.title) { item in
+                    ForEach(tabsModel, id: \.title) { item in
                         
-                        Button {
+                        VStack {
                             
-                        } label: {
-                            
-                            Image(item.logo)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 24, height: 24)
+                            HStack {
                                 
-                        }
-                            .frame(width: (UIScreen.main.bounds.width - 45)/2, height: 214)
+                                
+                                Text("首页")
+                                    .padding(.leading, 8)
+                                
+                                Spacer()
+                                
+                                Button {
+                                    
+                                } label: {
+                                    Image("deleteTab")
+                                        .frame(width: 16, height: 16)
+                                }
+                                .padding(.trailing, 8)
+                                
+                            }
+                            .padding(.top,20)
+                            
+                            Image("placeHolderImage")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: gridWidth,height: 186)
+                               
+                            }
+                            .frame(width: gridWidth, height: 214)
                             .background(Color.init("F5F5F7"))
                             .cornerRadius(12)
+                        
+                        
 
                     }
                 }
@@ -71,11 +89,4 @@ struct TabsView_Previews: PreviewProvider {
     static var previews: some View {
         TabsView()
     }
-}
-
-struct HomePageItemModel {
-    let logo: String
-    let title: String
-    let linkUrl: String
-    
 }

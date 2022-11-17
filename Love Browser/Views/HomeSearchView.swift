@@ -16,6 +16,8 @@ struct HomeSearchView: View {
 
     var jumpToHomeWebView: (String) -> Void
     
+    @ObservedObject var textFieldManger = TextFieldManger()
+    
     @Environment(\.managedObjectContext) private var viewContext
 
     private func saveSearchWord(title: String, url: String) {
@@ -45,6 +47,7 @@ struct HomeSearchView: View {
                     text = ""
                     showBack = false
                     showSearchIcon = true
+                    textFieldManger.resignFirstResponder()
 
                 }, label: {
                     Image("vector")
@@ -53,16 +56,16 @@ struct HomeSearchView: View {
                 })
                     .opacity(showBack ? 1 : 0)
                     
-                
-                LBTextField(text: $text) {
+                LBTextField(text: $text, textField: textFieldManger.textField) {
+                    
                     showBack = true
                     showSearchIcon = false
                     
                 } textDidChange: {
-                    
-//                    showBack = true
-//                    showSearchIcon = false
-                    
+                    DispatchQueue.main.async {
+                        showBack = true
+                        showSearchIcon = false
+                    }
                 } pressReturn: {
                     
                     jumpToHomeWebView(text)
@@ -70,7 +73,9 @@ struct HomeSearchView: View {
                     saveSearchWord(title: text, url: "")
                     showBack = false
                     showSearchIcon = true
-                 }
+                }
+
+                
             
                     .frame(height: 44)
                     .padding(.leading,showBack ? 0 : -10)
@@ -81,7 +86,7 @@ struct HomeSearchView: View {
                     Button(action: {
                 
                     }, label: {
-                        Image("searchIcon")
+                        Image("search_black")
                     
                     })
                         .opacity(showSearchIcon ? 1 : 0)

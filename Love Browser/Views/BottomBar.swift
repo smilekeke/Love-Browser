@@ -14,6 +14,7 @@ struct BottomBar: View {
     var clickBackButton:() -> Void
     var clickForwardButton:() -> Void
     var changeWallpaper: (String) -> Void
+    var openTabsView:() -> Void // open tabs 标签页
     
     @Binding var canBack: Bool
     @Binding var canForward: Bool
@@ -88,7 +89,9 @@ struct BottomBar: View {
             
                 Button {
                     
+                    openTabsView()
                     openTabs.toggle()
+                    
                     
                 } label: {
                     
@@ -102,9 +105,10 @@ struct BottomBar: View {
                 }
                 
                 .fullScreenCover(isPresented: $openTabs) {
-                 
+
+
                 } content: {
-                    
+
                     TabsView()
                 }
 
@@ -137,7 +141,7 @@ struct BottomBar: View {
                         }
                         if title == "Add Bookmark"{
                             
-                            saveBookMarkCategory(itemModel: ItemModel(title: "hahahha", icon: "", link: ""))
+                            saveBookMarkCategory(itemModel: HomePageItemModel(title: "hahahha", icon: "", link: ""))
                         }
                         if title == "Bookmark" {
                             openBookMark.toggle()
@@ -184,7 +188,7 @@ struct BottomBar: View {
     
     
     // 添加到书签
-    private func saveBookMarkCategory(itemModel: ItemModel) {
+    private func saveBookMarkCategory(itemModel: HomePageItemModel) {
 
         let bookMarkCategory = BookMarkCategory(context: viewContext)
         bookMarkCategory.title = itemModel.title
@@ -200,9 +204,7 @@ struct BottomBar: View {
         }
 
     }
-    
 }
-
 
 struct BottomBar_Previews: PreviewProvider {
     
@@ -218,7 +220,9 @@ struct BottomBar_Previews: PreviewProvider {
             
         }, changeWallpaper: { str  in
             
-        },canBack: $showHome, canForward: $showHome, showHome: $showHome)
+        }, openTabsView: {
+            
+        }, canBack: $showHome, canForward: $showHome, showHome: $showHome)
 
     }
 }

@@ -10,42 +10,42 @@ import CoreData
 
 struct ContentView: View {
 
-    @ObservedObject var webViewModel = WebViewModel()
+    @StateObject var webViewModel = WebViewModel()
     
     @State private var text = ""
     @State private var isSearch = false
     @State private var canBack = false
     @State private var canForward = false
     @State private var showHome = false
-    
     @State private var backgroundImage = ""
+    
 
-//    @Environment(\.managedObjectContext) private var viewContext
-//
-//    private func saveHomePageCategory(itemModel: ItemModel) {
-//
-//        let homePageCategory = HomePageCategory(context: viewContext)
-//        homePageCategory.title = itemModel.title
-//        homePageCategory.icon = itemModel.icon
-//        homePageCategory.link = itemModel.link
-//
-//        do {
-//
-//            try viewContext.save()
-//
-//        } catch {
-//
-//            print(error)
-//        }
-//
-//    }
-//
-//    func  saveHomePageData() {
-//        saveHomePageCategory(itemModel: ItemModel(title: "FaceBook", icon: "faceBook", link: "https://www.facebook.com/"))
-//        saveHomePageCategory(itemModel: ItemModel(title: "Instagram", icon: "instagram", link: "https://www.instagram.com/"))
-//        saveHomePageCategory(itemModel: ItemModel(title: "Twitter", icon: "twitter", link: "https://twitter.com/"))
-//        saveHomePageCategory(itemModel: ItemModel(title: "Zoom", icon: "zoom", link: "https://zoom.com/"))
-//    }
+    @Environment(\.managedObjectContext) private var viewContext
+
+    private func saveHomePageCategory(itemModel: HomePageItemModel) {
+
+        let homePageCategory = HomePageCategory(context: viewContext)
+        homePageCategory.title = itemModel.title
+        homePageCategory.icon = itemModel.icon
+        homePageCategory.link = itemModel.link
+
+        do {
+
+            try viewContext.save()
+
+        } catch {
+
+            print(error)
+        }
+
+    }
+
+    func  saveHomePageData() {
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "FaceBook", icon: "faceBook", link: "https://www.facebook.com/"))
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "Instagram", icon: "instagram", link: "https://www.instagram.com/"))
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "Twitter", icon: "twitter", link: "https://twitter.com/"))
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "Zoom", icon: "zoom", link: "https://zoom.com/"))
+    }
     
 
     var body: some View {
@@ -71,12 +71,12 @@ struct ContentView: View {
                         Image(backgroundImage)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
-                                    )
+                    )
                     .padding(.top,10)
                 }
                 
                 BottomBar(clickHomeButton: {
-                    
+                
                     isSearch = false
                     showHome = false
                     
@@ -87,13 +87,50 @@ struct ContentView: View {
                     
                 }, changeWallpaper: { str in
                     
+                    // 切换壁纸
                     backgroundImage = str
+                    
+                }, openTabsView: {
+                    // open tabs View
+                    
+                    preparePreview { image in
+                        
+//                        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+                        
+//                        let model = TabsModel(title: "", image: image ?? UIImage())
+//                        TabManager(model: model)
+                    }
                     
                 }, canBack: $canBack, canForward: $canForward, showHome: $showHome)
             }
             
             .navigationBarHidden(true)
             
+        }
+        .onAppear {
+            
+            if !UserDefaults.standard.bool(forKey: "WriteHomePageData") {
+                saveHomePageData()
+            }
+            UserDefaults.standard.set(true, forKey: "WriteHomePageData")
+        }
+
+    }
+    
+    
+    func preparePreview(completion: @escaping (UIImage?) -> Void) {
+
+        DispatchQueue.main.async {
+            
+            let webView = webViewModel.webView
+
+             UIGraphicsBeginImageContextWithOptions(webView.bounds.size, false, UIScreen.main.scale)
+
+             webView.drawHierarchy(in: webView.bounds, afterScreenUpdates: true)
+
+             let image = UIGraphicsGetImageFromCurrentImageContext()
+             UIGraphicsEndImageContext()
+             completion(image)
         }
 
     }

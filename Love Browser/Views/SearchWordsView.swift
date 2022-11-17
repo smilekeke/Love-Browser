@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct SearchWordsView: View {
+    
+    @FetchRequest(fetchRequest: SearchWordsCategory.all) private var  searchWords:FetchedResults<SearchWordsCategory>
+    
     var body: some View {
+        
         
         List {
             
+            ForEach(searchWords, id: \.title) { searchWord in
+                HStack {
+                    Image("history")
+                    Text(searchWord.title ?? "")
+                        .foregroundColor(Color("222222"))
+                        
+                }
+                .listRowBackground(Color.clear)
+                .listRowSeparator(.hidden)
+                
+            }
         }
+        .listStyle(.plain)
+       
+        .background(Color("F4F4F4"))
+        .opacity(searchWords.count == 0 ? 0 : 1)
+        
     }
 }
 

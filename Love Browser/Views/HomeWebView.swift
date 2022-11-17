@@ -41,7 +41,7 @@ struct HomeWebView: View {
                 
                 // 点击键盘go开始搜索
                 webViewModel.updateData(with: query)
-                
+            
             } cancleLoadQuery: {
                 
             }
@@ -56,11 +56,13 @@ struct HomeWebView: View {
                 formatter1.dateStyle = .short
                 saveSearchHistoryCategory(date:formatter1.string(from: Date.now), title: title, url: url)
                 
+                
             }
             
         }
       
     }
+    
 }
 
 
