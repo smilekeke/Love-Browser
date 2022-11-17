@@ -16,45 +16,57 @@ struct BookMarkView: View {
     var body: some View {
         
         NavigationView {
+            
+            VStack {
+                
+                if bookMarkCategorys.count == 0 {
+                    
+                    Image("placeHolderImage")
+                        .padding(.horizontal)
+                    Text(" No browsing record")
+                    
+                } else {
+                    
+                    List {
 
-            List {
+                        ForEach(bookMarkCategorys) { bookMarkCategory in
 
-                ForEach(bookMarkCategorys) { bookMarkCategory in
+                            HStack {
+                                Image("bookmark")
+                                Text(bookMarkCategory.title ?? "")
+                            }
 
-                    HStack {
-                        Image("bookmark")
-                        Text(bookMarkCategory.title ?? "")
+                        }
+                        .listRowSeparator(.hidden)
+
                     }
-
+                    
+                    .listStyle(.plain)
                 }
-                .listRowSeparator(.hidden)
-
             }
-            .listStyle(.plain)
-            .navigationTitle("BookMark")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image("vector")
+                .navigationTitle("BookMark")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            Image("vector")
+                        }
                     }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
+                    ToolbarItem(placement: .navigationBarTrailing) {
 
-                    Button {
+                        Button {
 
-                    } label: {
+                        } label: {
 
-                        Image("delete")
+                            Image("delete")
+
+                        }
 
                     }
 
                 }
-
-            }
-
         }
     
     }

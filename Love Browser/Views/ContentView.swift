@@ -17,6 +17,7 @@ struct ContentView: View {
     @State private var canBack = false
     @State private var canForward = false
     @State private var showHome = false
+    
     @State private var backgroundImage = ""
 
 //    @Environment(\.managedObjectContext) private var viewContext
