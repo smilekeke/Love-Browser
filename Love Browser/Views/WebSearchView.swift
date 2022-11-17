@@ -110,7 +110,6 @@ struct WebSearchView: View {
                 .padding(.top, -8)
     
         }
-           
       
     }
     

@@ -14,10 +14,7 @@ struct ContentView: View {
     
     @State private var text = ""
     @State private var isSearch = false
-    @State private var canBack = false
-    @State private var canForward = false
-    @State private var showHome = false
-    @State private var backgroundImage = ""
+    @State private var backgroundImage = "default"
     
 
     @Environment(\.managedObjectContext) private var viewContext
@@ -56,15 +53,14 @@ struct ContentView: View {
    
                 if isSearch {
 
-                    HomeWebView(text: $text)
+                    HomeWebView(text: $text, isSearch: $isSearch, backgroundImage: $backgroundImage)
 
                 } else {
 
-                    HomePageView() { query in
+                    HomePageView(backgroundImage: $backgroundImage) {  query in
                         // 跳转到网页
                         text = query
                         isSearch = true
-                        showHome = true
                     }
 
                     .background(
@@ -72,36 +68,8 @@ struct ContentView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                     )
-                    .padding(.top,10)
                 }
-                
-                BottomBar(clickHomeButton: {
-                
-                    isSearch = false
-                    showHome = false
-                    
-                }, clickBackButton: {
-    
-                    
-                }, clickForwardButton: {
-                    
-                }, changeWallpaper: { str in
-                    
-                    // 切换壁纸
-                    backgroundImage = str
-                    
-                }, openTabsView: {
-                    // open tabs View
-                    
-                    preparePreview { image in
-                        
-//                        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
-                        
-//                        let model = TabsModel(title: "", image: image ?? UIImage())
-//                        TabManager(model: model)
-                    }
-                    
-                }, canBack: $canBack, canForward: $canForward, showHome: $showHome)
+
             }
             
             .navigationBarHidden(true)

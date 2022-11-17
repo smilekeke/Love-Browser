@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct HomePageView: View {
+    
+    @State private var canBack = false
+    @State private var canForward = false
+    @State private var showHome = false
+    
+    @Binding var backgroundImage: String
 
     @FetchRequest(fetchRequest: HomePageCategory.all) private var  homePgaeCategorys:FetchedResults<HomePageCategory>
     
@@ -73,6 +79,27 @@ struct HomePageView: View {
                     }
                 }
             }
+            .padding(.top, 20)
+            
+            BottomBar(clickHomeButton: {
+            
+                showHome = false
+                
+            }, clickBackButton: {
+
+                
+            }, clickForwardButton: {
+                
+            }, changeWallpaper: { str in
+                
+                // 切换壁纸
+                backgroundImage = str
+                
+            }, openTabsView: {
+                // open tabs View
+      
+                
+            }, canBack: $canBack, canForward: $canForward, showHome: $showHome)
 
         }
         
@@ -80,9 +107,12 @@ struct HomePageView: View {
 }
 
 struct HomePageView_Previews: PreviewProvider {
+    
+    @State static var backgroundImage = "bg1"
+    
     static var previews: some View {
 
-        HomePageView { query in
+        HomePageView(backgroundImage: $backgroundImage) { query in
             
         }
     }

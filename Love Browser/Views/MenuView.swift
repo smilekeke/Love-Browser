@@ -65,6 +65,7 @@ struct MenuView: View {
                 .padding(.top,24)
         
             }
+            .background(Color.white)
             .edgesIgnoringSafeArea([.bottom])
             .frame(height: 267)
         }

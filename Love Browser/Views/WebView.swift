@@ -60,10 +60,14 @@ class WebViewModel: ObservableObject {
         }
     }
 
+    func webViewCanGoBack() -> Bool {
+        return webView.canGoBack
+
+    }
     
-    func fetchDataFromWebView() -> WKBackForwardList {
+    func webViewCanGoForward() -> Bool {
         
-       return webView.backForwardList
+        return webView.canGoForward
     }
     
 }
@@ -110,6 +114,14 @@ class WebViewCoordinator: NSObject,WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+    
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        
+    }
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         
     }
     
