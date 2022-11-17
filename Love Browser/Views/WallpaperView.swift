@@ -11,6 +11,8 @@ struct WallpaperView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
+    var changeWallpaper: (String) -> Void
+    
     let imageWidth = (UIScreen.main.bounds.width - 45) / 2
     
     var body: some View {
@@ -32,7 +34,11 @@ struct WallpaperView: View {
                 ForEach(1...10, id: \.self) { value in
                     
                     Button {
-                            
+                        
+                        // 切换壁纸
+                        changeWallpaper("bg"+String(value))
+                        presentationMode.wrappedValue.dismiss()
+                        
                         
                     } label: {
                         
@@ -57,6 +63,8 @@ struct WallpaperView: View {
 
 struct WallpaperView_Previews: PreviewProvider {
     static var previews: some View {
-        WallpaperView()
+        WallpaperView { str in
+            
+        }
     }
 }

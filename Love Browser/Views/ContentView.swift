@@ -17,6 +17,7 @@ struct ContentView: View {
     @State private var canBack = false
     @State private var canForward = false
     @State private var showHome = false
+    @State private var backgroundImage = ""
 
 //    @Environment(\.managedObjectContext) private var viewContext
 //
@@ -66,7 +67,7 @@ struct ContentView: View {
                     }
 
                     .background(
-                        Image("bg1")
+                        Image(backgroundImage)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     )
@@ -83,10 +84,16 @@ struct ContentView: View {
                     
                 }, clickForwardButton: {
                     
+                }, changeWallpaper: { str in
+                    
+                    backgroundImage = str
+                    
                 }, canBack: $canBack, canForward: $canForward, showHome: $showHome)
             }
+            
+            .navigationBarHidden(true)
+            
         }
-        .padding(.top, -130)
 
     }
     

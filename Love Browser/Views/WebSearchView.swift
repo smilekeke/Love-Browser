@@ -62,7 +62,7 @@ struct WebSearchView: View {
 
                     Button {
                         
-                        saveHomePageCategory(itemModel: ItemModel(title: "", icon: "", link: ""))
+                        saveHomePageCategory(itemModel: ItemModel(title: "Twitter", icon: "twitter", link: ""))
 
                     } label: {
                         Image("addHomePage")

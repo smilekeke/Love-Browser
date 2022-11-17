@@ -48,18 +48,20 @@ struct HomeSearchView: View {
 
                 }, label: {
                     Image("vector")
-                        .padding(.leading, 10)
+                        .padding(.leading, 20)
+                        
                 })
                     .opacity(showBack ? 1 : 0)
-
+                    
+                
                 LBTextField(text: $text) {
                     showBack = true
                     showSearchIcon = false
                     
                 } textDidChange: {
                     
-                    showBack = true
-                    showSearchIcon = false
+//                    showBack = true
+//                    showSearchIcon = false
                     
                 } pressReturn: {
                     
@@ -69,11 +71,10 @@ struct HomeSearchView: View {
                     showBack = false
                     showSearchIcon = true
                  }
-                
-
+            
                     .frame(height: 44)
+                    .padding(.leading,showBack ? 0 : -10)
                     .padding(.trailing, 20)
-                
                     
                 HStack {
                     

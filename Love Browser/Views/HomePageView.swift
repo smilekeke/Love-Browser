@@ -21,7 +21,7 @@ struct HomePageView: View {
         VStack {
             
             HomeSearchView { text in
-                
+
                 reloadWebView(text)
             }
             
@@ -61,14 +61,9 @@ struct HomePageView: View {
 
                     }
                 }
-                .padding(.horizontal)
-                .padding(.top, 10)
-
             }
 
         }
-    
-        
         
     }
 }

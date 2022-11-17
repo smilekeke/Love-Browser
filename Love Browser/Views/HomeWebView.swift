@@ -36,16 +36,6 @@ struct HomeWebView: View {
     var body: some View {
         
         VStack {
-            
-//            WebSearchView { query in
-//
-//                // 点击键盘go开始搜索
-//                webViewModel.updateData(with: query)
-//
-//            } cancleLoadQuery: {
-//
-//            }
-
 
             WebSearchView(text: $text) { query in
                 

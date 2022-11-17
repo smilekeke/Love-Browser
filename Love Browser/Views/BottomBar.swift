@@ -13,6 +13,7 @@ struct BottomBar: View {
     var clickHomeButton:() -> Void
     var clickBackButton:() -> Void
     var clickForwardButton:() -> Void
+    var changeWallpaper: (String) -> Void
     
     @Binding var canBack: Bool
     @Binding var canForward: Bool
@@ -153,7 +154,9 @@ struct BottomBar: View {
                     
                 } content: {
                     
-                    WallpaperView()
+                    WallpaperView { str in
+                        changeWallpaper(str)
+                    }
                 }
                 
                 .fullScreenCover(isPresented: $openHistory) {
@@ -213,7 +216,9 @@ struct BottomBar_Previews: PreviewProvider {
             
         }, clickForwardButton: {
             
-        }, canBack: $showHome, canForward: $showHome, showHome: $showHome)
+        }, changeWallpaper: { str  in
+            
+        },canBack: $showHome, canForward: $showHome, showHome: $showHome)
 
     }
 }

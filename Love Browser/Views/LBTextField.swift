@@ -43,7 +43,6 @@ struct LBTextField: UIViewRepresentable {
         textField.rightView = rightButton
         textField.rightViewMode = .whileEditing
         
-        
         textField.layer.borderColor = CGColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
         textField.layer.borderWidth = 2
         textField.layer.cornerRadius = 8
