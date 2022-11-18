@@ -20,6 +20,7 @@ struct BottomBar: View {
     @Binding var canBack: Bool
     @Binding var canForward: Bool
     @Binding var showHome: Bool
+    @State var hasBackground = false
     
     // bottom
     @State var openTabs = false // open tabs 标签页
@@ -44,13 +45,15 @@ struct BottomBar: View {
                 } label: {
                     
                        
-                    Image(canBack ? "back_black" : "back_white")
+                    Image(canBack ? "back_black" : (hasBackground ? "back_grey" : "back_white"))
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 30, height: 30)
                         .frame(maxWidth:.infinity)
                     
+                }.onAppear {
+//                    hasBackground = true
                 }
 
                 
@@ -76,7 +79,7 @@ struct BottomBar: View {
                     
                 } label: {
                     
-                    Image(showHome ? "homepage" : "search")
+                    Image(showHome ? "homepage" : "home_search_black")
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -94,7 +97,7 @@ struct BottomBar: View {
                     
                 } label: {
                     
-                    Image("tabs")
+                    Image("tabs_black")
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -118,7 +121,7 @@ struct BottomBar: View {
                 
                 } label: {
                     
-                    Image("menu")
+                    Image("menu_black")
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -194,17 +197,17 @@ struct BottomBar_Previews: PreviewProvider {
     static var previews: some View {
         
         BottomBar(clickHomeButton: {
-            
+
         }, clickBackButton: {
-            
+
         }, clickForwardButton: {
-            
+
         }, changeWallpaper: { str  in
-            
+
         }, openTabsView: {
-            
+
         }, saveBookMarkCategory: {
-            
+
         }, canBack: $showHome, canForward: $showHome, showHome: $showHome)
 
     }

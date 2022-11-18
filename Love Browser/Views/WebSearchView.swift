@@ -21,6 +21,7 @@ struct WebSearchView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var textFieldManger = TextFieldManger()
+    @StateObject var webViewModel = WebViewModel()
 
     var body: some View {
             
@@ -62,8 +63,8 @@ struct WebSearchView: View {
                 Menu {
 
                     Button {
-                        
-                        saveHomePageCategory(itemModel: HomePageItemModel(title: "google", icon: "twitter", link: text))
+                    
+                        saveHomePageCategory(itemModel: HomePageItemModel(title: webViewModel.webViewTitle(), icon: webViewModel.webViewFavIcon(), link: text))
 
                     } label: {
                         Image("addHomePage")

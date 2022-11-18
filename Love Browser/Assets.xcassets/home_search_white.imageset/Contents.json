@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "zoom.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "home_search_white@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

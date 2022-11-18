@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "instagram.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "tabs_white@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

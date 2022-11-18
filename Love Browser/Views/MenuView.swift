@@ -52,11 +52,11 @@ struct MenuView: View {
                                     
                             }
                                 .frame(width: 56, height: 56)
-                                .background(Color.init("F5F5F7"))
+                                .background(Color.lb_item)
                                 .cornerRadius(8)
                 
                             Text(item.title)
-                                .foregroundColor(Color.init("222222"))
+                                .foregroundColor(Color.lb_black)
                                 
                         }
 

@@ -38,10 +38,10 @@ struct ContentView: View {
     }
 
     func  saveHomePageData() {
-        saveHomePageCategory(itemModel: HomePageItemModel(title: "FaceBook", icon: "faceBook", link: "https://www.facebook.com/"))
-        saveHomePageCategory(itemModel: HomePageItemModel(title: "Instagram", icon: "instagram", link: "https://www.instagram.com/"))
-        saveHomePageCategory(itemModel: HomePageItemModel(title: "Twitter", icon: "twitter", link: "https://twitter.com/"))
-        saveHomePageCategory(itemModel: HomePageItemModel(title: "Zoom", icon: "zoom", link: "https://zoom.com/"))
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "FaceBook", icon: "www.facebook.com".appendedString(), link: "https://www.facebook.com/"))
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "Instagram", icon: "www.instagram.com".appendedString(), link: "https://www.instagram.com/"))
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "Twitter", icon: "www.twitter.com".appendedString(), link: "https://twitter.com/"))
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "Zoom", icon: "www.zoom.us".appendedString(), link: "https://zoom.com/"))
     }
     
 

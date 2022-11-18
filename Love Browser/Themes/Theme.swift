@@ -10,8 +10,9 @@ import SwiftUI
 
 protocol Theme {
     
+    var imageColor: String { set get}
+    var placeHolderColor: Color { set get}
     var textColor: Color { set get}
-//    var currentImageSet: ThemeManager.ImageSet { get }
     var textFieldColor: Color { set get }
     var BottomBarColor: Color { set get }
     

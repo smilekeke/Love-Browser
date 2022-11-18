@@ -20,15 +20,12 @@ struct LBTextField: UIViewRepresentable {
     var textDidChange:() -> Void
     var pressReturn:() -> Void
     
-    
     func makeUIView(context: Context) -> some UITextField {
         
-//        let textField = TextFieldWithPadding()
         textField.delegate = context.coordinator
         textField.placeholder = "search or enter url"
         textField.returnKeyType = .go
-        
-        // 左视图
+
         let leftView = UIView(frame: CGRect(x:0, y: 0, width: 10, height: 10))
         textField.leftView = leftView
         textField.leftViewMode = .always
@@ -57,6 +54,7 @@ struct LBTextField: UIViewRepresentable {
         if text != uiView.text {
             uiView.text = text
         }
+        
     }
     
     func makeCoordinator() -> TextFieldCoordinator {
@@ -127,6 +125,11 @@ class TextFieldManger: ObservableObject {
     init(){
         
         textField = TextFieldWithPadding()
+    }
+    
+    func changeTextFieldStyle() {
+        
+        textField.attributedPlaceholder = NSAttributedString(string: "search or enter url", attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.shared.getTheme().placeHolderColor])
     }
     
     func resignFirstResponder() {

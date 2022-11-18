@@ -75,6 +75,12 @@ class WebViewModel: ObservableObject {
         return webView.title ?? ""
     }
     
+    func webViewFavIcon() -> String {
+        
+        let iconUrl = "http://www.google.com/s2/favicons?domain=www." + (webView.url?.host ?? "google.com")
+        return iconUrl
+    }
+    
 }
 
 func changeStringToUrl(query: String?) -> URL? {
@@ -83,7 +89,7 @@ func changeStringToUrl(query: String?) -> URL? {
         return nil
     }
     
-    if text.isVaildURL(url: text) {
+    if text.isVaildURL() {
         
         return URL(string: text)!
         

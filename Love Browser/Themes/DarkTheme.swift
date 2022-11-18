@@ -9,12 +9,14 @@ import SwiftUI
 
 class DarkTheme: Theme {
     
-    var textColor: Color = .black
+    var imageColor: String = "light"
     
-    var textFieldColor: Color = .black
+    var placeHolderColor: Color = .white
     
-    var BottomBarColor: Color = .black
+    var textColor: Color = .white
     
+    var textFieldColor: Color = .white
     
-
+    var BottomBarColor: Color = .white
+    
 }

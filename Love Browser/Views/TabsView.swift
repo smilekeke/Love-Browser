@@ -58,7 +58,7 @@ struct TabsView: View {
                                
                             }
                             .frame(width: gridWidth, height: 214)
-                            .background(Color.init("F5F5F7"))
+                            .background(Color.lb_item)
                             .cornerRadius(12)
                         
                         

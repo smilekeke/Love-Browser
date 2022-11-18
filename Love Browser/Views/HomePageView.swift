@@ -22,18 +22,7 @@ struct HomePageView: View {
     let rows = [GridItem(.fixed(80)), GridItem(.fixed(80)), GridItem(.fixed(80)), GridItem(.fixed(80))]
     
     
-//    init() {
-//        self.applyLighthTheme()
-//    }
-//
-//    private func applyLighthTheme() {
-//        ThemeManager.shared.applyTheme(theme: LightTheme())
-//    }
-
-    
     var body: some View {
-        
-//        let theme = ThemeManager.shared.getTheme()
         
         VStack {
     
@@ -61,20 +50,27 @@ struct HomePageView: View {
                                     reloadWebView(homePageCategory.link ?? "")
 
                                 } label: {
-
-                                    Image(homePageCategory.icon ?? "")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 30, height: 30)
+                                    
+                                         AsyncImage(url: URL(string: homePageCategory.icon ?? "https://www.google.com/favicon.ico")) { image in
+                                             
+                                             image.resizable(resizingMode: .tile)
+                                             
+                                         } placeholder: {
+                                             
+                                             Color.green
+                                         }
+                                         .frame(width: 30, height: 30)
+                                         .aspectRatio(contentMode: .fit)
+                                    
 
                                 }
                                 .frame(width: 56, height: 56)
-                                .background(Color.init("F5F5F7"))
+                                .background(Color.lb_item)
                                 .cornerRadius(8)
                             }
 
                             Text(homePageCategory.title ?? "")
-                                .foregroundColor(Color.init("222222"))
+                                .foregroundColor(Color.lb_black)
 
                         }
 
@@ -115,8 +111,8 @@ struct HomePageView_Previews: PreviewProvider {
     @State static var backgroundImage = "bg1"
     
     static var previews: some View {
-
-        HomePageView(backgroundImage: $backgroundImage) { query in
+        
+        HomePageView(backgroundImage: $backgroundImage) { query  in
             
         }
     }

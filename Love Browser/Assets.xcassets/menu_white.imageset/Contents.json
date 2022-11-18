@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "twitter.png.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "menu_white@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

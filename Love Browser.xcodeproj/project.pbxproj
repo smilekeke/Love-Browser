@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		171E435A291E3556007D1648 /* LBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4359291E3556007D1648 /* LBTextField.swift */; };
-		171E4365291EABD7007D1648 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4361291EABD7007D1648 /* Color.swift */; };
 		171E436D291F815B007D1648 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E436C291F815B007D1648 /* MenuView.swift */; };
 		171E436F291FA434007D1648 /* BookMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E436E291FA434007D1648 /* BookMarkView.swift */; };
 		171E4371291FA810007D1648 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4370291FA810007D1648 /* TabsView.swift */; };
@@ -19,6 +18,8 @@
 		171E43812922AA16007D1648 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E43802922AA16007D1648 /* ThemeManager.swift */; };
 		176778622926771E00EDF706 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176778612926771E00EDF706 /* TabManager.swift */; };
 		17677864292677AF00EDF706 /* TabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17677863292677AF00EDF706 /* TabsModel.swift */; };
+		1767786A2927420B00EDF706 /* Color+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176778692927420B00EDF706 /* Color+Extentions.swift */; };
+		1767786C2927765100EDF706 /* LBAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767786B2927765100EDF706 /* LBAsyncImage.swift */; };
 		177EE2392922AD8A00CCACEB /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE2382922AD8A00CCACEB /* LightTheme.swift */; };
 		177EE23B2922AD9800CCACEB /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE23A2922AD9800CCACEB /* DarkTheme.swift */; };
 		177EE24229236F3100CCACEB /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE24129236F3100CCACEB /* String+Extensions.swift */; };
@@ -46,7 +47,6 @@
 
 /* Begin PBXFileReference section */
 		171E4359291E3556007D1648 /* LBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBTextField.swift; sourceTree = "<group>"; };
-		171E4361291EABD7007D1648 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		171E436C291F815B007D1648 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		171E436E291FA434007D1648 /* BookMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkView.swift; sourceTree = "<group>"; };
 		171E4370291FA810007D1648 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
@@ -57,6 +57,8 @@
 		171E43802922AA16007D1648 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		176778612926771E00EDF706 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
 		17677863292677AF00EDF706 /* TabsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsModel.swift; sourceTree = "<group>"; };
+		176778692927420B00EDF706 /* Color+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extentions.swift"; sourceTree = "<group>"; };
+		1767786B2927765100EDF706 /* LBAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBAsyncImage.swift; sourceTree = "<group>"; };
 		177EE2382922AD8A00CCACEB /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
 		177EE23A2922AD9800CCACEB /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
 		177EE24129236F3100CCACEB /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -97,7 +99,6 @@
 		171E435F291EABB4007D1648 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
-				171E4361291EABD7007D1648 /* Color.swift */,
 			);
 			path = CommonUI;
 			sourceTree = "<group>";
@@ -163,6 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				177EE24129236F3100CCACEB /* String+Extensions.swift */,
+				176778692927420B00EDF706 /* Color+Extentions.swift */,
+				1767786B2927765100EDF706 /* LBAsyncImage.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -324,10 +327,12 @@
 			files = (
 				1780EE4D291916EC006B9FFC /* Persistence.swift in Sources */,
 				1780EE6029191783006B9FFC /* ContentView.swift in Sources */,
+				1767786C2927765100EDF706 /* LBAsyncImage.swift in Sources */,
 				171E435A291E3556007D1648 /* LBTextField.swift in Sources */,
 				171E4379292246A6007D1648 /* CoreDataManager.swift in Sources */,
 				171E4371291FA810007D1648 /* TabsView.swift in Sources */,
 				171E437F2922A7F8007D1648 /* Theme.swift in Sources */,
+				1767786A2927420B00EDF706 /* Color+Extentions.swift in Sources */,
 				177EE23B2922AD9800CCACEB /* DarkTheme.swift in Sources */,
 				1780EE50291916EC006B9FFC /* Love_Browser.xcdatamodeld in Sources */,
 				1780EE44291916EB006B9FFC /* Love_BrowserApp.swift in Sources */,
@@ -335,7 +340,6 @@
 				177EE27E2923DD6C00CCACEB /* DataBase.xcdatamodeld in Sources */,
 				177EE24C2923B2C800CCACEB /* MaskView.swift in Sources */,
 				177EE2392922AD8A00CCACEB /* LightTheme.swift in Sources */,
-				171E4365291EABD7007D1648 /* Color.swift in Sources */,
 				177EE2862923F00B00CCACEB /* SearchHistoryCategory+CoreDataClass.swift in Sources */,
 				177EE2482923939B00CCACEB /* HomeSearchView.swift in Sources */,
 				177EE24F2923B75800CCACEB /* HomePageCategory+CoreDataClass.swift in Sources */,
@@ -482,9 +486,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Love Browser/Preview Content\"";
+				DEVELOPMENT_TEAM = 3G9N4FL25J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -492,6 +498,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -499,6 +506,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lovebrowser.Love-Browser";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -510,9 +518,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Love Browser/Preview Content\"";
+				DEVELOPMENT_TEAM = 3G9N4FL25J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -520,6 +530,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -527,6 +538,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lovebrowser.Love-Browser";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -24,6 +24,7 @@ class ThemeManager {
     }
     
     public func getTheme() -> Theme {
+        
         return self.theme
     }
     

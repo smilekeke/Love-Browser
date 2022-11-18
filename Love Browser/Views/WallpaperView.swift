@@ -73,8 +73,8 @@ struct WallpaperView: View {
             }
             
             .frame(width: screenWidth-40, height: 40, alignment: .center)
-            .background(Color("F5F5F7"))
-            .foregroundColor(Color("222222"))
+            .background(Color.lb_item)
+            .foregroundColor(Color.lb_black)
             .cornerRadius(8.0)
     
         }

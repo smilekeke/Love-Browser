@@ -20,7 +20,7 @@ struct SearchWordsView: View {
                 HStack {
                     Image("history")
                     Text(searchWord.title ?? "")
-                        .foregroundColor(Color("222222"))
+                        .foregroundColor(Color.lb_black)
                         
                 }
                 .listRowBackground(Color.clear)
