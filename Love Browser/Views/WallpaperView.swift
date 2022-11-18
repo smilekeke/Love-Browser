@@ -48,9 +48,9 @@ struct WallpaperView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: (screenWidth - 45) / 2, height: 218)
-                            .overlay(alignment: .bottom) {
-                                Caption()
-                            }
+//                            .overlay(alignment: .bottom) {
+//                                Caption()
+//                            }
                             
                     }
                         .frame(width: (screenWidth - 45) / 2, height: 218)

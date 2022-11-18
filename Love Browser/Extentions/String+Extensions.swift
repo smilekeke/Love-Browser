@@ -21,7 +21,7 @@ extension String {
     
     func appendedString() -> String {
         
-        let url = "https://www.google.com/s2/favicons?sz=64&domain=" + self
+        let url = "https://www.google.com/s2/favicons?sz=120&domain=" + self
         
         return url
         

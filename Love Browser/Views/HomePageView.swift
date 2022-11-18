@@ -53,14 +53,15 @@ struct HomePageView: View {
                                     
                                          AsyncImage(url: URL(string: homePageCategory.icon ?? "https://www.google.com/favicon.ico")) { image in
                                              
-                                             image.resizable(resizingMode: .tile)
+                                             image
+                                                 .aspectRatio(contentMode: .fill)
+                                                 .frame(width: 30, height: 30)
                                              
                                          } placeholder: {
                                              
-                                             Color.green
+                                             Color.white
                                          }
                                          .frame(width: 30, height: 30)
-                                         .aspectRatio(contentMode: .fit)
                                     
 
                                 }
