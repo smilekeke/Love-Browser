@@ -70,6 +70,11 @@ class WebViewModel: ObservableObject {
         return webView.canGoForward
     }
     
+    func webViewTitle() -> String {
+        
+        return webView.title ?? ""
+    }
+    
 }
 
 func changeStringToUrl(query: String?) -> URL? {

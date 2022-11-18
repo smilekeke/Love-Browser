@@ -74,9 +74,6 @@ struct HomeSearchView: View {
                     showBack = false
                     showSearchIcon = true
                 }
-
-                
-            
                     .frame(height: 44)
                     .padding(.leading,showBack ? 0 : -10)
                     .padding(.trailing, 20)

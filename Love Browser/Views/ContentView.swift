@@ -64,9 +64,12 @@ struct ContentView: View {
                     }
 
                     .background(
+                                       
                         Image(backgroundImage)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
+                                        .resizable()
+                                        .ignoresSafeArea()
+                                        .aspectRatio(contentMode: .fill)
+
                     )
                 }
 
@@ -81,6 +84,10 @@ struct ContentView: View {
                 saveHomePageData()
             }
             UserDefaults.standard.set(true, forKey: "WriteHomePageData")
+            
+            let image = UserDefaults.standard.string(forKey: "SelectedWallpaper")
+            backgroundImage = image ?? "default"
+           
         }
 
     }

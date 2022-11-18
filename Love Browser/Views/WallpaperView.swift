@@ -38,6 +38,7 @@ struct WallpaperView: View {
                         
                         // 切换壁纸
                         changeWallpaper("bg"+String(value))
+                        UserDefaults.standard.set("bg"+String(value), forKey: "SelectedWallpaper")
                         presentationMode.wrappedValue.dismiss()
                         
                         
@@ -63,6 +64,7 @@ struct WallpaperView: View {
             Button {
                 
                 changeWallpaper("")
+                UserDefaults.standard.set("default", forKey: "SelectedWallpaper")
                 
             } label: {
                 

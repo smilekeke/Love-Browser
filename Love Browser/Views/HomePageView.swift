@@ -36,11 +36,13 @@ struct HomePageView: View {
 //        let theme = ThemeManager.shared.getTheme()
         
         VStack {
+    
             
             HomeSearchView { text in
 
                 reloadWebView(text)
             }
+            .padding(.top, 10)
             
             ScrollView {
 
@@ -98,6 +100,8 @@ struct HomePageView: View {
             }, openTabsView: {
                 // open tabs View
       
+                
+            }, saveBookMarkCategory: {
                 
             }, canBack: $canBack, canForward: $canForward, showHome: $showHome)
 

@@ -39,6 +39,24 @@ struct HomeWebView: View {
         }
 
     }
+    
+    // 添加到书签
+    private func saveBookMarkCategory(itemModel: HomePageItemModel) {
+
+        let bookMarkCategory = BookMarkCategory(context: viewContext)
+        bookMarkCategory.title = itemModel.title
+        bookMarkCategory.url = "https://"
+
+        do {
+
+            try viewContext.save()
+
+        } catch {
+
+            print(error)
+        }
+
+    }
 
     var body: some View {
         
@@ -88,6 +106,10 @@ struct HomeWebView: View {
                 // open tabs View
                 
             
+            }, saveBookMarkCategory: {
+                
+                saveBookMarkCategory(itemModel: HomePageItemModel(title: webViewModel.webViewTitle(), icon: "", link: text))
+                
             }, canBack: $canBack, canForward: $canForward, showHome: $showHome)
             
         }

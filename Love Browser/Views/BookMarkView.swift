@@ -35,8 +35,11 @@ struct BookMarkView: View {
                         ForEach(bookMarkCategorys) { bookMarkCategory in
 
                             HStack {
+                                
                                 Image("bookmark")
+                                    .padding(.leading,20)
                                 Text(bookMarkCategory.title ?? "")
+                                    .padding(.leading,10)
                             }
 
                         }

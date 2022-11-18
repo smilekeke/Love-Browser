@@ -15,6 +15,7 @@ struct BottomBar: View {
     var clickForwardButton:() -> Void
     var changeWallpaper: (String) -> Void
     var openTabsView:() -> Void // open tabs 标签页
+    var saveBookMarkCategory:() -> Void
     
     @Binding var canBack: Bool
     @Binding var canForward: Bool
@@ -29,8 +30,6 @@ struct BottomBar: View {
     @State var openBookMark = false
     @State var openWallpaper = false
     @State var openSetting = false
-    
-    @Environment(\.managedObjectContext) private var viewContext
     
     var body: some View {
         
@@ -141,7 +140,7 @@ struct BottomBar: View {
                         }
                         if title == "Add Bookmark"{
                             
-                            saveBookMarkCategory(itemModel: HomePageItemModel(title: "hahahha", icon: "", link: ""))
+                            saveBookMarkCategory()
                         }
                         if title == "Bookmark" {
                             openBookMark.toggle()
@@ -186,24 +185,6 @@ struct BottomBar: View {
         
     }
     
-    
-    // 添加到书签
-    private func saveBookMarkCategory(itemModel: HomePageItemModel) {
-
-        let bookMarkCategory = BookMarkCategory(context: viewContext)
-        bookMarkCategory.title = itemModel.title
-        bookMarkCategory.url = "https://"
-
-        do {
-
-            try viewContext.save()
-
-        } catch {
-
-            print(error)
-        }
-
-    }
 }
 
 struct BottomBar_Previews: PreviewProvider {
@@ -221,6 +202,8 @@ struct BottomBar_Previews: PreviewProvider {
         }, changeWallpaper: { str  in
             
         }, openTabsView: {
+            
+        }, saveBookMarkCategory: {
             
         }, canBack: $showHome, canForward: $showHome, showHome: $showHome)
 
