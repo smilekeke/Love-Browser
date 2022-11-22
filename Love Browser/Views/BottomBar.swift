@@ -17,9 +17,9 @@ struct BottomBar: View {
     var openTabsView:() -> Void // open tabs 标签页
     var saveBookMarkCategory:() -> Void
     
-    @Binding var canBack: Bool
-    @Binding var canForward: Bool
-    @Binding var showHome: Bool
+    var canBack = false
+    var canForward = false
+    var showHome = false
     @State var hasBackground = false
     
     // bottom
@@ -73,8 +73,7 @@ struct BottomBar: View {
                 }
                 
                 Button {
-                    
-                    
+                
                     clickHomeButton()
                     
                 } label: {
@@ -179,7 +178,6 @@ struct BottomBar: View {
                 }
                
             }
-            .frame(maxWidth:.infinity)
             
         }
         .frame(height: 30)
@@ -208,7 +206,7 @@ struct BottomBar_Previews: PreviewProvider {
 
         }, saveBookMarkCategory: {
 
-        }, canBack: $showHome, canForward: $showHome, showHome: $showHome)
+        }, canBack: false, canForward: false , showHome: false)
 
     }
 }

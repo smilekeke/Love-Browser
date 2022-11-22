@@ -11,12 +11,12 @@ import CryptoKit
 @main
 
 struct Love_BrowserApp: App {
-    
+
     var body: some Scene {
        
         WindowGroup {
             
-            ContentView()
+            ContentView(tabsBarView: TabsView())
                 .environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
 
             

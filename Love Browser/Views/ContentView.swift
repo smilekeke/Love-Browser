@@ -7,18 +7,171 @@
 
 import SwiftUI
 import CoreData
+import WebKit
 
 struct ContentView: View {
-
-    @StateObject var webViewModel = WebViewModel()
     
     @State private var text = ""
     @State private var isSearch = false
+    @State private var showSearchedWords = false
     @State private var backgroundImage = "default"
     
-
+    var textFieldManger = TextFieldManger()
+    var webViewModel = WebViewModel()
+    
+    var tabsBarView: TabsView
+    
     @Environment(\.managedObjectContext) private var viewContext
+    @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
+    
+    var body: some View {
+        
+        NavigationView {
+            
+            VStack {
+                SearchView(text: $text, textDidChange: {
+                    
+                    showSearchedWords = true
+                    
+                }, clickCancleButton: {
+                    
+                    showSearchedWords = false
+                    
+                }, changeToWebView: { text in
+                    isSearch = true
+                    showSearchedWords = false
+                    webViewModel.updateData(with: text)
+                    
+                }, textFieldManger: textFieldManger)
+            
+                .padding(.top, 10)
+                
+                ProgressView("", value: 10,total: 20)
+                    .padding(.leading,20)
+                    .padding(.trailing,20)
+                    .padding(.top,-20)
+                
+                ZStack {
+                
+//                    if isSearch {
+                    
+                        WebView(webView: webViewModel.webView) { text in
+                        
+                        } didFinish: { url, text in
+                            
+                        }
+                        .opacity(isSearch ? 1 : 0)
+                    
+//                    } else {
+                        
+                        HomePageView(backgroundImage: $backgroundImage) { url in
+                            isSearch = true
+                            text = url
+                            webViewModel.updateData(with: url)
+                        }
+                        .opacity(isSearch ? 0 : 1)
+//                    }
+                    
+                    SearchWordsView {
+                        
+                        showSearchedWords = false
+                        
+                    } reloadWebView: { query in
+                        
+                        showSearchedWords = false
+                        isSearch = true
+                        text = query
+                        webViewModel.updateData(with: query)
+                        
+                    }
+                        .background(Color.black.opacity(0.3))
+                        .padding(.bottom, keyboardHeightHelper.keyboardHeight-74)
+                        .opacity(showSearchedWords ? 1 : 0)
+                    
+                }
+                
+                
+                BottomBar(clickHomeButton: {
+                    
+                    if isSearch {
+                        
+                        isSearch = false
+                        text = ""
+                        
+                    } else {
+                        
+                        textFieldManger.textField.becomeFirstResponder()
 
+                    }
+    
+                }, clickBackButton: {
+                    
+                    webViewModel.webView.goBack()
+    
+                }, clickForwardButton: {
+    
+                    webViewModel.webView.goForward()
+                }, changeWallpaper: { str in
+    
+                    // 切换壁纸
+                    backgroundImage = str
+    
+                }, openTabsView: {
+                    // open tabs View
+    
+    
+                }, saveBookMarkCategory: {
+    
+                }, canBack: webViewModel.canGoBack, canForward: webViewModel.canGoForward, showHome: isSearch)
+
+            }
+            
+            .background(
+
+                Image(backgroundImage)
+                                .resizable()
+                                .ignoresSafeArea()
+                                .aspectRatio(contentMode: .fill)
+                                .opacity(isSearch ? 0 : 1)
+
+            )
+            
+            .navigationBarHidden(true)
+            .ignoresSafeArea(.keyboard, edges: .bottom)
+            
+        }
+        .onAppear {
+            
+            if !UserDefaults.standard.bool(forKey: "WriteHomePageData") {
+                saveHomePageData()
+            }
+            UserDefaults.standard.set(true, forKey: "WriteHomePageData")
+            
+            let image = UserDefaults.standard.string(forKey: "SelectedWallpaper")
+            backgroundImage = image ?? "default"
+           
+        }
+
+    }
+    
+//    func preparePreview(completion: @escaping (UIImage?) -> Void) {
+//
+//        DispatchQueue.main.async {
+//
+//            let webView = webViewModel.webView
+//
+//             UIGraphicsBeginImageContextWithOptions(webView.bounds.size, false, UIScreen.main.scale)
+//
+//             webView.drawHierarchy(in: webView.bounds, afterScreenUpdates: true)
+//
+//             let image = UIGraphicsGetImageFromCurrentImageContext()
+//             UIGraphicsEndImageContext()
+//             completion(image)
+//        }
+//
+//    }
+    
+    
     private func saveHomePageCategory(itemModel: HomePageItemModel) {
 
         let homePageCategory = HomePageCategory(context: viewContext)
@@ -43,69 +196,40 @@ struct ContentView: View {
         saveHomePageCategory(itemModel: HomePageItemModel(title: "Twitter", icon: "www.twitter.com".appendedString(), link: "https://twitter.com/"))
         saveHomePageCategory(itemModel: HomePageItemModel(title: "Zoom", icon: "www.zoom.us".appendedString(), link: "https://zoom.com/"))
     }
-    
 
-    var body: some View {
-        
-        NavigationView {
-            
-            VStack {
-   
-                if isSearch {
 
-                    HomeWebView(text: $text, isSearch: $isSearch, backgroundImage: $backgroundImage)
+    private func saveSearchHistoryCategory(date: String, title: String,url: String) {
 
-                } else {
+        let searchHistoryCategory = SearchHistoryCategory(context: viewContext)
+        searchHistoryCategory.title = title
+        searchHistoryCategory.date = date
+        searchHistoryCategory.url = url
 
-                    HomePageView(backgroundImage: $backgroundImage) {  query in
-                        // 跳转到网页
-                        text = query
-                        isSearch = true
-                    }
+        do {
 
-                    .background(
-                                       
-                        Image(backgroundImage)
-                                        .resizable()
-                                        .ignoresSafeArea()
-                                        .aspectRatio(contentMode: .fill)
+            try viewContext.save()
 
-                    )
-                }
+        } catch {
 
-            }
-            
-            .navigationBarHidden(true)
-            
-        }
-        .onAppear {
-            
-            if !UserDefaults.standard.bool(forKey: "WriteHomePageData") {
-                saveHomePageData()
-            }
-            UserDefaults.standard.set(true, forKey: "WriteHomePageData")
-            
-            let image = UserDefaults.standard.string(forKey: "SelectedWallpaper")
-            backgroundImage = image ?? "default"
-           
+            print(error)
         }
 
     }
     
-    
-    func preparePreview(completion: @escaping (UIImage?) -> Void) {
+    // 添加到书签
+    private func saveBookMarkCategory(itemModel: HomePageItemModel) {
 
-        DispatchQueue.main.async {
-            
-            let webView = webViewModel.webView
+        let bookMarkCategory = BookMarkCategory(context: viewContext)
+        bookMarkCategory.title = itemModel.title
+        bookMarkCategory.url = "https://"
 
-             UIGraphicsBeginImageContextWithOptions(webView.bounds.size, false, UIScreen.main.scale)
+        do {
 
-             webView.drawHierarchy(in: webView.bounds, afterScreenUpdates: true)
+            try viewContext.save()
 
-             let image = UIGraphicsGetImageFromCurrentImageContext()
-             UIGraphicsEndImageContext()
-             completion(image)
+        } catch {
+
+            print(error)
         }
 
     }
@@ -113,12 +237,14 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-
+    @State static var text = ""
+    @State static var backgroundImage = "default"
+    
     static var previews: some View {
-        
-        ContentView().environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
+
+        ContentView(tabsBarView: TabsView()).environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
     }
-           
+
 }
 
 

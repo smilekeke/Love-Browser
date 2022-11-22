@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		171AED0E292B1CA3006C08F2 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED0D292B1CA3006C08F2 /* WebViewModel.swift */; };
+		171AED10292BC801006C08F2 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED0F292BC801006C08F2 /* KeyboardHeightHelper.swift */; };
 		171E435A291E3556007D1648 /* LBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4359291E3556007D1648 /* LBTextField.swift */; };
 		171E436D291F815B007D1648 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E436C291F815B007D1648 /* MenuView.swift */; };
 		171E436F291FA434007D1648 /* BookMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E436E291FA434007D1648 /* BookMarkView.swift */; };
@@ -24,8 +26,7 @@
 		177EE23B2922AD9800CCACEB /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE23A2922AD9800CCACEB /* DarkTheme.swift */; };
 		177EE24229236F3100CCACEB /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE24129236F3100CCACEB /* String+Extensions.swift */; };
 		177EE2442923767F00CCACEB /* SearchWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE2432923767F00CCACEB /* SearchWordsView.swift */; };
-		177EE246292390B100CCACEB /* HomeWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE245292390B100CCACEB /* HomeWebView.swift */; };
-		177EE2482923939B00CCACEB /* HomeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE2472923939B00CCACEB /* HomeSearchView.swift */; };
+		177EE2482923939B00CCACEB /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE2472923939B00CCACEB /* SearchView.swift */; };
 		177EE24C2923B2C800CCACEB /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE24B2923B2C800CCACEB /* MaskView.swift */; };
 		177EE24F2923B75800CCACEB /* HomePageCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE24E2923B75800CCACEB /* HomePageCategory+CoreDataClass.swift */; };
 		177EE27E2923DD6C00CCACEB /* DataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 177EE27C2923DD6C00CCACEB /* DataBase.xcdatamodeld */; };
@@ -38,7 +39,6 @@
 		1780EE4D291916EC006B9FFC /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1780EE4C291916EC006B9FFC /* Persistence.swift */; };
 		1780EE50291916EC006B9FFC /* Love_Browser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1780EE4E291916EC006B9FFC /* Love_Browser.xcdatamodeld */; };
 		1780EE5D29191783006B9FFC /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1780EE5729191783006B9FFC /* BottomBar.swift */; };
-		1780EE5E29191783006B9FFC /* WebSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1780EE5829191783006B9FFC /* WebSearchView.swift */; };
 		1780EE5F29191783006B9FFC /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1780EE5929191783006B9FFC /* WebView.swift */; };
 		1780EE6029191783006B9FFC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1780EE5A29191783006B9FFC /* ContentView.swift */; };
 		1780EE6129191783006B9FFC /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1780EE5B29191783006B9FFC /* HomePageView.swift */; };
@@ -46,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		171AED0D292B1CA3006C08F2 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
+		171AED0F292BC801006C08F2 /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
 		171E4359291E3556007D1648 /* LBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBTextField.swift; sourceTree = "<group>"; };
 		171E436C291F815B007D1648 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		171E436E291FA434007D1648 /* BookMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkView.swift; sourceTree = "<group>"; };
@@ -63,8 +65,7 @@
 		177EE23A2922AD9800CCACEB /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
 		177EE24129236F3100CCACEB /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		177EE2432923767F00CCACEB /* SearchWordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWordsView.swift; sourceTree = "<group>"; };
-		177EE245292390B100CCACEB /* HomeWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWebView.swift; sourceTree = "<group>"; };
-		177EE2472923939B00CCACEB /* HomeSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchView.swift; sourceTree = "<group>"; };
+		177EE2472923939B00CCACEB /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		177EE24B2923B2C800CCACEB /* MaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskView.swift; sourceTree = "<group>"; };
 		177EE24E2923B75800CCACEB /* HomePageCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomePageCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		177EE27D2923DD6C00CCACEB /* DataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataBase.xcdatamodel; sourceTree = "<group>"; };
@@ -78,7 +79,6 @@
 		1780EE4C291916EC006B9FFC /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		1780EE4F291916EC006B9FFC /* Love_Browser.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Love_Browser.xcdatamodel; sourceTree = "<group>"; };
 		1780EE5729191783006B9FFC /* BottomBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
-		1780EE5829191783006B9FFC /* WebSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSearchView.swift; sourceTree = "<group>"; };
 		1780EE5929191783006B9FFC /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		1780EE5A29191783006B9FFC /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1780EE5B29191783006B9FFC /* HomePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
@@ -136,12 +136,11 @@
 			children = (
 				1780EE5A29191783006B9FFC /* ContentView.swift */,
 				1780EE5B29191783006B9FFC /* HomePageView.swift */,
-				177EE2472923939B00CCACEB /* HomeSearchView.swift */,
-				177EE245292390B100CCACEB /* HomeWebView.swift */,
-				1780EE5829191783006B9FFC /* WebSearchView.swift */,
+				177EE2472923939B00CCACEB /* SearchView.swift */,
 				171E4359291E3556007D1648 /* LBTextField.swift */,
 				177EE2432923767F00CCACEB /* SearchWordsView.swift */,
 				1780EE5929191783006B9FFC /* WebView.swift */,
+				171AED0D292B1CA3006C08F2 /* WebViewModel.swift */,
 				1780EE5729191783006B9FFC /* BottomBar.swift */,
 				1780EE6229192D9D006B9FFC /* HistoryView.swift */,
 				171E436E291FA434007D1648 /* BookMarkView.swift */,
@@ -156,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				177EE24B2923B2C800CCACEB /* MaskView.swift */,
+				171AED0F292BC801006C08F2 /* KeyboardHeightHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -330,8 +330,10 @@
 				1767786C2927765100EDF706 /* LBAsyncImage.swift in Sources */,
 				171E435A291E3556007D1648 /* LBTextField.swift in Sources */,
 				171E4379292246A6007D1648 /* CoreDataManager.swift in Sources */,
+				171AED10292BC801006C08F2 /* KeyboardHeightHelper.swift in Sources */,
 				171E4371291FA810007D1648 /* TabsView.swift in Sources */,
 				171E437F2922A7F8007D1648 /* Theme.swift in Sources */,
+				171AED0E292B1CA3006C08F2 /* WebViewModel.swift in Sources */,
 				1767786A2927420B00EDF706 /* Color+Extentions.swift in Sources */,
 				177EE23B2922AD9800CCACEB /* DarkTheme.swift in Sources */,
 				1780EE50291916EC006B9FFC /* Love_Browser.xcdatamodeld in Sources */,
@@ -341,16 +343,14 @@
 				177EE24C2923B2C800CCACEB /* MaskView.swift in Sources */,
 				177EE2392922AD8A00CCACEB /* LightTheme.swift in Sources */,
 				177EE2862923F00B00CCACEB /* SearchHistoryCategory+CoreDataClass.swift in Sources */,
-				177EE2482923939B00CCACEB /* HomeSearchView.swift in Sources */,
+				177EE2482923939B00CCACEB /* SearchView.swift in Sources */,
 				177EE24F2923B75800CCACEB /* HomePageCategory+CoreDataClass.swift in Sources */,
 				1780EE5D29191783006B9FFC /* BottomBar.swift in Sources */,
 				171E437B29224D75007D1648 /* HomePageItemModel.swift in Sources */,
-				1780EE5E29191783006B9FFC /* WebSearchView.swift in Sources */,
 				177EE24229236F3100CCACEB /* String+Extensions.swift in Sources */,
 				171E436D291F815B007D1648 /* MenuView.swift in Sources */,
 				177EE2802923DE0B00CCACEB /* SearchWordsCategory+CoreDataClass.swift in Sources */,
 				1780EE6329192D9D006B9FFC /* HistoryView.swift in Sources */,
-				177EE246292390B100CCACEB /* HomeWebView.swift in Sources */,
 				1780EE6129191783006B9FFC /* HomePageView.swift in Sources */,
 				1780EE5F29191783006B9FFC /* WebView.swift in Sources */,
 				17677864292677AF00EDF706 /* TabsModel.swift in Sources */,

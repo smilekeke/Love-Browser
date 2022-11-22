@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "more.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "more@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "vector.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "vector@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

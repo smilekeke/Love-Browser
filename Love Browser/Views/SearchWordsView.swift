@@ -9,35 +9,52 @@ import SwiftUI
 
 struct SearchWordsView: View {
     
+    var closeSearchWordsView: () -> Void
+    var reloadWebView: (String) -> Void
+    
     @FetchRequest(fetchRequest: SearchWordsCategory.all) private var  searchWords:FetchedResults<SearchWordsCategory>
     
     var body: some View {
-        
-        
-        List {
+
+        VStack{
             
-            ForEach(searchWords, id: \.title) { searchWord in
-                HStack {
-                    Image("history")
-                    Text(searchWord.title ?? "")
-                        .foregroundColor(Color.lb_black)
-                        
-                }
-                .listRowBackground(Color.clear)
-                .listRowSeparator(.hidden)
+            List {
                 
+                ForEach(searchWords, id: \.title) { searchWord in
+                    HStack {
+                        Image("history")
+                        Text(searchWord.title ?? "")
+                            .foregroundColor(Color.lb_black)
+                        
+                    }
+                    .highPriorityGesture(
+                        TapGesture()
+                            .onEnded({ _ in
+                                reloadWebView(searchWord.title ?? "")
+                            })
+                    )
+            
+                    .listRowBackground(Color.white)
+                    .listRowSeparator(.hidden)
+                    
+                }
             }
+            .listStyle(.plain)
+
         }
-        .listStyle(.plain)
-       
-        .background(Color("F4F4F4"))
-        .opacity(searchWords.count == 0 ? 0 : 1)
-        
+        .onTapGesture {
+            closeSearchWordsView()
+        }
     }
 }
 
 struct SearchWordsView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchWordsView()
+        SearchWordsView {
+            
+        } reloadWebView: { str in
+            
+        }
+
     }
 }

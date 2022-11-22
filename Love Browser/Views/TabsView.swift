@@ -22,7 +22,7 @@ struct TabsView: View {
     
     var body: some View {
         
-        NavigationView {
+//        NavigationView {
             
             ScrollView {
                 
@@ -80,7 +80,7 @@ struct TabsView: View {
                 }
             }
             
-        }
+//        }
 
     }
 }

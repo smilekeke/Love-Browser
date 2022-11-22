@@ -65,6 +65,7 @@ struct WallpaperView: View {
                 
                 changeWallpaper("")
                 UserDefaults.standard.set("default", forKey: "SelectedWallpaper")
+                presentationMode.wrappedValue.dismiss()
                 
             } label: {
                 

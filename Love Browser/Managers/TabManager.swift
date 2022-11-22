@@ -11,7 +11,7 @@ class TabManager  {
 
     private(set) var model: TabsModel
 
-    private var tabControllerCache = [HomeWebView]()
+    private var tabControllerCache = [TabsView]()
     
     init(model: TabsModel) {
         self.model = model

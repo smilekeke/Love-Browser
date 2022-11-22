@@ -14,7 +14,7 @@ struct LBTextField: UIViewRepresentable {
     
     @Binding var text: String
     
-    let textField: UITextField
+    var textField: TextFieldWithPadding
     
     var textBeginEditing: () -> Void
     var textDidChange:() -> Void
@@ -91,18 +91,18 @@ struct LBTextField: UIViewRepresentable {
 
         func textFieldDidBeginEditing(_ textField: UITextField) {
             
-            textField.rightView?.isHidden = false
+            textField.rightView?.isHidden = textField.text == "" ? true : false
             textBeginEditing()
         }
         
         func textFieldDidChangeSelection(_ textField: UITextField) {
-            
-            textDidChange()
             guard textField.markedTextRange == nil, parent.text != textField.text else {
                 return
             }
             parent.text = textField.text ?? ""
-            textField.rightView?.isHidden = textField.text == nil ? true : false
+            textField.rightView?.isHidden = textField.text == "" ? true : false
+            
+            textDidChange()
         }
         
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -123,23 +123,15 @@ class TextFieldManger: ObservableObject {
     let textField: TextFieldWithPadding
 
     init(){
-        
+
         textField = TextFieldWithPadding()
     }
-    
+
     func changeTextFieldStyle() {
-        
-        textField.attributedPlaceholder = NSAttributedString(string: "search or enter url", attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.shared.getTheme().placeHolderColor])
+
+        textField.attributedPlaceholder = NSAttributedString(string: "search or enter url", attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.shared.getTheme().placeHolderColor,NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)])
     }
-    
-    func resignFirstResponder() {
-        textField.resignFirstResponder()
-    }
-    
-    func becomeFirstResponder() {
-        textField.becomeFirstResponder()
-    }
-    
+
 }
 
 

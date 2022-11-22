@@ -11,7 +11,6 @@ import WebKit
 
 struct WebView: UIViewRepresentable {
     
-    var url: String
     let webView: WKWebView
     
     var didStart: (String) -> Void
@@ -40,68 +39,6 @@ struct WebView: UIViewRepresentable {
         }
     }
     
-}
-
-class WebViewModel: ObservableObject {
-
-    let webView: WKWebView
-
-    
-    init() {
-        
-        webView = WKWebView()
-    }
-    
-    func updateData(with query: String?) {
-    
-        if let url = changeStringToUrl(query: query) {
-    
-            webView.load( URLRequest(url: url))
-        }
-    }
-
-    func webViewCanGoBack() -> Bool {
-        return webView.canGoBack
-
-    }
-    
-    func webViewCanGoForward() -> Bool {
-        
-        return webView.canGoForward
-    }
-    
-    func webViewTitle() -> String {
-        
-        return webView.title ?? ""
-    }
-    
-    func webViewFavIcon() -> String {
-        
-        let iconUrl = "http://www.google.com/s2/favicons?domain=www." + (webView.url?.host ?? "google.com")
-        return iconUrl
-    }
-    
-}
-
-func changeStringToUrl(query: String?) -> URL? {
-    
-    guard let text = query?.trimmingCharacters(in: .whitespaces), !text.isEmpty else {
-        return nil
-    }
-    
-    if text.isVaildURL() {
-        
-        return URL(string: text)!
-        
-    } else {
-        
-       let urlString = "https://www.google.com/search?q=" + text
-        
-        guard let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return nil}
-        
-        return url
-        
-    }
 }
 
 class WebViewCoordinator: NSObject,WKNavigationDelegate {

@@ -13,6 +13,7 @@ public extension Color {
     static let lb_gray = Color.init(0x919191)
     static let lb_black = Color.init(0x222222)
     static let lb_item = Color.init(0xF5F5F7)
+    static let lb_history = Color.init(0xF4F4F4)
     
 }
 

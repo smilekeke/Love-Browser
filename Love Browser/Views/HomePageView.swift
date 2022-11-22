@@ -25,13 +25,6 @@ struct HomePageView: View {
     var body: some View {
         
         VStack {
-    
-            
-            HomeSearchView { text in
-
-                reloadWebView(text)
-            }
-            .padding(.top, 10)
             
             ScrollView {
 
@@ -72,6 +65,7 @@ struct HomePageView: View {
 
                             Text(homePageCategory.title ?? "")
                                 .foregroundColor(Color.lb_black)
+                                .font(.system(size: 12).weight(.medium))
 
                         }
 
@@ -79,28 +73,6 @@ struct HomePageView: View {
                 }
             }
             .padding(.top, 20)
-            
-            BottomBar(clickHomeButton: {
-            
-                showHome = false
-                
-            }, clickBackButton: {
-
-                
-            }, clickForwardButton: {
-                
-            }, changeWallpaper: { str in
-                
-                // 切换壁纸
-                backgroundImage = str
-                
-            }, openTabsView: {
-                // open tabs View
-      
-                
-            }, saveBookMarkCategory: {
-                
-            }, canBack: $canBack, canForward: $canForward, showHome: $showHome)
 
         }
         
