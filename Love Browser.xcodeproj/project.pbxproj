@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		171AED0E292B1CA3006C08F2 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED0D292B1CA3006C08F2 /* WebViewModel.swift */; };
 		171AED10292BC801006C08F2 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED0F292BC801006C08F2 /* KeyboardHeightHelper.swift */; };
+		171AED12292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED11292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift */; };
+		171AED1C292CB7B9006C08F2 /* TabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED1B292CB7B9006C08F2 /* TabsModel.swift */; };
 		171E435A291E3556007D1648 /* LBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4359291E3556007D1648 /* LBTextField.swift */; };
 		171E436D291F815B007D1648 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E436C291F815B007D1648 /* MenuView.swift */; };
 		171E436F291FA434007D1648 /* BookMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E436E291FA434007D1648 /* BookMarkView.swift */; };
@@ -19,7 +21,6 @@
 		171E437F2922A7F8007D1648 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E437E2922A7F8007D1648 /* Theme.swift */; };
 		171E43812922AA16007D1648 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E43802922AA16007D1648 /* ThemeManager.swift */; };
 		176778622926771E00EDF706 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176778612926771E00EDF706 /* TabManager.swift */; };
-		17677864292677AF00EDF706 /* TabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17677863292677AF00EDF706 /* TabsModel.swift */; };
 		1767786A2927420B00EDF706 /* Color+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176778692927420B00EDF706 /* Color+Extentions.swift */; };
 		1767786C2927765100EDF706 /* LBAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767786B2927765100EDF706 /* LBAsyncImage.swift */; };
 		177EE2392922AD8A00CCACEB /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE2382922AD8A00CCACEB /* LightTheme.swift */; };
@@ -48,6 +49,8 @@
 /* Begin PBXFileReference section */
 		171AED0D292B1CA3006C08F2 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		171AED0F292BC801006C08F2 /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
+		171AED11292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewConfigurationExtension.swift; sourceTree = "<group>"; };
+		171AED1B292CB7B9006C08F2 /* TabsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsModel.swift; sourceTree = "<group>"; };
 		171E4359291E3556007D1648 /* LBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBTextField.swift; sourceTree = "<group>"; };
 		171E436C291F815B007D1648 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		171E436E291FA434007D1648 /* BookMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkView.swift; sourceTree = "<group>"; };
@@ -58,7 +61,6 @@
 		171E437E2922A7F8007D1648 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		171E43802922AA16007D1648 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		176778612926771E00EDF706 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
-		17677863292677AF00EDF706 /* TabsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsModel.swift; sourceTree = "<group>"; };
 		176778692927420B00EDF706 /* Color+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extentions.swift"; sourceTree = "<group>"; };
 		1767786B2927765100EDF706 /* LBAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBAsyncImage.swift; sourceTree = "<group>"; };
 		177EE2382922AD8A00CCACEB /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
@@ -108,7 +110,7 @@
 			children = (
 				171E4378292246A6007D1648 /* CoreDataManager.swift */,
 				176778612926771E00EDF706 /* TabManager.swift */,
-				17677863292677AF00EDF706 /* TabsModel.swift */,
+				171AED1B292CB7B9006C08F2 /* TabsModel.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -165,6 +167,7 @@
 			children = (
 				177EE24129236F3100CCACEB /* String+Extensions.swift */,
 				176778692927420B00EDF706 /* Color+Extentions.swift */,
+				171AED11292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift */,
 				1767786B2927765100EDF706 /* LBAsyncImage.swift */,
 			);
 			path = Extentions;
@@ -344,6 +347,7 @@
 				177EE2392922AD8A00CCACEB /* LightTheme.swift in Sources */,
 				177EE2862923F00B00CCACEB /* SearchHistoryCategory+CoreDataClass.swift in Sources */,
 				177EE2482923939B00CCACEB /* SearchView.swift in Sources */,
+				171AED1C292CB7B9006C08F2 /* TabsModel.swift in Sources */,
 				177EE24F2923B75800CCACEB /* HomePageCategory+CoreDataClass.swift in Sources */,
 				1780EE5D29191783006B9FFC /* BottomBar.swift in Sources */,
 				171E437B29224D75007D1648 /* HomePageItemModel.swift in Sources */,
@@ -353,7 +357,7 @@
 				1780EE6329192D9D006B9FFC /* HistoryView.swift in Sources */,
 				1780EE6129191783006B9FFC /* HomePageView.swift in Sources */,
 				1780EE5F29191783006B9FFC /* WebView.swift in Sources */,
-				17677864292677AF00EDF706 /* TabsModel.swift in Sources */,
+				171AED12292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift in Sources */,
 				171E436F291FA434007D1648 /* BookMarkView.swift in Sources */,
 				171E4373291FB6F7007D1648 /* WallpaperView.swift in Sources */,
 				176778622926771E00EDF706 /* TabManager.swift in Sources */,

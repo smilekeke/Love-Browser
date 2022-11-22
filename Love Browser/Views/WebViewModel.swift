@@ -11,24 +11,21 @@ import WebKit
 
 class WebViewModel: ObservableObject {
     
-    @Published var webView = WKWebView()
-     var canGoBack = false
-     var canGoForward = false
+    let webView: WKWebView
+
+    init() {
+        
+        webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
+    }
     
-        func updateData(with query: String?) {
+    func updateData(with query: String?) {
+        
+        if let url = changeStringToUrl(query: query) {
+    
+            webView.load( URLRequest(url: url))
             
-            if let url = changeStringToUrl(query: query) {
-        
-                webView.load( URLRequest(url: url))
-                
-            }
         }
-        
-//        func webViewFavIcon() -> String {
-//
-//            let iconUrl = "http://www.google.com/s2/favicons?domain=www." + (webView.url?.host ?? "google.com")
-//            return iconUrl
-//        }
+    }
         
 }
 
@@ -52,4 +49,6 @@ func changeStringToUrl(query: String?) -> URL? {
         
     }
 }
+
+
 

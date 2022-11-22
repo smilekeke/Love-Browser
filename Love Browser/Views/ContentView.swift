@@ -16,14 +16,14 @@ struct ContentView: View {
     @State private var showSearchedWords = false
     @State private var backgroundImage = "default"
     
-    var textFieldManger = TextFieldManger()
-    var webViewModel = WebViewModel()
-    
-    var tabsBarView: TabsView
-    
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
+    @ObservedObject var webViewModel = WebViewModel()
+    @ObservedObject var textFieldManger = TextFieldManger()
+    @ObservedObject var tabManager = TabManager()
     
+    @State var tabWebView: WebView!
+
     var body: some View {
         
         NavigationView {
@@ -53,24 +53,18 @@ struct ContentView: View {
                 
                 ZStack {
                 
-//                    if isSearch {
-                    
-                        WebView(webView: webViewModel.webView) { text in
+                    if isSearch {
                         
-                        } didFinish: { url, text in
-                            
-                        }
-                        .opacity(isSearch ? 1 : 0)
+                        tabWebView
                     
-//                    } else {
+                    } else {
                         
                         HomePageView(backgroundImage: $backgroundImage) { url in
                             isSearch = true
                             text = url
                             webViewModel.updateData(with: url)
                         }
-                        .opacity(isSearch ? 0 : 1)
-//                    }
+                    }
                     
                     SearchWordsView {
                         
@@ -118,11 +112,11 @@ struct ContentView: View {
     
                 }, openTabsView: {
                     // open tabs View
-    
+                    print(tabManager.webviewCache.count)
     
                 }, saveBookMarkCategory: {
     
-                }, canBack: webViewModel.canGoBack, canForward: webViewModel.canGoForward, showHome: isSearch)
+                }, canBack: webViewModel.webView.canGoBack, canForward: webViewModel.webView.canGoForward, showHome: isSearch, dataModel: tabManager.webviewCache)
 
             }
             
@@ -142,6 +136,17 @@ struct ContentView: View {
         }
         .onAppear {
             
+            tabWebView = WebView(webView: webViewModel.webView, didStart: { text in
+                
+            }, didFinish: { title, url in
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateStyle = .short
+                saveSearchHistoryCategory(date: dateFormatter.string(from: Date()), title: title, url: url)
+            })
+            
+            tabManager.addWebView(webview: tabWebView)
+            
             if !UserDefaults.standard.bool(forKey: "WriteHomePageData") {
                 saveHomePageData()
             }
@@ -153,24 +158,6 @@ struct ContentView: View {
         }
 
     }
-    
-//    func preparePreview(completion: @escaping (UIImage?) -> Void) {
-//
-//        DispatchQueue.main.async {
-//
-//            let webView = webViewModel.webView
-//
-//             UIGraphicsBeginImageContextWithOptions(webView.bounds.size, false, UIScreen.main.scale)
-//
-//             webView.drawHierarchy(in: webView.bounds, afterScreenUpdates: true)
-//
-//             let image = UIGraphicsGetImageFromCurrentImageContext()
-//             UIGraphicsEndImageContext()
-//             completion(image)
-//        }
-//
-//    }
-    
     
     private func saveHomePageCategory(itemModel: HomePageItemModel) {
 
@@ -198,6 +185,7 @@ struct ContentView: View {
     }
 
 
+    // 添加到历史记录
     private func saveSearchHistoryCategory(date: String, title: String,url: String) {
 
         let searchHistoryCategory = SearchHistoryCategory(context: viewContext)
@@ -242,7 +230,7 @@ struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
 
-        ContentView(tabsBarView: TabsView()).environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
+        ContentView().environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
     }
 
 }

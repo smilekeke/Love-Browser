@@ -6,34 +6,33 @@
 //
 
 import SwiftUI
+import Foundation
+import WebKit
 
 // 标签页面
 struct TabsView: View {
     
     @Environment(\.presentationMode) var presentationMode
-    
+    var dataModel: [WebView]
+
     let gridWidth = (UIScreen.main.bounds.width - 45) / 2
     
-    let tabsModel = [TabsModel(title: "", image: Image("placeHolderImage")),
-                     TabsModel(title: "", image: Image("placeHolderImage"))
-                    ]
     
     let rows = [GridItem(.fixed((UIScreen.main.bounds.width - 45) / 2)), GridItem(.fixed((UIScreen.main.bounds.width - 45) / 2))]
     
     var body: some View {
         
-//        NavigationView {
+        NavigationView {
             
             ScrollView {
                 
                 LazyVGrid(columns: rows, spacing: 15) {
-           
-                    ForEach(tabsModel, id: \.title) { item in
-                        
+                    
+                    ForEach(dataModel, id: \.webViewId) { webview in
+
                         VStack {
                             
                             HStack {
-                                
                                 
                                 Text("首页")
                                     .padding(.leading, 8)
@@ -51,7 +50,8 @@ struct TabsView: View {
                             }
                             .padding(.top,20)
                             
-                            Image("placeHolderImage")
+                            Image(uiImage: (webview.preView ?? UIImage(named: "placeHolderImage"))!)
+//                            Image("placeHolderImage")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: gridWidth,height: 186)
@@ -80,13 +80,13 @@ struct TabsView: View {
                 }
             }
             
-//        }
+        }
 
     }
 }
 
 struct TabsView_Previews: PreviewProvider {
     static var previews: some View {
-        TabsView()
+        TabsView(dataModel: [])
     }
 }

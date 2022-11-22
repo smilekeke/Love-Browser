@@ -20,6 +20,7 @@ struct BottomBar: View {
     var canBack = false
     var canForward = false
     var showHome = false
+    var dataModel: [WebView]
     @State var hasBackground = false
     
     // bottom
@@ -93,7 +94,6 @@ struct BottomBar: View {
                     openTabsView()
                     openTabs.toggle()
                     
-                    
                 } label: {
                     
                     Image("tabs_black")
@@ -110,7 +110,7 @@ struct BottomBar: View {
 
                 } content: {
 
-                    TabsView()
+                    TabsView(dataModel: dataModel)
                 }
 
                 
@@ -206,7 +206,7 @@ struct BottomBar_Previews: PreviewProvider {
 
         }, saveBookMarkCategory: {
 
-        }, canBack: false, canForward: false , showHome: false)
+        }, canBack: false, canForward: false , showHome: false, dataModel: [])
 
     }
 }

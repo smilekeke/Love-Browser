@@ -6,23 +6,21 @@
 //
 
 import Foundation
+import WebKit
 
-class TabManager  {
+class TabManager : ObservableObject {
 
-    private(set) var model: TabsModel
+    public var webviewCache = [WebView]()
 
-    private var tabControllerCache = [TabsView]()
-    
-    init(model: TabsModel) {
-        self.model = model
-    
-//        let index = model.currentIndex
-//        let tab = model.tabs[index]
-//        if tab.link != nil {
-//            let controller = buildController(forTab: tab, inheritedAttribution: nil)
-//            tabControllerCache.append(controller)
-//        }
 
-//        registerForNotifications()
+    func addWebView(webview: WebView) {
+        
+        webviewCache.append(webview)
     }
+    
+    
+    func deleteWebView(webview: WebView) {
+        
+    }
+
 }

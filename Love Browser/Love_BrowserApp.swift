@@ -16,7 +16,7 @@ struct Love_BrowserApp: App {
        
         WindowGroup {
             
-            ContentView(tabsBarView: TabsView())
+            ContentView()
                 .environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
 
             

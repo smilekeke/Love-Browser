@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CryptoKit
 
 
 enum Sections: String, CaseIterable {
@@ -38,16 +39,18 @@ struct HistoryView: View {
                     
                     List {
                         
-        //                let groupByCategory = Dictionary(grouping: searchHistoryCategorys) { (SearchHistoryCategory) in
-        //
-        //                    return SearchHistoryCategory.date
-        //                }
+                        let groupByCategory = Dictionary(grouping: searchHistoryCategorys) { (SearchHistoryCategory) in
+        
+                            return SearchHistoryCategory.date
+                        }
                         
-                        ForEach(Sections.allCases, id: \.self) { key in
-
+                        ForEach(Array(groupByCategory.keys),id: \.self) { section in
+                            
+                            let searchHistorys =  groupByCategory[section]!
+                            
                             Section {
 
-                                ForEach(searchHistoryCategorys) { searchHistoryCategory in
+                                ForEach(searchHistorys) { searchHistoryCategory in
 
                                     HStack {
                                         Image("history")
@@ -58,11 +61,10 @@ struct HistoryView: View {
 
                             } header: {
 
-                                Text(key.rawValue)
-                                    .background(Color("F4F4F4"))
-
+                                Text(section ?? "default value")
+                                    .background(Color.lb_history)
                             }
-
+                            
                         }
                             .listRowSeparator(.hidden)
                     }

@@ -11,7 +11,10 @@ import WebKit
 
 struct WebView: UIViewRepresentable {
     
+    let webViewId: String = UUID().uuidString
     let webView: WKWebView
+    @State var preView: UIImage?
+    
     
     var didStart: (String) -> Void
     var didFinish: (String,String) -> Void
@@ -36,10 +39,34 @@ struct WebView: UIViewRepresentable {
         } didFinish: { title, url in
           
             didFinish(title,url)
+            updatePreview()
+        }
+    }
+    
+    func preparePreview(completion: @escaping (UIImage?) -> Void) {
+
+        DispatchQueue.main.async {
+
+             UIGraphicsBeginImageContextWithOptions(webView.bounds.size, false, UIScreen.main.scale)
+
+             webView.drawHierarchy(in: webView.bounds, afterScreenUpdates: true)
+
+             let image = UIGraphicsGetImageFromCurrentImageContext()
+             UIGraphicsEndImageContext()
+             completion(image)
+        }
+
+    }
+
+    private func updatePreview() {
+        preparePreview { image in
+            preView = image
         }
     }
     
 }
+
+
 
 class WebViewCoordinator: NSObject,WKNavigationDelegate {
     
@@ -74,4 +101,3 @@ class WebViewCoordinator: NSObject,WKNavigationDelegate {
     }
     
 }
-

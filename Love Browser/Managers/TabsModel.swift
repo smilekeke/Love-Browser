@@ -2,21 +2,21 @@
 //  TabsModel.swift
 //  Love Browser
 //
-//  Created by 豆子 on 2022/11/17.
+//  Created by 豆子 on 2022/11/22.
 //
 
-import Foundation
-import CoreData
 import SwiftUI
 
-public class TabsModel {
-    
-    var title: String
-    var image: Image
 
-    init(title: String, image: Image) {
+struct TabsModel {
+    
+    let title: String
+    let image: UIImage
+    
+    init(title: String, image: UIImage) {
         
         self.title = title
         self.image = image
     }
 }
+
