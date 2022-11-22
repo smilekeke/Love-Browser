@@ -13,7 +13,7 @@ struct WebView: UIViewRepresentable {
     
     let webViewId: String = UUID().uuidString
     let webView: WKWebView
-    @State var preView: UIImage?
+    @Binding var preView: UIImage
     
     
     var didStart: (String) -> Void
@@ -60,7 +60,7 @@ struct WebView: UIViewRepresentable {
 
     private func updatePreview() {
         preparePreview { image in
-            preView = image
+            preView = image ?? UIImage()
         }
     }
     

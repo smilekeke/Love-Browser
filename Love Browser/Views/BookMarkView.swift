@@ -93,7 +93,20 @@ struct BookMarkView: View {
     
     func deleteAllBookMark()  {
         
-       
+        for bookmark in bookMarkCategorys {
+            
+            viewContext.delete(bookmark)
+        }
+        
+        do {
+
+            try viewContext.save()
+
+        } catch {
+
+            print(error)
+        }
+
     }
 }
 

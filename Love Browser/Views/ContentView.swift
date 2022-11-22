@@ -15,6 +15,7 @@ struct ContentView: View {
     @State private var isSearch = false
     @State private var showSearchedWords = false
     @State private var backgroundImage = "default"
+    @State var preView: UIImage = UIImage()
     
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
@@ -46,11 +47,6 @@ struct ContentView: View {
             
                 .padding(.top, 10)
                 
-                ProgressView("", value: 10,total: 20)
-                    .padding(.leading,20)
-                    .padding(.trailing,20)
-                    .padding(.top,-20)
-                
                 ZStack {
                 
                     if isSearch {
@@ -69,10 +65,12 @@ struct ContentView: View {
                     SearchWordsView {
                         
                         showSearchedWords = false
+                        textFieldManger.textField.resignFirstResponder()
                         
                     } reloadWebView: { query in
                         
                         showSearchedWords = false
+                        textFieldManger.textField.resignFirstResponder()
                         isSearch = true
                         text = query
                         webViewModel.updateData(with: query)
@@ -136,8 +134,8 @@ struct ContentView: View {
         }
         .onAppear {
             
-            tabWebView = WebView(webView: webViewModel.webView, didStart: { text in
-                
+            tabWebView = WebView(webView: webViewModel.webView, preView: $preView, didStart: { text in
+                tabWebView.preView = preView
             }, didFinish: { title, url in
                 
                 let dateFormatter = DateFormatter()
@@ -187,7 +185,7 @@ struct ContentView: View {
 
     // 添加到历史记录
     private func saveSearchHistoryCategory(date: String, title: String,url: String) {
-
+        viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         let searchHistoryCategory = SearchHistoryCategory(context: viewContext)
         searchHistoryCategory.title = title
         searchHistoryCategory.date = date

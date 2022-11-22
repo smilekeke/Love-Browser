@@ -50,7 +50,7 @@ struct TabsView: View {
                             }
                             .padding(.top,20)
                             
-                            Image(uiImage: (webview.preView ?? UIImage(named: "placeHolderImage"))!)
+                            Image(uiImage: (webview.preView))
 //                            Image("placeHolderImage")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)

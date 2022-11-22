@@ -70,10 +70,10 @@ struct WallpaperView: View {
             } label: {
                 
                 Text("Defaut")
+                    .frame(width: screenWidth-40, height: 40, alignment: .center)
                 
             }
             
-            .frame(width: screenWidth-40, height: 40, alignment: .center)
             .background(Color.lb_item)
             .foregroundColor(Color.lb_black)
             .cornerRadius(8.0)

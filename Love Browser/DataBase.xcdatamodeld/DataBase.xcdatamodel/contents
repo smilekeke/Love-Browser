@@ -13,6 +13,11 @@
         <attribute name="date" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
         <attribute name="url" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="url"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="SearchWordsCategory" representedClassName="SearchWordsCategory" syncable="YES" codeGenerationType="category">
         <attribute name="title" attributeType="String"/>

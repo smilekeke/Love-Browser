@@ -88,6 +88,7 @@ struct HistoryView: View {
                         Button {
                             
                             presentAlert = true
+                            
                         } label: {
                             Image("delete")
                         }
@@ -116,7 +117,20 @@ struct HistoryView: View {
     
     func deleteAllHistory()  {
         
-//        viewContext.delete(searchHistoryCategorys)
+        for history in searchHistoryCategorys {
+            
+            viewContext.delete(history)
+        }
+        
+        do {
+
+            try viewContext.save()
+
+        } catch {
+
+            print(error)
+        }
+
     }
 }
 

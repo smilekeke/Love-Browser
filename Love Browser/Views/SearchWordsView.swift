@@ -21,11 +21,13 @@ struct SearchWordsView: View {
             List {
                 
                 ForEach(searchWords, id: \.title) { searchWord in
+                
                     HStack {
                         Image("history")
                         Text(searchWord.title ?? "")
                             .foregroundColor(Color.lb_black)
-                        
+                            .frame(width: UIScreen.main.bounds.width-40, height: 40,alignment: .leading)
+                            .background(Color.white)
                     }
                     .highPriorityGesture(
                         TapGesture()
@@ -33,10 +35,9 @@ struct SearchWordsView: View {
                                 reloadWebView(searchWord.title ?? "")
                             })
                     )
-            
+    
                     .listRowBackground(Color.white)
                     .listRowSeparator(.hidden)
-                    
                 }
             }
             .listStyle(.plain)
