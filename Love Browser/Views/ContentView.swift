@@ -15,6 +15,7 @@ struct ContentView: View {
     @State private var isSearch = false
     @State private var showMore = false
     @State private var showSearchIcon = true
+    @State private var showBack = false
     @State private var showSearchedWords = false
     @State private var backgroundImage = "default"
     @State var preView: UIImage = UIImage()
@@ -34,7 +35,7 @@ struct ContentView: View {
             
             VStack {
                 
-                SearchView(text: $text, showMore: $showMore, showSearchIcon: $showSearchIcon, textDidChange: {
+                SearchView(text: $text, showMore: $showMore, showSearchIcon: $showSearchIcon, showBack: $showBack, textDidChange: {
                     
                     showSearchedWords = text == "" ? false : true
                     
@@ -75,6 +76,8 @@ struct ContentView: View {
                     
                     SearchWordsView {
                         
+                        text = ""
+                        showBack = false
                         showSearchedWords = false
                         textFieldManger.textField.resignFirstResponder()
                         

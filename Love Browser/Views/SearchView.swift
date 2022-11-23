@@ -13,7 +13,7 @@ struct SearchView: View {
     @Binding var text: String
     @Binding var showMore: Bool
     @Binding var showSearchIcon: Bool
-    @State var showBack = false
+    @Binding var showBack:Bool
     
     var textDidChange:() -> Void
     var clickCancleButton:() -> Void
