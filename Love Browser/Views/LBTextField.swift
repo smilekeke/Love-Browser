@@ -13,6 +13,7 @@ import UIKit
 struct LBTextField: UIViewRepresentable {
     
     @Binding var text: String
+    @EnvironmentObject var appSettings: AppSetting
     
     var textField: TextFieldWithPadding
     
@@ -23,8 +24,9 @@ struct LBTextField: UIViewRepresentable {
     func makeUIView(context: Context) -> some UITextField {
         
         textField.delegate = context.coordinator
-        textField.placeholder = "search or enter url"
+        textField.attributedPlaceholder = NSAttributedString(string: "search or enter url", attributes: [NSAttributedString.Key.foregroundColor:(appSettings.darkModeSettings ? UIColor(Color.lb_gray) : UIColor.white),NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)])
         textField.returnKeyType = .go
+        textField.textColor = appSettings.darkModeSettings ? UIColor(Color.lb_black) : UIColor.white
 
         let leftView = UIView(frame: CGRect(x:0, y: 0, width: 10, height: 10))
         textField.leftView = leftView
@@ -36,13 +38,14 @@ struct LBTextField: UIViewRepresentable {
             textField.text = ""
             textField.rightView?.isHidden = true
         }))
-        rightButton.setImage(UIImage(named: "clearIcon"), for: .normal)
+        let image = appSettings.darkModeSettings ? UIImage(named: "clearIcon_black") : UIImage(named: "clearIcon_white")
+        rightButton.setImage(image, for: .normal)
         rightButton.imageView?.contentMode = .scaleAspectFit
         rightButton.frame = CGRect(x:0, y: 0, width: 16 , height: 16)
         textField.rightView = rightButton
         textField.rightViewMode = .whileEditing
         
-        textField.layer.borderColor = CGColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
+        textField.layer.borderColor = appSettings.darkModeSettings ? CGColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 1) : CGColor.init(red: 255, green: 255, blue: 255, alpha: 1)
         textField.layer.borderWidth = 2
         textField.layer.cornerRadius = 8
         textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -55,6 +58,13 @@ struct LBTextField: UIViewRepresentable {
             uiView.text = text
         }
         
+        let image = appSettings.darkModeSettings ? UIImage(named: "clearIcon_black") : UIImage(named: "clearIcon_white")
+        let button = uiView.rightView as! UIButton
+        button.setImage(image, for: .normal)
+        
+        uiView.attributedPlaceholder = NSAttributedString(string: "search or enter url", attributes: [NSAttributedString.Key.foregroundColor:(appSettings.darkModeSettings ? UIColor(Color.lb_gray) : UIColor.white),NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)])
+        uiView.textColor = appSettings.darkModeSettings ? UIColor(Color.lb_black) : UIColor.white
+        uiView.layer.borderColor = appSettings.darkModeSettings ? CGColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 1) : CGColor.init(red: 255, green: 255, blue: 255, alpha: 1)
     }
     
     func makeCoordinator() -> TextFieldCoordinator {
@@ -125,11 +135,6 @@ class TextFieldManger: ObservableObject {
     init(){
 
         textField = TextFieldWithPadding()
-    }
-
-    func changeTextFieldStyle() {
-
-        textField.attributedPlaceholder = NSAttributedString(string: "search or enter url", attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.shared.getTheme().placeHolderColor,NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)])
     }
 
 }

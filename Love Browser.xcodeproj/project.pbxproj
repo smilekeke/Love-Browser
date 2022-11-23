@@ -11,6 +11,7 @@
 		171AED10292BC801006C08F2 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED0F292BC801006C08F2 /* KeyboardHeightHelper.swift */; };
 		171AED12292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED11292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift */; };
 		171AED1C292CB7B9006C08F2 /* TabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED1B292CB7B9006C08F2 /* TabsModel.swift */; };
+		171AED1E292DC99D006C08F2 /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED1D292DC99D006C08F2 /* AppSetting.swift */; };
 		171E435A291E3556007D1648 /* LBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4359291E3556007D1648 /* LBTextField.swift */; };
 		171E436D291F815B007D1648 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E436C291F815B007D1648 /* MenuView.swift */; };
 		171E436F291FA434007D1648 /* BookMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E436E291FA434007D1648 /* BookMarkView.swift */; };
@@ -18,13 +19,9 @@
 		171E4373291FB6F7007D1648 /* WallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4372291FB6F7007D1648 /* WallpaperView.swift */; };
 		171E4379292246A6007D1648 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4378292246A6007D1648 /* CoreDataManager.swift */; };
 		171E437B29224D75007D1648 /* HomePageItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E437A29224D75007D1648 /* HomePageItemModel.swift */; };
-		171E437F2922A7F8007D1648 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E437E2922A7F8007D1648 /* Theme.swift */; };
-		171E43812922AA16007D1648 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E43802922AA16007D1648 /* ThemeManager.swift */; };
 		176778622926771E00EDF706 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176778612926771E00EDF706 /* TabManager.swift */; };
 		1767786A2927420B00EDF706 /* Color+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176778692927420B00EDF706 /* Color+Extentions.swift */; };
 		1767786C2927765100EDF706 /* LBAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767786B2927765100EDF706 /* LBAsyncImage.swift */; };
-		177EE2392922AD8A00CCACEB /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE2382922AD8A00CCACEB /* LightTheme.swift */; };
-		177EE23B2922AD9800CCACEB /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE23A2922AD9800CCACEB /* DarkTheme.swift */; };
 		177EE24229236F3100CCACEB /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE24129236F3100CCACEB /* String+Extensions.swift */; };
 		177EE2442923767F00CCACEB /* SearchWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE2432923767F00CCACEB /* SearchWordsView.swift */; };
 		177EE2482923939B00CCACEB /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE2472923939B00CCACEB /* SearchView.swift */; };
@@ -51,6 +48,7 @@
 		171AED0F292BC801006C08F2 /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
 		171AED11292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewConfigurationExtension.swift; sourceTree = "<group>"; };
 		171AED1B292CB7B9006C08F2 /* TabsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsModel.swift; sourceTree = "<group>"; };
+		171AED1D292DC99D006C08F2 /* AppSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = "<group>"; };
 		171E4359291E3556007D1648 /* LBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBTextField.swift; sourceTree = "<group>"; };
 		171E436C291F815B007D1648 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		171E436E291FA434007D1648 /* BookMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkView.swift; sourceTree = "<group>"; };
@@ -58,13 +56,9 @@
 		171E4372291FB6F7007D1648 /* WallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperView.swift; sourceTree = "<group>"; };
 		171E4378292246A6007D1648 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		171E437A29224D75007D1648 /* HomePageItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageItemModel.swift; sourceTree = "<group>"; };
-		171E437E2922A7F8007D1648 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		171E43802922AA16007D1648 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		176778612926771E00EDF706 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
 		176778692927420B00EDF706 /* Color+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extentions.swift"; sourceTree = "<group>"; };
 		1767786B2927765100EDF706 /* LBAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBAsyncImage.swift; sourceTree = "<group>"; };
-		177EE2382922AD8A00CCACEB /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
-		177EE23A2922AD9800CCACEB /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
 		177EE24129236F3100CCACEB /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		177EE2432923767F00CCACEB /* SearchWordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWordsView.swift; sourceTree = "<group>"; };
 		177EE2472923939B00CCACEB /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -118,10 +112,7 @@
 		171E437D2922A68A007D1648 /* Themes */ = {
 			isa = PBXGroup;
 			children = (
-				171E437E2922A7F8007D1648 /* Theme.swift */,
-				177EE2382922AD8A00CCACEB /* LightTheme.swift */,
-				177EE23A2922AD9800CCACEB /* DarkTheme.swift */,
-				171E43802922AA16007D1648 /* ThemeManager.swift */,
+				171AED1D292DC99D006C08F2 /* AppSetting.swift */,
 			);
 			path = Themes;
 			sourceTree = "<group>";
@@ -335,16 +326,14 @@
 				171E4379292246A6007D1648 /* CoreDataManager.swift in Sources */,
 				171AED10292BC801006C08F2 /* KeyboardHeightHelper.swift in Sources */,
 				171E4371291FA810007D1648 /* TabsView.swift in Sources */,
-				171E437F2922A7F8007D1648 /* Theme.swift in Sources */,
 				171AED0E292B1CA3006C08F2 /* WebViewModel.swift in Sources */,
 				1767786A2927420B00EDF706 /* Color+Extentions.swift in Sources */,
-				177EE23B2922AD9800CCACEB /* DarkTheme.swift in Sources */,
 				1780EE50291916EC006B9FFC /* Love_Browser.xcdatamodeld in Sources */,
 				1780EE44291916EB006B9FFC /* Love_BrowserApp.swift in Sources */,
 				177EE2442923767F00CCACEB /* SearchWordsView.swift in Sources */,
+				171AED1E292DC99D006C08F2 /* AppSetting.swift in Sources */,
 				177EE27E2923DD6C00CCACEB /* DataBase.xcdatamodeld in Sources */,
 				177EE24C2923B2C800CCACEB /* MaskView.swift in Sources */,
-				177EE2392922AD8A00CCACEB /* LightTheme.swift in Sources */,
 				177EE2862923F00B00CCACEB /* SearchHistoryCategory+CoreDataClass.swift in Sources */,
 				177EE2482923939B00CCACEB /* SearchView.swift in Sources */,
 				171AED1C292CB7B9006C08F2 /* TabsModel.swift in Sources */,
@@ -361,7 +350,6 @@
 				171E436F291FA434007D1648 /* BookMarkView.swift in Sources */,
 				171E4373291FB6F7007D1648 /* WallpaperView.swift in Sources */,
 				176778622926771E00EDF706 /* TabManager.swift in Sources */,
-				171E43812922AA16007D1648 /* ThemeManager.swift in Sources */,
 				177EE2842923EFF600CCACEB /* BookMarkCategory+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

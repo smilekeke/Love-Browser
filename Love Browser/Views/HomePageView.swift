@@ -8,19 +8,13 @@
 import SwiftUI
 
 struct HomePageView: View {
-    
-    @State private var canBack = false
-    @State private var canForward = false
-    @State private var showHome = false
-    
-    @Binding var backgroundImage: String
 
+    @EnvironmentObject var appSettings: AppSetting
     @FetchRequest(fetchRequest: HomePageCategory.all) private var  homePgaeCategorys:FetchedResults<HomePageCategory>
     
     var reloadWebView: (String) -> Void
     
     let rows = [GridItem(.fixed(80)), GridItem(.fixed(80)), GridItem(.fixed(80)), GridItem(.fixed(80))]
-    
     
     var body: some View {
         
@@ -59,12 +53,12 @@ struct HomePageView: View {
 
                                 }
                                 .frame(width: 56, height: 56)
-                                .background(Color.lb_item)
+                                .background(appSettings.darkModeSettings ? Color.lb_item : Color.white.opacity(0.2))
                                 .cornerRadius(8)
                             }
 
                             Text(homePageCategory.title ?? "")
-                                .foregroundColor(Color.lb_black)
+                                .foregroundColor(appSettings.darkModeSettings ? Color.lb_black : Color.white)
                                 .font(.system(size: 12).weight(.medium))
 
                         }
@@ -81,11 +75,9 @@ struct HomePageView: View {
 
 struct HomePageView_Previews: PreviewProvider {
     
-    @State static var backgroundImage = "bg1"
-    
     static var previews: some View {
         
-        HomePageView(backgroundImage: $backgroundImage) { query  in
+        HomePageView() { query  in
             
         }
     }

@@ -17,8 +17,8 @@ struct BottomBar: View {
     var openTabsView:() -> Void // open tabs 标签页
     var saveBookMarkCategory:() -> Void
     
-    var canBack = false
-    var canForward = false
+    @State var canBack = false
+    @State var canForward = false
     var showHome = false
     var dataModel: [WebView]
     @State var hasBackground = false
@@ -33,6 +33,8 @@ struct BottomBar: View {
     @State var openWallpaper = false
     @State var openSetting = false
     
+    @EnvironmentObject var appSettings: AppSetting
+    
     var body: some View {
         
         GeometryReader { proxy in
@@ -46,15 +48,13 @@ struct BottomBar: View {
                 } label: {
                     
                        
-                    Image(canBack ? "back_black" : (hasBackground ? "back_grey" : "back_white"))
+                    Image(canBack ? (appSettings.darkModeSettings ? "back_white" : "back_black") : (appSettings.darkModeSettings ? "back_grey" : "back_white"))
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 30, height: 30)
                         .frame(maxWidth:.infinity)
                     
-                }.onAppear {
-//                    hasBackground = true
                 }
 
                 
@@ -64,7 +64,7 @@ struct BottomBar: View {
                     
                 } label: {
                     
-                    Image(canForward ? "forward_black" : "forward_white")
+                    Image(canForward ? (appSettings.darkModeSettings ? "forward_white" : "forward_black") : (appSettings.darkModeSettings ? "forward_grey" : "forward_white"))
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -79,7 +79,7 @@ struct BottomBar: View {
                     
                 } label: {
                     
-                    Image(showHome ? "homepage" : "home_search_black")
+                    Image(showHome ? "homepage" : (appSettings.darkModeSettings ? "home_search_black" : "home_search_white"))
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -96,7 +96,7 @@ struct BottomBar: View {
                     
                 } label: {
                     
-                    Image("tabs_black")
+                    Image(appSettings.darkModeSettings ? "tabs_black" : "tabs_white")
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -120,7 +120,7 @@ struct BottomBar: View {
                 
                 } label: {
                     
-                    Image("menu_black")
+                    Image(appSettings.darkModeSettings ? "menu_black" : "menu_white")
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)

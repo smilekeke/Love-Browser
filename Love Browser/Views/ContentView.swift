@@ -22,6 +22,7 @@ struct ContentView: View {
     @ObservedObject var webViewModel = WebViewModel()
     @ObservedObject var textFieldManger = TextFieldManger()
     @ObservedObject var tabManager = TabManager()
+    @StateObject var appSettings = AppSetting()
     
     @State var tabWebView: WebView!
 
@@ -30,6 +31,7 @@ struct ContentView: View {
         NavigationView {
             
             VStack {
+                
                 SearchView(text: $text, textDidChange: {
                     
                     showSearchedWords = true
@@ -43,7 +45,7 @@ struct ContentView: View {
                     showSearchedWords = false
                     webViewModel.updateData(with: text)
                     
-                }, textFieldManger: textFieldManger)
+                }, textFieldManger: textFieldManger, webViewModel: webViewModel)
             
                 .padding(.top, 10)
                 
@@ -52,10 +54,17 @@ struct ContentView: View {
                     if isSearch {
                         
                         tabWebView
+                            .onAppear {
+                                appSettings.darkModeSettings = true
+                            }
+                            .onDisappear {
+                                appSettings.darkModeSettings = (UserDefaults.standard.string(forKey: "SelectedWallpaper") == "default" || UserDefaults.standard.string(forKey: "SelectedWallpaper") == nil) ? true : false
+                            }
+                        
                     
                     } else {
                         
-                        HomePageView(backgroundImage: $backgroundImage) { url in
+                        HomePageView() { url in
                             isSearch = true
                             text = url
                             webViewModel.updateData(with: url)
@@ -107,6 +116,7 @@ struct ContentView: View {
     
                     // 切换壁纸
                     backgroundImage = str
+                    appSettings.darkModeSettings = str == "default" ? true : false
     
                 }, openTabsView: {
                     // open tabs View
@@ -114,9 +124,10 @@ struct ContentView: View {
     
                 }, saveBookMarkCategory: {
     
-                }, canBack: webViewModel.webView.canGoBack, canForward: webViewModel.webView.canGoForward, showHome: isSearch, dataModel: tabManager.webviewCache)
+                }, showHome: isSearch, dataModel: tabManager.webviewCache)
 
             }
+            .environmentObject(appSettings)
             
             .background(
 

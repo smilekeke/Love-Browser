@@ -79,7 +79,7 @@ struct HistoryView: View {
                         Button {
                             presentationMode.wrappedValue.dismiss()
                         } label: {
-                            Image("vector")
+                            Image("vector_black")
                         }
                     }
                 

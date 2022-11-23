@@ -20,7 +20,7 @@ struct WebView: UIViewRepresentable {
     var didFinish: (String,String) -> Void
     
     func makeUIView(context: Context) -> some UIView {
-
+       
         webView.navigationDelegate = context.coordinator
         return webView
         

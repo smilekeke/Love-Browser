@@ -20,8 +20,11 @@ struct SearchView: View {
     var changeToWebView: (String) -> Void
     
     var textFieldManger: TextFieldManger
+    var webViewModel: WebViewModel
     
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var appSettings: AppSetting
+
 
     
     var body: some View {
@@ -37,8 +40,14 @@ struct SearchView: View {
                 clickCancleButton()
                 
             }, label: {
-                Image("vector")
-                    .padding(.leading, 15)
+                
+                if appSettings.darkModeSettings {
+                    Image("vector_black")
+                        .padding(.leading, 15)
+                } else {
+                    Image("vector_white")
+                        .padding(.leading, 15)
+                }
                 
             })
             .opacity(showBack ? 1 : 0)
@@ -74,8 +83,11 @@ struct SearchView: View {
                 Button(action: {
                     
                 }, label: {
-                    Image("search_black")
-                    
+                    if appSettings.darkModeSettings {
+                        Image("search_black")
+                    } else {
+                        Image("search_white")
+                    }
                 })
                 .opacity(showSearchIcon ? 1 : 0)
                 
@@ -88,9 +100,8 @@ struct SearchView: View {
                     
                     Button {
                         
-                        //                    refrshWebView()
-                        print("hahahhah========")
-                        
+                        webViewModel.webView.reload()
+        
                     } label: {
                         
                         Image("refresh")
@@ -102,7 +113,7 @@ struct SearchView: View {
                         
                         Button {
                             
-                            //                            saveHomePageCategory(itemModel: HomePageItemModel(title: webViewModel.webViewTitle(), icon: webViewModel.webViewFavIcon(), link: text))
+                            saveHomePageCategory(itemModel: HomePageItemModel(title: webViewModel.webView.title ?? "", icon:"", link: webViewModel.webView.url?.absoluteString ?? ""))
                             
                         } label: {
                             Image("addHomePage")
@@ -140,7 +151,7 @@ struct SearchView: View {
             }
             
             
-        }
+        }.environmentObject(appSettings)
 
     }
     

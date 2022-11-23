@@ -63,7 +63,7 @@ struct WallpaperView: View {
             
             Button {
                 
-                changeWallpaper("")
+                changeWallpaper("default")
                 UserDefaults.standard.set("default", forKey: "SelectedWallpaper")
                 presentationMode.wrappedValue.dismiss()
                 
