@@ -11,9 +11,9 @@ import CoreData
 struct SearchView: View {
 
     @Binding var text: String
+    @Binding var showMore: Bool
+    @Binding var showSearchIcon: Bool
     @State var showBack = false
-    @State private var showMore = false
-    @State private var showSearchIcon = true
     
     var textDidChange:() -> Void
     var clickCancleButton:() -> Void
@@ -95,7 +95,7 @@ struct SearchView: View {
             .frame(width: 16, height: 16)
             .padding(.leading, -60)
             
-            if  showMore {
+            if showMore {
                 HStack(spacing: 5) {
                     
                     Button {

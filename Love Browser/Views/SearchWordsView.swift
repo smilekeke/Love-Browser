@@ -11,6 +11,7 @@ struct SearchWordsView: View {
     
     var closeSearchWordsView: () -> Void
     var reloadWebView: (String) -> Void
+    @EnvironmentObject var appSettings: AppSetting
     
     @FetchRequest(fetchRequest: SearchWordsCategory.all) private var  searchWords:FetchedResults<SearchWordsCategory>
     
@@ -25,9 +26,9 @@ struct SearchWordsView: View {
                     HStack {
                         Image("history")
                         Text(searchWord.title ?? "")
-                            .foregroundColor(Color.lb_black)
+                            .foregroundColor(appSettings.darkModeSettings ? Color.lb_black : Color.white)
                             .frame(width: UIScreen.main.bounds.width-40, height: 40,alignment: .leading)
-                            .background(Color.white)
+                            .background(appSettings.darkModeSettings ? Color.white : Color.clear)
                     }
                     .highPriorityGesture(
                         TapGesture()
@@ -36,7 +37,7 @@ struct SearchWordsView: View {
                             })
                     )
     
-                    .listRowBackground(Color.white)
+                    .listRowBackground(appSettings.darkModeSettings ? Color.white : Color.gray.opacity(0.8))
                     .listRowSeparator(.hidden)
                 }
             }
