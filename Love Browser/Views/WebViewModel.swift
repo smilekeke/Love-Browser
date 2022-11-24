@@ -18,7 +18,7 @@ class WebViewModel: ObservableObject {
         webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
     }
     
-    func updateData(with query: String?) {
+    func updateData(with query: String) {
         
         if let url = changeStringToUrl(query: query) {
     
@@ -29,25 +29,18 @@ class WebViewModel: ObservableObject {
         
 }
 
-func changeStringToUrl(query: String?) -> URL? {
+func changeStringToUrl(query: String) -> URL? {
     
-    guard let text = query?.trimmingCharacters(in: .whitespaces), !text.isEmpty else {
-        return nil
-    }
-    
-    if text.isVaildURL() {
-        
-        return URL(string: text)!
-        
-    } else {
-        
-       let urlString = "https://www.google.com/search?q=" + text
-        
-        guard let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return nil}
-        
+    if let url = URL.webUrl(from: query) {
         return url
-        
     }
+    
+    let urlString = "https://www.google.com/search?q=" + query
+
+    guard let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return nil}
+    
+    return url
+        
 }
 
 

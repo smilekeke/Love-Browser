@@ -1,61 +1,14 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "ContentScopeScripts",
-        "repositoryURL": "https://github.com/duckduckgo/content-scope-scripts",
-        "state": {
-          "branch": null,
-          "revision": "a3c693cbc84a7221c56c11af5d2ed27613dc62c0",
-          "version": "3.2.0"
-        }
-      },
-      {
-        "package": "Autofill",
-        "repositoryURL": "https://github.com/duckduckgo/duckduckgo-autofill.git",
-        "state": {
-          "branch": null,
-          "revision": "516209f9a0252c9795b51ca3c815cfbbf34ad0a0",
-          "version": "5.2.0"
-        }
-      },
-      {
-        "package": "GRDB",
-        "repositoryURL": "https://github.com/duckduckgo/GRDB.swift.git",
-        "state": {
-          "branch": null,
-          "revision": "f465dd5c0bf590cdb9bee4e96c53b1719ee30730",
-          "version": "1.2.0"
-        }
-      },
-      {
-        "package": "Punycode",
-        "repositoryURL": "https://github.com/gumob/PunycodeSwift.git",
-        "state": {
-          "branch": null,
-          "revision": "4356ec54e073741449640d3d50a1fd24fd1e1b8b",
-          "version": "2.1.0"
-        }
-      },
-      {
-        "package": "swift-argument-parser",
-        "repositoryURL": "https://github.com/apple/swift-argument-parser",
-        "state": {
-          "branch": null,
-          "revision": "6b2aa2748a7881eebb9f84fb10c01293e15b52ca",
-          "version": "0.5.0"
-        }
-      },
-      {
-        "package": "TrackerRadarKit",
-        "repositoryURL": "https://github.com/duckduckgo/TrackerRadarKit",
-        "state": {
-          "branch": null,
-          "revision": "b313805c880a176b9fe4147708b5fcf76795610d",
-          "version": "1.1.1"
-        }
+  "pins" : [
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "state" : {
+        "revision" : "59eb199fdb8dd47733624e8b0277822d0232579e",
+        "version" : "7.2.2"
       }
-    ]
-  },
-  "version": 1
+    }
+  ],
+  "version" : 2
 }

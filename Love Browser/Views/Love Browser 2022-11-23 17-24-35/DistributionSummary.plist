@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Love Browser.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>buildNumber</key>
+			<string>1</string>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>15CA5AD79E2510E8B7C6D5BCED02C0297E93F5DF</string>
+				<key>dateExpires</key>
+				<string>2023/8/14</string>
+				<key>type</key>
+				<string>Cloud Managed Apple Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>3G9N4FL25J.com.lovebrowser.Love-Browser</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>3G9N4FL25J</string>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>Love Browser.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>17c4de93-1757-41c1-aad9-63eba420cf8b</string>
+				<key>dateExpires</key>
+				<string>2023/11/18</string>
+				<key>name</key>
+				<string>iOS Team Ad Hoc Provisioning Profile: com.lovebrowser.Love-Browser</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>3G9N4FL25J</string>
+				<key>name</key>
+				<string>Offline Music Limited</string>
+			</dict>
+			<key>versionNumber</key>
+			<string>1.0</string>
+		</dict>
+	</array>
+</dict>
+</plist>

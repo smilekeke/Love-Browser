@@ -12,6 +12,11 @@
 		171AED12292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED11292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift */; };
 		171AED1C292CB7B9006C08F2 /* TabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED1B292CB7B9006C08F2 /* TabsModel.swift */; };
 		171AED1E292DC99D006C08F2 /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED1D292DC99D006C08F2 /* AppSetting.swift */; };
+		171AED20292E004C006C08F2 /* URL+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED1F292E004C006C08F2 /* URL+Extentions.swift */; };
+		171AED24292E0A74006C08F2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 171AED23292E0A74006C08F2 /* Kingfisher */; };
+		171AED26292E0AE7006C08F2 /* FaviconsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED25292E0AE7006C08F2 /* FaviconsHelper.swift */; };
+		171AED28292E1111006C08F2 /* FindInPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED27292E1111006C08F2 /* FindInPage.swift */; };
+		171AED2A292E11D5006C08F2 /* FindInPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED29292E11D5006C08F2 /* FindInPageView.swift */; };
 		171E435A291E3556007D1648 /* LBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4359291E3556007D1648 /* LBTextField.swift */; };
 		171E436D291F815B007D1648 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E436C291F815B007D1648 /* MenuView.swift */; };
 		171E436F291FA434007D1648 /* BookMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E436E291FA434007D1648 /* BookMarkView.swift */; };
@@ -49,6 +54,11 @@
 		171AED11292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewConfigurationExtension.swift; sourceTree = "<group>"; };
 		171AED1B292CB7B9006C08F2 /* TabsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsModel.swift; sourceTree = "<group>"; };
 		171AED1D292DC99D006C08F2 /* AppSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = "<group>"; };
+		171AED1F292E004C006C08F2 /* URL+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extentions.swift"; sourceTree = "<group>"; };
+		171AED21292E047C006C08F2 /* Love-Browser-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Love-Browser-Info.plist"; sourceTree = SOURCE_ROOT; };
+		171AED25292E0AE7006C08F2 /* FaviconsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaviconsHelper.swift; sourceTree = "<group>"; };
+		171AED27292E1111006C08F2 /* FindInPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindInPage.swift; sourceTree = "<group>"; };
+		171AED29292E11D5006C08F2 /* FindInPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindInPageView.swift; sourceTree = "<group>"; };
 		171E4359291E3556007D1648 /* LBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBTextField.swift; sourceTree = "<group>"; };
 		171E436C291F815B007D1648 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		171E436E291FA434007D1648 /* BookMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkView.swift; sourceTree = "<group>"; };
@@ -86,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				171AED24292E0A74006C08F2 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +151,8 @@
 				171E4370291FA810007D1648 /* TabsView.swift */,
 				171E436C291F815B007D1648 /* MenuView.swift */,
 				171E4372291FB6F7007D1648 /* WallpaperView.swift */,
+				171AED29292E11D5006C08F2 /* FindInPageView.swift */,
+				171AED27292E1111006C08F2 /* FindInPage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -149,6 +162,7 @@
 			children = (
 				177EE24B2923B2C800CCACEB /* MaskView.swift */,
 				171AED0F292BC801006C08F2 /* KeyboardHeightHelper.swift */,
+				171AED25292E0AE7006C08F2 /* FaviconsHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -158,6 +172,7 @@
 			children = (
 				177EE24129236F3100CCACEB /* String+Extensions.swift */,
 				176778692927420B00EDF706 /* Color+Extentions.swift */,
+				171AED1F292E004C006C08F2 /* URL+Extentions.swift */,
 				171AED11292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift */,
 				1767786B2927765100EDF706 /* LBAsyncImage.swift */,
 			);
@@ -196,6 +211,7 @@
 		1780EE42291916EB006B9FFC /* Love Browser */ = {
 			isa = PBXGroup;
 			children = (
+				171AED21292E047C006C08F2 /* Love-Browser-Info.plist */,
 				1780EE43291916EB006B9FFC /* Love_BrowserApp.swift */,
 				177EE24029236EE800CCACEB /* Extentions */,
 				177EE23D29236E4100CCACEB /* Utils */,
@@ -238,6 +254,7 @@
 			);
 			name = "Love Browser";
 			packageProductDependencies = (
+				171AED23292E0A74006C08F2 /* Kingfisher */,
 			);
 			productName = "Love Browser";
 			productReference = 1780EE40291916EB006B9FFC /* Love Browser.app */;
@@ -292,6 +309,7 @@
 			);
 			mainGroup = 1780EE37291916EB006B9FFC;
 			packageReferences = (
+				171AED22292E0A74006C08F2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 1780EE41291916EB006B9FFC /* Products */;
 			projectDirPath = "";
@@ -319,8 +337,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				171AED20292E004C006C08F2 /* URL+Extentions.swift in Sources */,
 				1780EE4D291916EC006B9FFC /* Persistence.swift in Sources */,
 				1780EE6029191783006B9FFC /* ContentView.swift in Sources */,
+				171AED2A292E11D5006C08F2 /* FindInPageView.swift in Sources */,
 				1767786C2927765100EDF706 /* LBAsyncImage.swift in Sources */,
 				171E435A291E3556007D1648 /* LBTextField.swift in Sources */,
 				171E4379292246A6007D1648 /* CoreDataManager.swift in Sources */,
@@ -338,8 +358,10 @@
 				177EE2482923939B00CCACEB /* SearchView.swift in Sources */,
 				171AED1C292CB7B9006C08F2 /* TabsModel.swift in Sources */,
 				177EE24F2923B75800CCACEB /* HomePageCategory+CoreDataClass.swift in Sources */,
+				171AED26292E0AE7006C08F2 /* FaviconsHelper.swift in Sources */,
 				1780EE5D29191783006B9FFC /* BottomBar.swift in Sources */,
 				171E437B29224D75007D1648 /* HomePageItemModel.swift in Sources */,
+				171AED28292E1111006C08F2 /* FindInPage.swift in Sources */,
 				177EE24229236F3100CCACEB /* String+Extensions.swift in Sources */,
 				171E436D291F815B007D1648 /* MenuView.swift in Sources */,
 				177EE2802923DE0B00CCACEB /* SearchWordsCategory+CoreDataClass.swift in Sources */,
@@ -485,6 +507,7 @@
 				DEVELOPMENT_TEAM = 3G9N4FL25J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Love-Browser-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -517,6 +540,7 @@
 				DEVELOPMENT_TEAM = 3G9N4FL25J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Love-Browser-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -559,6 +583,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		171AED22292E0A74006C08F2 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = exactVersion;
+				version = 7.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		171AED23292E0A74006C08F2 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 171AED22292E0A74006C08F2 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		177EE27C2923DD6C00CCACEB /* DataBase.xcdatamodeld */ = {

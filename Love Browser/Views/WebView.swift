@@ -39,7 +39,6 @@ struct WebView: UIViewRepresentable {
         } didFinish: { title, url in
           
             didFinish(title,url)
-            updatePreview()
         }
     }
     
@@ -58,12 +57,6 @@ struct WebView: UIViewRepresentable {
 
     }
 
-    private func updatePreview() {
-        preparePreview { image in
-            preView = image ?? UIImage()
-        }
-    }
-    
 }
 
 

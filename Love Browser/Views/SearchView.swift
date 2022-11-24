@@ -158,7 +158,7 @@ struct SearchView: View {
     
     // 添加到首页
     private func saveHomePageCategory(itemModel: HomePageItemModel) {
-
+        viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         let homePageCategory = HomePageCategory(context: viewContext)
         homePageCategory.title = itemModel.title
         homePageCategory.icon = itemModel.icon

@@ -149,6 +149,7 @@ struct ContentView: View {
             .ignoresSafeArea(.keyboard, edges: .bottom)
             
         }
+        .background(Color.white)
         .onAppear {
             
             tabWebView = WebView(webView: webViewModel.webView, preView: $preView, didStart: { text in
@@ -175,7 +176,7 @@ struct ContentView: View {
     }
     
     private func saveHomePageCategory(itemModel: HomePageItemModel) {
-
+        viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         let homePageCategory = HomePageCategory(context: viewContext)
         homePageCategory.title = itemModel.title
         homePageCategory.icon = itemModel.icon
