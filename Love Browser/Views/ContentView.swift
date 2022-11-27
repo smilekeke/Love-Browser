@@ -74,9 +74,9 @@ struct ContentView: View {
                     
                         
                     }, addToHomePage: {
-//
-//                        saveHomePageCategory(itemModel: HomePageItemModel(title: currentTab.mo.webView.title ?? "", icon: "", link: currentTab.webViewModel.webView.url?.absoluteString ?? ""))
-//
+                        
+                        saveHomePageCategory(itemModel: HomePageItemModel(title: currentModel.webViewModel.title ?? "", icon: "", link: currentModel.webViewModel.url?.absoluteString ?? ""))
+                        
                     }, textFieldManger: textFieldManger)
 
                     .padding(.top, 10)
@@ -120,6 +120,7 @@ struct ContentView: View {
                             showMore = false
                             showSearchIcon = true
                             currentModel?.isDesktop = true
+                            currentModel.webViewModel.webView.backForwardList.perform(Selector(("_removeAllItems")))
                             
                         } else {
                         
