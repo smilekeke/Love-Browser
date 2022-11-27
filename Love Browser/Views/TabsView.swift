@@ -15,7 +15,7 @@ struct TabsView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var isSearch = false
     
-    @Binding var homeViewModelList:Array<HomeViewModel>
+    @EnvironmentObject var tabManagerModel: TabManagerModel
     
     var openNewTabs:() -> Void
 
@@ -33,16 +33,13 @@ struct TabsView: View {
                     
                     LazyVGrid(columns: rows, spacing: 15) {
                         
-                        ForEach(homeViewModelList, id: \.uid) { homeViewModel in
+                        ForEach(tabManagerModel.list, id: \.uid) { homeViewModel in
                             
                             VStack {
                                 
                                 HStack {
                                 
-                                    Text(
-                                        // TODO
-//                                        tabModel.homeWebView.model.webView.title ??
-                                        "首页")
+                                    Text(homeViewModel.webViewModel.title ?? "首页")
                                         .font(.system(size: 12))
                                         .padding(.leading, 8)
                                         .padding(.top, 10)
@@ -50,14 +47,16 @@ struct TabsView: View {
                                     Spacer()
                                     
                                     Button {
-                                        self.homeViewModelList.removeAll { item in
-                                            item === homeViewModel
-                                        }
+                                        
+                                        removeAndDismiss(model: homeViewModel)
+                                        
                                     } label: {
+                                        
                                         Image("deleteTab")
-                                            .frame(width: 16, height: 16)
+                                            .frame(width: 32, height: 32)
                                     }
-                                    .buttonStyle(BorderedButtonStyle())
+                                    .buttonStyle(BorderedProminentButtonStyle())
+                                    
                                     .padding(.trailing, 8)
                                     
                                 }
@@ -77,6 +76,10 @@ struct TabsView: View {
                                 RoundedRectangle(cornerRadius: 12, style: .continuous)
                                     .stroke(Color.lb_item, lineWidth: 2)
                             )
+                            .onTapGesture {
+                                tabManagerModel.selectTab(targetModel: homeViewModel)
+                                presentationMode.wrappedValue.dismiss()
+                            }
                             
                         }
                     }
@@ -92,7 +95,8 @@ struct TabsView: View {
                     Button {
                         openNewTabs()
                         
-                        presentationMode.wrappedValue.dismiss()
+                        
+                        
                         
                     } label: {
                         Image("openTabs")
@@ -101,8 +105,9 @@ struct TabsView: View {
                     Spacer()
                     
                     Button {
-                        homeViewModelList.removeAll()
-                        homeViewModelList.append(HomeViewModel())
+                        
+                        removeAndDismiss(model: nil)
+                        
                     } label: {
                         Image("deleteTabs")
                     }
@@ -127,6 +132,16 @@ struct TabsView: View {
             
         }
 
+    }
+    
+    func removeAndDismiss(model: HomeViewModel?) {
+    
+        tabManagerModel.removeTab(targetModel: model)
+        
+        if tabManagerModel.list.isEmpty {
+            presentationMode.wrappedValue.dismiss()
+        }
+    
     }
 }
 

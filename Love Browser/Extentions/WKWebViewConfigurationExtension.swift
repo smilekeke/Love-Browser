@@ -9,15 +9,15 @@ import WebKit
 
 extension WKWebViewConfiguration {
         
-    public static func persistent() -> WKWebViewConfiguration {
+    public func persistent() -> WKWebViewConfiguration {
         return configuration(persistsData: true)
     }
 
-    public static func nonPersistent() -> WKWebViewConfiguration {
+    public func nonPersistent() -> WKWebViewConfiguration {
         return configuration(persistsData: false)
     }
     
-    private static func configuration(persistsData: Bool) -> WKWebViewConfiguration {
+    private func configuration(persistsData: Bool) -> WKWebViewConfiguration {
         let configuration = WKWebViewConfiguration()
         if !persistsData {
             configuration.websiteDataStore = WKWebsiteDataStore.nonPersistent()
@@ -29,6 +29,7 @@ extension WKWebViewConfiguration {
         configuration.allowsPictureInPictureMediaPlayback = true
         configuration.ignoresViewportScaleLimits = true
         configuration.preferences.isFraudulentWebsiteWarningEnabled = false
+        
 
         return configuration
     }

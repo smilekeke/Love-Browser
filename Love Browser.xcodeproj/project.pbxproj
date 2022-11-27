@@ -19,6 +19,7 @@
 		171AED4B2930D384006C08F2 /* HomeWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED4A2930D384006C08F2 /* HomeWebView.swift */; };
 		171AED4D293316D4006C08F2 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED4C293316D4006C08F2 /* WebViewModel.swift */; };
 		171AED5B29338CF0006C08F2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED5A29338CF0006C08F2 /* HomeViewModel.swift */; };
+		171AED5D2933B468006C08F2 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED5C2933B468006C08F2 /* TabManager.swift */; };
 		171E435A291E3556007D1648 /* LBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4359291E3556007D1648 /* LBTextField.swift */; };
 		171E436D291F815B007D1648 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E436C291F815B007D1648 /* MenuView.swift */; };
 		171E436F291FA434007D1648 /* BookMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E436E291FA434007D1648 /* BookMarkView.swift */; };
@@ -62,6 +63,7 @@
 		171AED4A2930D384006C08F2 /* HomeWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWebView.swift; sourceTree = "<group>"; };
 		171AED4C293316D4006C08F2 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		171AED5A29338CF0006C08F2 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		171AED5C2933B468006C08F2 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
 		171E4359291E3556007D1648 /* LBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBTextField.swift; sourceTree = "<group>"; };
 		171E436C291F815B007D1648 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		171E436E291FA434007D1648 /* BookMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkView.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				177EE2832923EFF600CCACEB /* BookMarkCategory+CoreDataClass.swift */,
 				177EE2852923F00B00CCACEB /* SearchHistoryCategory+CoreDataClass.swift */,
 				171E437A29224D75007D1648 /* HomePageItemModel.swift */,
+				171AED5C2933B468006C08F2 /* TabManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				171E436D291F815B007D1648 /* MenuView.swift in Sources */,
 				177EE2802923DE0B00CCACEB /* SearchWordsCategory+CoreDataClass.swift in Sources */,
 				1780EE6329192D9D006B9FFC /* HistoryView.swift in Sources */,
+				171AED5D2933B468006C08F2 /* TabManager.swift in Sources */,
 				1780EE6129191783006B9FFC /* HomePageView.swift in Sources */,
 				1780EE5F29191783006B9FFC /* WebView.swift in Sources */,
 				171AED12292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift in Sources */,

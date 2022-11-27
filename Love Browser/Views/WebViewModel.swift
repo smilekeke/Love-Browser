@@ -14,7 +14,7 @@ class WebViewModel {
     let webView: WKWebView
 
     init() {
-        let configuration = WKWebViewConfiguration()
+        let configuration = WKWebViewConfiguration().persistent()
         configuration.websiteDataStore = .nonPersistent()
         webView = WKWebView(frame: .zero, configuration: configuration)
 

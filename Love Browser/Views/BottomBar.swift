@@ -34,10 +34,9 @@ struct BottomBar: View {
     @State var openWallpaper = false
     @State var openSetting = false
     
-    @Binding var homeViewModelList:Array<HomeViewModel>
-    
     @EnvironmentObject var appSettings: AppSetting
-    
+    @EnvironmentObject var tabManagerModel: TabManagerModel
+        
     var body: some View {
         
         GeometryReader { proxy in
@@ -113,10 +112,7 @@ struct BottomBar: View {
 
                 } content: {
 
-                    TabsView(
-                        homeViewModelList: $homeViewModelList,
-                        openNewTabs: openNewTabs
-                    )
+                    TabsView(openNewTabs: openNewTabs).environmentObject(tabManagerModel)
                 }
 
                 

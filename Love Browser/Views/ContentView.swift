@@ -26,9 +26,17 @@ struct ContentView: View {
     @ObservedObject var textFieldManger = TextFieldManger()
     @StateObject var appSettings = AppSetting()
 
-    @State var homeViewModelList:Array<HomeViewModel> = [HomeViewModel()]
+    var homeViewModelList : Array<HomeViewModel> {
+        return tabManagerModel.list
+    }
+    
+    var currentIndex: Int {
+        return tabManagerModel.getCurIndex()
+    }
+    
+    @StateObject var tabManagerModel = TabManagerModel()
 
-    @State var currentIndex: Int = 0
+    
     
     var currentModel: HomeViewModel! {
         return homeViewModelList[self.currentIndex]
@@ -76,13 +84,10 @@ struct ContentView: View {
                 ZStack {
                     
                     ForEach(homeViewModelList, id: \.uid) { model in
-                            
                         addHomeWebView(model: model)
-
                     }
                     
                     SearchWordsView {
-                        
                         text = ""
                         showBack = false
                         showSearchedWords = false
@@ -136,16 +141,16 @@ struct ContentView: View {
                     }, saveBookMarkCategory: {
                         
                     }, openNewTabs: {
-                        homeViewModelList.append(HomeViewModel())
+                        tabManagerModel.addTab()
                     },
                               canBack: currentModel?.webViewModel.canGoBack ?? false,
                               canForward: currentModel?.webViewModel.canGoForward ?? false ,
-                              showHome: isSearch,
-                              homeViewModelList: $homeViewModelList)
+                              showHome: isSearch)
                 }
 
             }
             .environmentObject(appSettings)
+            .environmentObject(tabManagerModel)
             
             .background(
 
@@ -177,9 +182,9 @@ struct ContentView: View {
     }
     
     
-    func addHomeWebView(model: HomeViewModel) -> HomeWebView {
+    func addHomeWebView(model: HomeViewModel) -> some View {
     
-        let homeWebView = HomeWebView(model: model, didScroll: { offset in
+        HomeWebView(model: model, didScroll: { offset in
             
         },clickHomePageItem: { url in
             showSearchIcon = false
@@ -187,9 +192,7 @@ struct ContentView: View {
             showMore = true
             isSearch = true
             showSearchedWords = false
-        })
-        
-        return homeWebView
+        }).opacity(tabManagerModel.curUid == model.uid ? 1 : 0)
     }
     
     func setBarsVisibility(offset: CGFloat, hide: Bool = false) {
