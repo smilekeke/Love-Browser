@@ -18,8 +18,6 @@ struct BottomBar: View {
     var saveBookMarkCategory:() -> Void
     var openNewTabs:() -> Void
     
-    @State var canBack = false
-    @State var canForward = false
     var showHome = false
 
     @State var hasBackground = false
@@ -49,8 +47,8 @@ struct BottomBar: View {
                     
                 } label: {
                     
-                       
-                    Image(canBack ? (appSettings.darkModeSettings ? "back_white" : "back_black") : (appSettings.darkModeSettings ? "back_grey" : "back_white"))
+                    
+                    Image(tabManagerModel.canBack ? (appSettings.darkModeSettings ? "back_black" : "back_white") : (appSettings.darkModeSettings ? "back_grey" : "back_white"))
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -66,7 +64,7 @@ struct BottomBar: View {
                     
                 } label: {
                     
-                    Image(canForward ? (appSettings.darkModeSettings ? "forward_white" : "forward_black") : (appSettings.darkModeSettings ? "forward_grey" : "forward_white"))
+                    Image(tabManagerModel.canForward ? (appSettings.darkModeSettings ? "forward_black" : "forward_white") : (appSettings.darkModeSettings ? "forward_grey" : "forward_white"))
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -185,6 +183,13 @@ struct BottomBar: View {
         .frame(height: 30)
         .padding(.bottom,10)
         .padding([.horizontal,.top])
+        .onAppear {
+            registerChange()
+        }
+        
+    }
+    
+    func registerChange() {
         
     }
     

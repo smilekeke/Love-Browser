@@ -20,6 +20,8 @@ struct ContentView: View {
     @State private var backgroundImage = "default"
     @State private var hideSearchView = false
     @State private var hideBottomView = false
+    @State var canBack = false
+    @State var canForward = false
     
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
@@ -36,7 +38,6 @@ struct ContentView: View {
     
     @StateObject var tabManagerModel = TabManagerModel()
 
-    
     
     var currentModel: HomeViewModel! {
         return homeViewModelList[self.currentIndex]
@@ -118,18 +119,21 @@ struct ContentView: View {
                             isSearch = false
                             showMore = false
                             showSearchIcon = true
+                            currentModel?.isDesktop = true
+                            
                         } else {
+                        
                             textFieldManger.textField.becomeFirstResponder()
                         }
                         
                     }, clickBackButton: {
                         
                         //TODO
-//                        currentTab?.webViewModel.goBack()
+                        currentModel?.webViewModel.goBack()
                         
                     }, clickForwardButton: {
                         //TODO
-//                        currentTab?.webViewModel.goForward()
+                        currentModel?.webViewModel.goForward()
                     }, changeWallpaper: { str in
                         
                         // 切换壁纸
@@ -142,10 +146,7 @@ struct ContentView: View {
                         
                     }, openNewTabs: {
                         tabManagerModel.addTab()
-                    },
-                              canBack: currentModel?.webViewModel.canGoBack ?? false,
-                              canForward: currentModel?.webViewModel.canGoForward ?? false ,
-                              showHome: isSearch)
+                    },showHome: isSearch)
                 }
 
             }
@@ -168,6 +169,8 @@ struct ContentView: View {
         }
         .background(Color.white)
         .onAppear {
+            
+            tabManagerModel.addTab()
             
             if !UserDefaults.standard.bool(forKey: "WriteHomePageData") {
                 saveHomePageData()
@@ -192,6 +195,9 @@ struct ContentView: View {
             showMore = true
             isSearch = true
             showSearchedWords = false
+            text = url
+            currentModel.updateUrl(url: url)
+            
         }).opacity(tabManagerModel.curUid == model.uid ? 1 : 0)
     }
     

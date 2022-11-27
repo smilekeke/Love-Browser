@@ -57,7 +57,7 @@ struct BookMarkView: View {
                         Button {
                             presentationMode.wrappedValue.dismiss()
                         } label: {
-                            Image("vector_black")
+                            Image("vector_blackWe")
                         }
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {

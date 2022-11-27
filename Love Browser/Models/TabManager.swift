@@ -7,16 +7,21 @@
 
 import Foundation
 import SwiftUI
+import Combine
+
 
 class TabManagerModel : ObservableObject {
 
     @Published var list: Array<HomeViewModel>
     
     @Published var curUid : String
+    
+    @Published var canBack: Bool = false
+    @Published var canForward: Bool = false
 
-    init(list: [HomeViewModel] = [HomeViewModel()]) {
-        self.list = list
-        self.curUid = list.first!.uid
+    init() {
+        self.list = []
+        self.curUid = ""
     }
     
     func getCurIndex() -> Int {
@@ -26,6 +31,18 @@ class TabManagerModel : ObservableObject {
     }
     
     func addTab(newModel: HomeViewModel = HomeViewModel()) {
+        newModel.webViewModel.$canGoBack
+            .filter({ Bool in
+                newModel.uid == self.curUid
+            })
+            .assign(to: &self.$canBack)
+        
+        newModel.webViewModel.$canGoForward
+            .filter({ Bool in
+                newModel.uid == self.curUid
+            })
+            .assign(to: &self.$canForward)
+        
         list.append(newModel)
         
         selectTab(targetModel: newModel)
@@ -51,4 +68,30 @@ class TabManagerModel : ObservableObject {
         curUid = targetModel.uid
     }
     
+}
+
+class CustomSubscriber: Subscriber {
+    
+    // 指定接收值的类型与失败的类型
+    typealias Input = Int
+    typealias Failure = Never
+    
+    // Publisher会首先调用该方法
+    func receive(subscription: Subscription) {
+        // 接收订阅的值的最大量，通过.max来设置最大值，.unlimited则为不设限
+        subscription.request(.max(6))
+    }
+    
+    // 接收到值时调用的方法，返回接收值最大个数的变化
+    func receive(_ input: Int) -> Subscribers.Demand {
+        
+        print("Received value", input)
+        
+        return .none
+    }
+    
+    // 实现接收完成事件的方法
+    func receive(completion: Subscribers.Completion<Never>) {
+        print("Received completion", completion)
+    }
 }
