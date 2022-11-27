@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
+import WebKit
 
 
 struct TabsModel {
     
-    let title: String
-    let image: UIImage
+//    var uid: String
+    var homeWebView: HomeWebView
+    var image: UIImage
     
-    init(title: String, image: UIImage) {
+    init( homeWebView: HomeWebView, image: UIImage) {
         
-        self.title = title
+        self.homeWebView = homeWebView
         self.image = image
+        
     }
 }
 

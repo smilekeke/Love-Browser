@@ -24,14 +24,12 @@ struct MenuView: View {
     let rows = [GridItem(.fixed(120)), GridItem(.fixed(120)), GridItem(.fixed(120))]
 
     var body: some View {
-        
-        Color.black.opacity(0.3).edgesIgnoringSafeArea(.all)
-            .onTapGesture {
-                presentationMode.wrappedValue.dismiss()
-            }
     
         VStack{
-            ScrollView {
+            Color.black.opacity(0.3).edgesIgnoringSafeArea(.all)
+                .onTapGesture {
+                    presentationMode.wrappedValue.dismiss()
+                }
                 
                 LazyVGrid(columns: rows, spacing: 24) {
            
@@ -62,15 +60,13 @@ struct MenuView: View {
 
                     }
                 }
-                .padding(.top,24)
-        
-            }
-            .background(Color.white)
-            .edgesIgnoringSafeArea([.bottom])
-            .frame(height: 267)
+//                .background(Color.blue)
+                .edgesIgnoringSafeArea([.bottom])
+                .frame(height: 267)
         }
+            .background(Color.white)
             .background(RoundedCorners(color: Color.white, tl: 12, tr: 12, bl: 0, br: 0))
-            .background(BackgroundBlurView())
+//            .background(BackgroundBlurView())
 
     }
 }
@@ -85,7 +81,8 @@ struct MenuView_Previews: PreviewProvider {
 
 struct BackgroundBlurView: UIViewRepresentable {
     func makeUIView(context: Context) -> UIView {
-        let view = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        let view = UIView()
+//        UIVisualEffectView(effect: UIBlurEffect(style: .light))
         DispatchQueue.main.async {
             view.superview?.superview?.backgroundColor = .clear
             

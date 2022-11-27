@@ -16,11 +16,12 @@ struct BottomBar: View {
     var changeWallpaper: (String) -> Void
     var openTabsView:() -> Void // open tabs 标签页
     var saveBookMarkCategory:() -> Void
+    var openNewTabs:() -> Void
     
     @State var canBack = false
     @State var canForward = false
     var showHome = false
-    var dataModel: [WebView]
+
     @State var hasBackground = false
     
     // bottom
@@ -32,6 +33,8 @@ struct BottomBar: View {
     @State var openBookMark = false
     @State var openWallpaper = false
     @State var openSetting = false
+    
+    @Binding var homeViewModelList:Array<HomeViewModel>
     
     @EnvironmentObject var appSettings: AppSetting
     
@@ -110,7 +113,10 @@ struct BottomBar: View {
 
                 } content: {
 
-                    TabsView(dataModel: dataModel)
+                    TabsView(
+                        homeViewModelList: $homeViewModelList,
+                        openNewTabs: openNewTabs
+                    )
                 }
 
                 
@@ -188,28 +194,30 @@ struct BottomBar: View {
     
 }
 
-struct BottomBar_Previews: PreviewProvider {
-    
-    @State static var showHome = true
-    
-    static var previews: some View {
-        
-        BottomBar(clickHomeButton: {
-
-        }, clickBackButton: {
-
-        }, clickForwardButton: {
-
-        }, changeWallpaper: { str  in
-
-        }, openTabsView: {
-
-        }, saveBookMarkCategory: {
-
-        }, canBack: false, canForward: false , showHome: false, dataModel: [])
-
-    }
-}
+//struct BottomBar_Previews: PreviewProvider {
+//    
+//    @State static var showHome = true
+//    
+//    static var previews: some View {
+//        
+//        BottomBar(clickHomeButton: {
+//
+//        }, clickBackButton: {
+//
+//        }, clickForwardButton: {
+//
+//        }, changeWallpaper: { str  in
+//
+//        }, openTabsView: {
+//
+//        }, saveBookMarkCategory: {
+//
+//        }, openNewTabs: {
+//            
+//        } ,openNewTabs: false, canBack: false , canForward: false,showHome: TabManager())
+//
+//    }
+//}
 
 
 

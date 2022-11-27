@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		171AED0E292B1CA3006C08F2 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED0D292B1CA3006C08F2 /* WebViewModel.swift */; };
 		171AED10292BC801006C08F2 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED0F292BC801006C08F2 /* KeyboardHeightHelper.swift */; };
 		171AED12292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED11292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift */; };
 		171AED1C292CB7B9006C08F2 /* TabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED1B292CB7B9006C08F2 /* TabsModel.swift */; };
@@ -17,6 +16,9 @@
 		171AED26292E0AE7006C08F2 /* FaviconsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED25292E0AE7006C08F2 /* FaviconsHelper.swift */; };
 		171AED28292E1111006C08F2 /* FindInPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED27292E1111006C08F2 /* FindInPage.swift */; };
 		171AED2A292E11D5006C08F2 /* FindInPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED29292E11D5006C08F2 /* FindInPageView.swift */; };
+		171AED4B2930D384006C08F2 /* HomeWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED4A2930D384006C08F2 /* HomeWebView.swift */; };
+		171AED4D293316D4006C08F2 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED4C293316D4006C08F2 /* WebViewModel.swift */; };
+		171AED5B29338CF0006C08F2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED5A29338CF0006C08F2 /* HomeViewModel.swift */; };
 		171E435A291E3556007D1648 /* LBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4359291E3556007D1648 /* LBTextField.swift */; };
 		171E436D291F815B007D1648 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E436C291F815B007D1648 /* MenuView.swift */; };
 		171E436F291FA434007D1648 /* BookMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E436E291FA434007D1648 /* BookMarkView.swift */; };
@@ -24,7 +26,6 @@
 		171E4373291FB6F7007D1648 /* WallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4372291FB6F7007D1648 /* WallpaperView.swift */; };
 		171E4379292246A6007D1648 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4378292246A6007D1648 /* CoreDataManager.swift */; };
 		171E437B29224D75007D1648 /* HomePageItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E437A29224D75007D1648 /* HomePageItemModel.swift */; };
-		176778622926771E00EDF706 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176778612926771E00EDF706 /* TabManager.swift */; };
 		1767786A2927420B00EDF706 /* Color+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176778692927420B00EDF706 /* Color+Extentions.swift */; };
 		1767786C2927765100EDF706 /* LBAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767786B2927765100EDF706 /* LBAsyncImage.swift */; };
 		177EE24229236F3100CCACEB /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE24129236F3100CCACEB /* String+Extensions.swift */; };
@@ -49,7 +50,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		171AED0D292B1CA3006C08F2 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		171AED0F292BC801006C08F2 /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
 		171AED11292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewConfigurationExtension.swift; sourceTree = "<group>"; };
 		171AED1B292CB7B9006C08F2 /* TabsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsModel.swift; sourceTree = "<group>"; };
@@ -59,6 +59,9 @@
 		171AED25292E0AE7006C08F2 /* FaviconsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaviconsHelper.swift; sourceTree = "<group>"; };
 		171AED27292E1111006C08F2 /* FindInPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindInPage.swift; sourceTree = "<group>"; };
 		171AED29292E11D5006C08F2 /* FindInPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindInPageView.swift; sourceTree = "<group>"; };
+		171AED4A2930D384006C08F2 /* HomeWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWebView.swift; sourceTree = "<group>"; };
+		171AED4C293316D4006C08F2 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
+		171AED5A29338CF0006C08F2 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		171E4359291E3556007D1648 /* LBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBTextField.swift; sourceTree = "<group>"; };
 		171E436C291F815B007D1648 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		171E436E291FA434007D1648 /* BookMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkView.swift; sourceTree = "<group>"; };
@@ -66,7 +69,6 @@
 		171E4372291FB6F7007D1648 /* WallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperView.swift; sourceTree = "<group>"; };
 		171E4378292246A6007D1648 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		171E437A29224D75007D1648 /* HomePageItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageItemModel.swift; sourceTree = "<group>"; };
-		176778612926771E00EDF706 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
 		176778692927420B00EDF706 /* Color+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extentions.swift"; sourceTree = "<group>"; };
 		1767786B2927765100EDF706 /* LBAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBAsyncImage.swift; sourceTree = "<group>"; };
 		177EE24129236F3100CCACEB /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -114,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				171E4378292246A6007D1648 /* CoreDataManager.swift */,
-				176778612926771E00EDF706 /* TabManager.swift */,
 				171AED1B292CB7B9006C08F2 /* TabsModel.swift */,
 			);
 			path = Managers;
@@ -139,12 +140,14 @@
 			isa = PBXGroup;
 			children = (
 				1780EE5A29191783006B9FFC /* ContentView.swift */,
+				171AED4A2930D384006C08F2 /* HomeWebView.swift */,
+				171AED5A29338CF0006C08F2 /* HomeViewModel.swift */,
 				1780EE5B29191783006B9FFC /* HomePageView.swift */,
 				177EE2472923939B00CCACEB /* SearchView.swift */,
 				171E4359291E3556007D1648 /* LBTextField.swift */,
 				177EE2432923767F00CCACEB /* SearchWordsView.swift */,
 				1780EE5929191783006B9FFC /* WebView.swift */,
-				171AED0D292B1CA3006C08F2 /* WebViewModel.swift */,
+				171AED4C293316D4006C08F2 /* WebViewModel.swift */,
 				1780EE5729191783006B9FFC /* BottomBar.swift */,
 				1780EE6229192D9D006B9FFC /* HistoryView.swift */,
 				171E436E291FA434007D1648 /* BookMarkView.swift */,
@@ -340,17 +343,19 @@
 				171AED20292E004C006C08F2 /* URL+Extentions.swift in Sources */,
 				1780EE4D291916EC006B9FFC /* Persistence.swift in Sources */,
 				1780EE6029191783006B9FFC /* ContentView.swift in Sources */,
+				171AED5B29338CF0006C08F2 /* HomeViewModel.swift in Sources */,
 				171AED2A292E11D5006C08F2 /* FindInPageView.swift in Sources */,
 				1767786C2927765100EDF706 /* LBAsyncImage.swift in Sources */,
 				171E435A291E3556007D1648 /* LBTextField.swift in Sources */,
 				171E4379292246A6007D1648 /* CoreDataManager.swift in Sources */,
 				171AED10292BC801006C08F2 /* KeyboardHeightHelper.swift in Sources */,
 				171E4371291FA810007D1648 /* TabsView.swift in Sources */,
-				171AED0E292B1CA3006C08F2 /* WebViewModel.swift in Sources */,
 				1767786A2927420B00EDF706 /* Color+Extentions.swift in Sources */,
+				171AED4B2930D384006C08F2 /* HomeWebView.swift in Sources */,
 				1780EE50291916EC006B9FFC /* Love_Browser.xcdatamodeld in Sources */,
 				1780EE44291916EB006B9FFC /* Love_BrowserApp.swift in Sources */,
 				177EE2442923767F00CCACEB /* SearchWordsView.swift in Sources */,
+				171AED4D293316D4006C08F2 /* WebViewModel.swift in Sources */,
 				171AED1E292DC99D006C08F2 /* AppSetting.swift in Sources */,
 				177EE27E2923DD6C00CCACEB /* DataBase.xcdatamodeld in Sources */,
 				177EE24C2923B2C800CCACEB /* MaskView.swift in Sources */,
@@ -371,7 +376,6 @@
 				171AED12292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift in Sources */,
 				171E436F291FA434007D1648 /* BookMarkView.swift in Sources */,
 				171E4373291FB6F7007D1648 /* WallpaperView.swift in Sources */,
-				176778622926771E00EDF706 /* TabManager.swift in Sources */,
 				177EE2842923EFF600CCACEB /* BookMarkCategory+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -508,6 +512,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Love-Browser-Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "App需要您的同意,才能访问相册";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -541,6 +546,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Love-Browser-Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "App需要您的同意,才能访问相册";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

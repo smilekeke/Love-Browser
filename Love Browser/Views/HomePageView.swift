@@ -12,7 +12,7 @@ struct HomePageView: View {
     @EnvironmentObject var appSettings: AppSetting
     @FetchRequest(fetchRequest: HomePageCategory.all) private var  homePgaeCategorys:FetchedResults<HomePageCategory>
     
-    var reloadWebView: (String) -> Void
+    var clickHomePageItem: (String) -> Void
     
     let rows = [GridItem(.fixed(80)), GridItem(.fixed(80)), GridItem(.fixed(80)), GridItem(.fixed(80))]
     
@@ -34,7 +34,7 @@ struct HomePageView: View {
 
                                 Button {
 
-                                    reloadWebView(homePageCategory.link ?? "")
+                                    clickHomePageItem(homePageCategory.link ?? "")
 
                                 } label: {
                                     
@@ -60,6 +60,7 @@ struct HomePageView: View {
                             Text(homePageCategory.title ?? "")
                                 .foregroundColor(appSettings.darkModeSettings ? Color.lb_black : Color.white)
                                 .font(.system(size: 12).weight(.medium))
+                                .lineLimit(1)
 
                         }
 

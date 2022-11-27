@@ -23,19 +23,25 @@ struct SearchWordsView: View {
                 
                 ForEach(searchWords, id: \.title) { searchWord in
                 
-                    HStack {
-                        Image("history")
-                        Text(searchWord.title ?? "")
-                            .foregroundColor(appSettings.darkModeSettings ? Color.lb_black : Color.white)
-                            .frame(width: UIScreen.main.bounds.width-40, height: 40,alignment: .leading)
-                            .background(appSettings.darkModeSettings ? Color.white : Color.clear)
-                    }
-                    .highPriorityGesture(
-                        TapGesture()
-                            .onEnded({ _ in
-                                reloadWebView(searchWord.title ?? "")
-                            })
-                    )
+                        Button {
+                            
+                            reloadWebView(searchWord.title ?? "")
+                            
+                        } label: {
+                            
+                            HStack {
+                                
+                                Image("history")
+                                
+                                Text(searchWord.title ?? "")
+                                    .foregroundColor(appSettings.darkModeSettings ? Color.lb_black : Color.white)
+                                    .background(appSettings.darkModeSettings ? Color.white : Color.clear)
+                            }
+                
+                        }
+                        .buttonStyle(BorderedButtonStyle())
+                        .frame(width: UIScreen.main.bounds.width, height: 40,alignment: .leading)
+                    
     
                     .listRowBackground(appSettings.darkModeSettings ? Color.white : Color.gray.opacity(0.8))
                     .listRowSeparator(.hidden)

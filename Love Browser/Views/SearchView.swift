@@ -18,9 +18,10 @@ struct SearchView: View {
     var textDidChange:() -> Void
     var clickCancleButton:() -> Void
     var changeToWebView: (String) -> Void
+    var refreshWebView:() -> Void
+    var addToHomePage:() -> Void
     
     var textFieldManger: TextFieldManger
-    var webViewModel: WebViewModel
     
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var appSettings: AppSetting
@@ -99,8 +100,8 @@ struct SearchView: View {
                 HStack(spacing: 5) {
                     
                     Button {
-                        
-                        webViewModel.webView.reload()
+            
+                        refreshWebView()
         
                     } label: {
                         
@@ -113,8 +114,7 @@ struct SearchView: View {
                         
                         Button {
                             
-                            saveHomePageCategory(itemModel: HomePageItemModel(title: webViewModel.webView.title ?? "", icon:"", link: webViewModel.webView.url?.absoluteString ?? ""))
-                            
+                            addToHomePage()
                         } label: {
                             Image("addHomePage")
                             Text("Add to Homepage")
@@ -152,26 +152,6 @@ struct SearchView: View {
             
             
         }.environmentObject(appSettings)
-
-    }
-    
-    
-    // 添加到首页
-    private func saveHomePageCategory(itemModel: HomePageItemModel) {
-        viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        let homePageCategory = HomePageCategory(context: viewContext)
-        homePageCategory.title = itemModel.title
-        homePageCategory.icon = itemModel.icon
-        homePageCategory.link = itemModel.link
-
-        do {
-
-            try viewContext.save()
-
-        } catch {
-
-            print(error)
-        }
 
     }
     

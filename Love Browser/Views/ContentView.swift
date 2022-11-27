@@ -12,66 +12,73 @@ import WebKit
 struct ContentView: View {
     
     @State private var text = ""
-    @State private var isSearch = false
+    
     @State private var showMore = false
     @State private var showSearchIcon = true
     @State private var showBack = false
     @State private var showSearchedWords = false
     @State private var backgroundImage = "default"
-    @State var preView: UIImage = UIImage()
+    @State private var hideSearchView = false
+    @State private var hideBottomView = false
     
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
-    @ObservedObject var webViewModel = WebViewModel()
     @ObservedObject var textFieldManger = TextFieldManger()
-    @ObservedObject var tabManager = TabManager()
     @StateObject var appSettings = AppSetting()
-    
-    @State var tabWebView: WebView!
 
+    @State var homeViewModelList:Array<HomeViewModel> = [HomeViewModel()]
+
+    @State var currentIndex: Int = 0
+    
+    var currentModel: HomeViewModel! {
+        return homeViewModelList[self.currentIndex]
+    }
+    
+    @State private var isSearch = false
+    
+    
     var body: some View {
         
         NavigationView {
             
             VStack {
                 
-                SearchView(text: $text, showMore: $showMore, showSearchIcon: $showSearchIcon, showBack: $showBack, textDidChange: {
+                if !hideSearchView {
                     
-                    showSearchedWords = text == "" ? false : true
+                    SearchView(text: $text, showMore: $showMore, showSearchIcon: $showSearchIcon, showBack: $showBack, textDidChange: {
+                        
+                        showSearchedWords = text == "" ? false : true
+                        
+                    }, clickCancleButton: {
+                        
+                        showSearchedWords = false
+                        
+                    }, changeToWebView: { text in
+                        
+                        isSearch = true
+                        showMore = true
+                        showSearchIcon = false
+                        showSearchedWords = false
+                        
+                        currentModel.updateUrl(url: text)
+                    }, refreshWebView: {
                     
-                }, clickCancleButton: {
-                    
-                    showSearchedWords = false
-                    
-                }, changeToWebView: { text in
-                    isSearch = true
-                    showSearchedWords = false
-                    webViewModel.updateData(with: text)
-                    
-                }, textFieldManger: textFieldManger, webViewModel: webViewModel)
-            
-                .padding(.top, 10)
+                        
+                    }, addToHomePage: {
+//
+//                        saveHomePageCategory(itemModel: HomePageItemModel(title: currentTab.mo.webView.title ?? "", icon: "", link: currentTab.webViewModel.webView.url?.absoluteString ?? ""))
+//
+                    }, textFieldManger: textFieldManger)
+
+                    .padding(.top, 10)
+                }
                 
                 ZStack {
-                
-                    if isSearch {
-                        
-                        tabWebView
-                            .onAppear {
-                                appSettings.darkModeSettings = true
-                            }
-                            .onDisappear {
-                                appSettings.darkModeSettings = (UserDefaults.standard.string(forKey: "SelectedWallpaper") == "default" || UserDefaults.standard.string(forKey: "SelectedWallpaper") == nil) ? true : false
-                            }
-                        
                     
-                    } else {
-                        
-                        HomePageView() { url in
-                            isSearch = true
-                            text = url
-                            webViewModel.updateData(with: url)
-                        }
+                    ForEach(homeViewModelList, id: \.uid) { model in
+                            
+                        addHomeWebView(model: model)
+
                     }
                     
                     SearchWordsView {
@@ -83,11 +90,12 @@ struct ContentView: View {
                         
                     } reloadWebView: { query in
                         
+                        text = query
+                        showBack = false
+                        showMore = true
                         showSearchedWords = false
                         textFieldManger.textField.resignFirstResponder()
                         isSearch = true
-                        text = query
-                        webViewModel.updateData(with: query)
                         
                     }
                         .background(Color.black.opacity(0.3))
@@ -96,41 +104,45 @@ struct ContentView: View {
                     
                 }
                 
-                
-                BottomBar(clickHomeButton: {
+                if !hideBottomView {
                     
-                    if isSearch {
+                    BottomBar(clickHomeButton: {
                         
-                        text = ""
-                        isSearch = false
-                        showMore = false
-                        showSearchIcon = true
+                        if isSearch {
+                            text = ""
+                            isSearch = false
+                            showMore = false
+                            showSearchIcon = true
+                        } else {
+                            textFieldManger.textField.becomeFirstResponder()
+                        }
                         
-                    } else {
+                    }, clickBackButton: {
                         
-                        textFieldManger.textField.becomeFirstResponder()
-                    }
-    
-                }, clickBackButton: {
-                    
-                    webViewModel.webView.goBack()
-    
-                }, clickForwardButton: {
-    
-                    webViewModel.webView.goForward()
-                }, changeWallpaper: { str in
-    
-                    // 切换壁纸
-                    backgroundImage = str
-                    appSettings.darkModeSettings = str == "default" ? true : false
-    
-                }, openTabsView: {
-                    // open tabs View
-                    print(tabManager.webviewCache.count)
-    
-                }, saveBookMarkCategory: {
-    
-                }, showHome: isSearch, dataModel: tabManager.webviewCache)
+                        //TODO
+//                        currentTab?.webViewModel.goBack()
+                        
+                    }, clickForwardButton: {
+                        //TODO
+//                        currentTab?.webViewModel.goForward()
+                    }, changeWallpaper: { str in
+                        
+                        // 切换壁纸
+                        backgroundImage = str
+                        appSettings.darkModeSettings = str == "default" ? true : false
+                        
+                    }, openTabsView: {
+                        
+                    }, saveBookMarkCategory: {
+                        
+                    }, openNewTabs: {
+                        homeViewModelList.append(HomeViewModel())
+                    },
+                              canBack: currentModel?.webViewModel.canGoBack ?? false,
+                              canForward: currentModel?.webViewModel.canGoForward ?? false ,
+                              showHome: isSearch,
+                              homeViewModelList: $homeViewModelList)
+                }
 
             }
             .environmentObject(appSettings)
@@ -152,17 +164,6 @@ struct ContentView: View {
         .background(Color.white)
         .onAppear {
             
-            tabWebView = WebView(webView: webViewModel.webView, preView: $preView, didStart: { text in
-                tabWebView.preView = preView
-            }, didFinish: { title, url in
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateStyle = .short
-                saveSearchHistoryCategory(date: dateFormatter.string(from: Date()), title: title, url: url)
-            })
-            
-            tabManager.addWebView(webview: tabWebView)
-            
             if !UserDefaults.standard.bool(forKey: "WriteHomePageData") {
                 saveHomePageData()
             }
@@ -175,6 +176,34 @@ struct ContentView: View {
 
     }
     
+    
+    func addHomeWebView(model: HomeViewModel) -> HomeWebView {
+    
+        let homeWebView = HomeWebView(model: model, didScroll: { offset in
+            
+        },clickHomePageItem: { url in
+            showSearchIcon = false
+            showBack = false
+            showMore = true
+            isSearch = true
+            showSearchedWords = false
+        })
+        
+        return homeWebView
+    }
+    
+    func setBarsVisibility(offset: CGFloat, hide: Bool = false) {
+        if offset > 20{
+            hideSearchView = true
+            hideBottomView = true
+        } else {
+            hideSearchView = false
+            hideBottomView = false
+        }
+    }
+    
+    
+    // 添加到首页
     private func saveHomePageCategory(itemModel: HomePageItemModel) {
         viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         let homePageCategory = HomePageCategory(context: viewContext)
@@ -240,15 +269,15 @@ struct ContentView: View {
     
 }
 
-struct ContentView_Previews: PreviewProvider {
-    @State static var text = ""
-    @State static var backgroundImage = "default"
-    
-    static var previews: some View {
-
-        ContentView().environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
-    }
-
-}
+//struct ContentView_Previews: PreviewProvider {
+//    @State static var text = ""
+//    @State static var backgroundImage = "default"
+//    
+//    static var previews: some View {
+//
+//        ContentView().environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
+//    }
+//
+//}
 
 
