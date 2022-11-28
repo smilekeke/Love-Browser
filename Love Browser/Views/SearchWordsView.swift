@@ -35,14 +35,13 @@ struct SearchWordsView: View {
                                 
                                 Text(searchWord.title ?? "")
                                     .foregroundColor(appSettings.darkModeSettings ? Color.lb_black : Color.white)
-                                    .background(appSettings.darkModeSettings ? Color.white : Color.clear)
+                                    .frame(width: UIScreen.main.bounds.width-40, height: 40,alignment: .leading)
                             }
                 
-                        }
-                        .buttonStyle(BorderedButtonStyle())
+                        } 
                         .frame(width: UIScreen.main.bounds.width, height: 40,alignment: .leading)
-                    
-    
+                        .buttonStyle(BorderlessButtonStyle())
+                       
                     .listRowBackground(appSettings.darkModeSettings ? Color.white : Color.gray.opacity(0.8))
                     .listRowSeparator(.hidden)
                 }

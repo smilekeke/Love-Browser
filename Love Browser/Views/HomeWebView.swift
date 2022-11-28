@@ -12,12 +12,10 @@ struct HomeWebView: View  {
     
     @EnvironmentObject var appSettings: AppSetting
     
-//    @Binding var urlString: String
-//    @State var webViewModel: WebViewModel
-    
     @State var model: HomeViewModel
     
-
+    var decidePolicy: (String) -> Void
+    var didFinish:(String) -> Void
     var didScroll:(CGFloat) -> Void
 
     var clickHomePageItem: (String) -> Void
@@ -28,20 +26,17 @@ struct HomeWebView: View  {
             
             WebView(webView: model.webViewModel.webView) { url in
                 
-            } didFinish: { title, url in
-            
+                decidePolicy(url)
+                
+            } didFinish: { url in
+                
+                didFinish(url)
                 updatePreviewImage()
                 
             } didScroll: { offset in
-                
+             
+                didScroll(offset)
             }
-             .onAppear {
-                 print("HomeWebView onAppear is called")
-                 appSettings.darkModeSettings = true
-             }
-             .onDisappear {
-                 appSettings.darkModeSettings = (UserDefaults.standard.string(forKey: "SelectedWallpaper") == "default" || UserDefaults.standard.string(forKey: "SelectedWallpaper") == nil) ? true : false
-             }
              .edgesIgnoringSafeArea(.bottom)
              .opacity(model.isDesktop ? 0 : 1)
             
@@ -54,11 +49,8 @@ struct HomeWebView: View  {
             HomePageView { url in
     
                 clickHomePageItem(url)
-                //TODO
-//                urlString = url
-//                webViewModel.loadUrl(urlString: url)
             }
-            .background(Color.white)
+            .background(Color.white.opacity(appSettings.darkModeSettings ? 1 : 0))
             .opacity(model.isDesktop ? 1 : 0)
     
         }

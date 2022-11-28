@@ -35,42 +35,40 @@ struct TabsView: View {
                         
                         ForEach(tabManagerModel.list, id: \.uid) { homeViewModel in
                             
-                            VStack {
+                            VStack(spacing: 0) {
                                 
                                 HStack {
                                 
-                                    Text(homeViewModel.webViewModel.title ?? "首页")
+                                    Text((homeViewModel.webViewModel.title == "" ? "首页" : homeViewModel.webViewModel.title!) )
                                         .font(.system(size: 12))
                                         .padding(.leading, 8)
-                                        .padding(.top, 10)
-                                    
+                                        .padding(.top, 30)
+                                        .frame(height: 30)
+
                                     Spacer()
-                                    
+
                                     Button {
-                                        
+
                                         removeAndDismiss(model: homeViewModel)
-                                        
+
                                     } label: {
-                                        
+
                                         Image("deleteTab")
-                                            .frame(width: 32, height: 32)
+                                            .frame(width: 16, height: 16)
                                     }
-                                    .buttonStyle(BorderedProminentButtonStyle())
-                                    
-                                    .padding(.trailing, 8)
+                                    .buttonStyle(BorderlessButtonStyle())
+                                    .padding(.top, 30)
                                     
                                 }
-                                .frame(height: 20)
-                                
+                                .background(Color.white)
+                            
                                 Image(uiImage: (homeViewModel.previewImage))
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
-                                    .frame(width: gridWidth, height: 214)
                                     .clipped()
                                 
                             }
                             .frame(width: gridWidth, height: 234)
-                            .background(Color.white)
                             .cornerRadius(12)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12, style: .continuous)
@@ -86,7 +84,7 @@ struct TabsView: View {
                     .padding(.top,24)
                     
                 }
-                    .background(Color.lb_item)
+                    .background(Color.lb_history)
                 
                 HStack {
                     
@@ -94,10 +92,8 @@ struct TabsView: View {
                     
                     Button {
                         openNewTabs()
-                        
-                        
-                        
-                        
+                        presentationMode.wrappedValue.dismiss()
+    
                     } label: {
                         Image("openTabs")
                     }
@@ -114,6 +110,7 @@ struct TabsView: View {
                     
                     Spacer()
                 }
+                    .background(Color.white)
                     .frame(height: 49)
                     .padding(.bottom)
             }

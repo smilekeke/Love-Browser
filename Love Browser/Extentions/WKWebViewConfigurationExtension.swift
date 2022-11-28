@@ -29,6 +29,7 @@ extension WKWebViewConfiguration {
         configuration.allowsPictureInPictureMediaPlayback = true
         configuration.ignoresViewportScaleLimits = true
         configuration.preferences.isFraudulentWebsiteWarningEnabled = false
+//        configuration.hasOnlySecureContent
         
 
         return configuration

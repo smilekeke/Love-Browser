@@ -96,27 +96,39 @@ struct BottomBar: View {
                     
                 } label: {
                     
-                    Image(appSettings.darkModeSettings ? "tabs_black" : "tabs_white")
-                        .renderingMode(.original)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 30, height: 30)
-                        .frame(maxWidth:.infinity)
+                    HStack {
+                        
+                        Image(appSettings.darkModeSettings ? "tabs_black" : "tabs_white")
+                            .renderingMode(.original)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30)
+                            .frame(maxWidth:.infinity)
+                        
+                        Text(String(tabManagerModel.list.count))
+                            .foregroundColor(appSettings.darkModeSettings ? Color.lb_black : Color.white)
+                            .font(
+                                    .system(size: 12)
+                                    .weight(.heavy)
+                            )
+                            .padding(.leading, tabManagerModel.list.count > 9 ? -41 : -37)
+                            .padding(.top, 10)
+                          
+                    }
                     
                 }
                 
                 .fullScreenCover(isPresented: $openTabs) {
 
-
                 } content: {
-
+ 
                     TabsView(openNewTabs: openNewTabs).environmentObject(tabManagerModel)
                 }
 
                 
                 Button {
                     
-                    showMenu.toggle()
+                    showMenu.toggle() 
                 
                 } label: {
                     

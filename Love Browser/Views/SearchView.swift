@@ -20,13 +20,12 @@ struct SearchView: View {
     var changeToWebView: (String) -> Void
     var refreshWebView:() -> Void
     var addToHomePage:() -> Void
+    var openQRCodeView:() -> Void
     
     var textFieldManger: TextFieldManger
     
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var appSettings: AppSetting
-
-
     
     var body: some View {
        
@@ -122,11 +121,13 @@ struct SearchView: View {
                         
                         Button {
                             
+                            openQRCodeView()
+                            
                         } label: {
                             Image("QRCode")
                             Text("Generate QR code")
                         }
-                        
+
                         Button {
                             
                         } label: {
@@ -147,6 +148,7 @@ struct SearchView: View {
                     .frame(width: 24, height: 24)
                     
                 }
+                .background(appSettings.darkModeSettings ? Color.white : Color.clear)
                 .padding(.leading, -90)
             }
             

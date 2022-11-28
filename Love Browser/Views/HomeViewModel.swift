@@ -16,7 +16,7 @@ class HomeViewModel : ObservableObject {
     
     let webViewModel = WebViewModel()
     
-    var previewImage: UIImage = UIImage(named: "bg1")!
+    var previewImage: UIImage = UIImage(named: "deskview")!
     
     func updateUrl(url: String) {
         isDesktop = url.isEmpty

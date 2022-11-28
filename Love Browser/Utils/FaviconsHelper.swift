@@ -22,25 +22,62 @@ import Kingfisher
 
 struct FaviconsHelper {
     
-//    static func loadFaviconSync(forDomain domain: String?,
-//                                useFakeFavicon: Bool) -> UIImage {
-//
-//
-//            var resultImage: UIImage?
-//            let image =
-//            if image != nil {
-//
-//                resultImage = image
-//
-//            } else if useFakeFavicon, let domain = domain {
-//
-//                fake = true
-//                resultImage = Self.createFakeFavicon(forDomain: domain)
-//            }
-//
-//        return resultImage
-//
-//    }
+    func loadFaviconSync(forDomain domain: String?,
+                                useFakeFavicon: Bool,
+                                completion: ((UIImage?, Bool) -> Void)? = nil) {
+        
+        
+        
+        func complete(_ image: UIImage?) {
+            var fake = false
+            var resultImage: UIImage?
+
+            if image != nil {
+                resultImage = image
+            } else if useFakeFavicon, let domain = domain {
+                fake = true
+                resultImage = Self.createFakeFavicon(forDomain: domain)
+            }
+            
+            completion?(resultImage, fake)
+        }
+        
+        
+        if let image = fetchRemoteImage(domain: domain ?? "") {
+            complete(image)
+        } else {
+            complete(nil)
+        }
+
+    }
+    
+    func fetchRemoteImage(domain: String) -> UIImage? {
+        
+        guard let url = URL(string: "https://www.google.com/s2/favicons?domain=" + domain + "&sz=32") else {
+                return nil
+        }
+        
+        let downloader = ImageDownloader.default
+        var image: UIImage?
+        
+        downloader.downloadImage(with: url) { result in
+            
+            switch result {
+                
+            case .success(let value):
+                
+                image = value.image
+            
+            case .failure(let error):
+                
+                print(error)
+            }
+        }
+        
+        return image
+    }
+    
+    
     
     static func createFakeFavicon(forDomain domain: String,
                                   size: CGFloat = 192,
@@ -64,8 +101,7 @@ struct FaviconsHelper {
             label.font = bold ? UIFont.boldSystemFont(ofSize: fontSize) : UIFont.systemFont(ofSize: fontSize)
             label.textColor = UIColor.white
             label.textAlignment = .center
-//            label.text = String(domain.droppingWwwPrefix().prefix(1).uppercased())
-            label.text = "B"
+            label.text = String(domain.droppingWwwPrefix().prefix(1).uppercased())
             label.sizeToFit()
              
             context.translateBy(x: (imageRect.width - label.bounds.width) / 2,

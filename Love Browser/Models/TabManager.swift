@@ -18,6 +18,7 @@ class TabManagerModel : ObservableObject {
     
     @Published var canBack: Bool = false
     @Published var canForward: Bool = false
+    @Published var url: URL? = nil
 
     init() {
         self.list = []
@@ -42,6 +43,12 @@ class TabManagerModel : ObservableObject {
                 newModel.uid == self.curUid
             })
             .assign(to: &self.$canForward)
+        
+        newModel.webViewModel.$url
+            .filter({ url in
+                newModel.uid == self.curUid
+            })
+            .assign(to: &self.$url)
         
         list.append(newModel)
         

@@ -20,6 +20,7 @@ struct ContentView: View {
     @State private var backgroundImage = "default"
     @State private var hideSearchView = false
     @State private var hideBottomView = false
+    @State private var openQRCodeView = false
     @State var canBack = false
     @State var canForward = false
     
@@ -77,7 +78,17 @@ struct ContentView: View {
                         
                         saveHomePageCategory(itemModel: HomePageItemModel(title: currentModel.webViewModel.title ?? "", icon: "", link: currentModel.webViewModel.url?.absoluteString ?? ""))
                         
-                    }, textFieldManger: textFieldManger)
+                    }, openQRCodeView: {
+                       
+                        openQRCodeView.toggle()
+                        
+                    },textFieldManger: textFieldManger)
+                    .fullScreenCover(isPresented: $openQRCodeView) {
+                        
+                    } content: {
+
+                        QRCodeView(urlString: text)
+                    }
 
                     .padding(.top, 10)
                 }
@@ -102,6 +113,7 @@ struct ContentView: View {
                         showSearchedWords = false
                         textFieldManger.textField.resignFirstResponder()
                         isSearch = true
+                        currentModel.updateUrl(url: query)
                         
                     }
                         .background(Color.black.opacity(0.3))
@@ -129,12 +141,12 @@ struct ContentView: View {
                         
                     }, clickBackButton: {
                         
-                        //TODO
                         currentModel?.webViewModel.goBack()
                         
                     }, clickForwardButton: {
-                        //TODO
+
                         currentModel?.webViewModel.goForward()
+                        
                     }, changeWallpaper: { str in
                         
                         // 切换壁纸
@@ -146,7 +158,9 @@ struct ContentView: View {
                     }, saveBookMarkCategory: {
                         
                     }, openNewTabs: {
+                        
                         tabManagerModel.addTab()
+                        
                     },showHome: isSearch)
                 }
 
@@ -160,7 +174,6 @@ struct ContentView: View {
                                 .resizable()
                                 .ignoresSafeArea()
                                 .aspectRatio(contentMode: .fill)
-                                .opacity(isSearch ? 0 : 1)
 
             )
             
@@ -188,18 +201,26 @@ struct ContentView: View {
     
     func addHomeWebView(model: HomeViewModel) -> some View {
     
-        HomeWebView(model: model, didScroll: { offset in
+        HomeWebView(model: model,decidePolicy: { url in
+            text = url
             
-        },clickHomePageItem: { url in
+        }, didFinish: { url in
+            
+        } ,didScroll: { offset in
+         
+            setBarsVisibility(offset: offset)
+            
+        }, clickHomePageItem: { url in
             showSearchIcon = false
             showBack = false
             showMore = true
             isSearch = true
             showSearchedWords = false
             text = url
+            textFieldManger.textField.resignFirstResponder()
             currentModel.updateUrl(url: url)
             
-        }).opacity(tabManagerModel.curUid == model.uid ? 1 : 0)
+        }).opacity(tabManagerModel.curUid == model.uid ? 1 : 0).environmentObject(tabManagerModel)
     }
     
     func setBarsVisibility(offset: CGFloat, hide: Bool = false) {
