@@ -40,9 +40,9 @@ struct TabsView: View {
                                 HStack {
                                 
                                     Text((homeViewModel.webViewModel.title == "" ? "首页" : homeViewModel.webViewModel.title!) )
-                                        .font(.system(size: 12))
+                                        .font(.system(size: 12,weight: .medium ))
                                         .padding(.leading, 8)
-                                        .padding(.top, 30)
+                                        .padding(.top, 10)
                                         .frame(height: 30)
 
                                     Spacer()
@@ -57,14 +57,16 @@ struct TabsView: View {
                                             .frame(width: 16, height: 16)
                                     }
                                     .buttonStyle(BorderlessButtonStyle())
-                                    .padding(.top, 30)
+                                    .padding(.top, 10)
+                                    .padding(.trailing, 10)
                                     
                                 }
                                 .background(Color.white)
                             
                                 Image(uiImage: (homeViewModel.previewImage))
                                     .resizable()
-                                    .aspectRatio(contentMode: .fill)
+                                    .scaledToFill()
+                                    .frame(width: gridWidth, height: 204)
                                     .clipped()
                                 
                             }

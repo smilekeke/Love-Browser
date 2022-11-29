@@ -31,7 +31,6 @@ struct HomeWebView: View  {
             } didFinish: { title, url in
                 
                 didFinish(title, url)
-                updatePreviewImage()
                 
             } didScroll: { offset in
              
@@ -57,28 +56,5 @@ struct HomeWebView: View  {
         
     }
     
-    func updatePreviewImage() {
-        preparePreview(tabView: model.webViewModel.webView) { image in
-            if (image != nil) {
-                model.previewImage = image!
-            }
-        }
-    }
-    
-    func preparePreview(tabView: WKWebView, completion: @escaping (UIImage?) -> Void) {
-
-        DispatchQueue.main.async {
-            
-            UIGraphicsBeginImageContextWithOptions(tabView.bounds.size, false, UIScreen.main.scale)
-
-            tabView.drawHierarchy(in: tabView.bounds, afterScreenUpdates: true)
-
-            let image = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            completion(image)
-            
-        }
-
-    }
 }
 

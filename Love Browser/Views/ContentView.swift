@@ -73,7 +73,7 @@ struct ContentView: View {
                         currentModel.updateUrl(url: text)
                     }, refreshWebView: {
                     
-                        
+                        currentModel.webViewModel.webView.reload()
                     }, addToHomePage: {
                         
                         saveHomePageCategory(itemModel: HomePageItemModel(title: currentModel.webViewModel.title ?? "", icon: "", link: currentModel.webViewModel.url?.absoluteString ?? ""))
@@ -156,10 +156,17 @@ struct ContentView: View {
                         
                     }, openTabsView: {
                         
+                        currentModel.updatePreviewImage()
+                        
                     }, saveBookMarkCategory: {
                         
                     }, openNewTabs: {
-                        
+                        text = ""
+                        showBack = false
+                        isSearch = false
+                        showMore = false
+                        showSearchIcon = true
+                        currentModel?.isDesktop = true
                         tabManagerModel.addTab()
                         
                     },showHome: isSearch)
@@ -206,7 +213,9 @@ struct ContentView: View {
             text = url
             
         }, didFinish: {title, url in
-         
+            
+            currentModel.updatePreviewImage()
+            
             if title != "" && url != "" {
                 saveSearchHistoryCategory(title: title, url: url)
             }
