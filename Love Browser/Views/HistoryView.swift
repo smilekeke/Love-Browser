@@ -8,12 +8,6 @@
 import SwiftUI
 import CryptoKit
 
-
-enum Sections: String, CaseIterable {
-    case today = "today"
-    case time = "2022/11/7"
-}
-
 struct HistoryView: View {
     
     @Environment(\.presentationMode) var presentationMode
@@ -60,15 +54,15 @@ struct HistoryView: View {
                                 }
 
                             } header: {
-
-                                Text(section ?? "default value")
-                                    .background(Color.lb_history)
+                                
+                                Text(dateIsToday(date: section))
+                            
                             }
                             
                         }
                             .listRowSeparator(.hidden)
                     }
-                        .listStyle(.plain)
+                    .listStyle(.plain)
                 }
                 
             }
@@ -113,6 +107,18 @@ struct HistoryView: View {
             
         }
         
+    }
+    
+    func dateIsToday(date: String?) -> String {
+        
+        let formatter1 = DateFormatter()
+        formatter1.dateStyle = .short
+        
+        if date == formatter1.string(from: Date.now) {
+            return "Today"
+        }
+        
+        return date ?? "date is gone"
     }
     
     func deleteAllHistory()  {

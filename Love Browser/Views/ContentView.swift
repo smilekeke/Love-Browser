@@ -128,6 +128,7 @@ struct ContentView: View {
                         
                         if isSearch {
                             text = ""
+                            showBack = false
                             isSearch = false
                             showMore = false
                             showSearchIcon = true
@@ -204,7 +205,11 @@ struct ContentView: View {
         HomeWebView(model: model,decidePolicy: { url in
             text = url
             
-        }, didFinish: { url in
+        }, didFinish: {title, url in
+         
+            if title != "" && url != "" {
+                saveSearchHistoryCategory(title: title, url: url)
+            }
             
         } ,didScroll: { offset in
          
@@ -262,11 +267,15 @@ struct ContentView: View {
 
 
     // 添加到历史记录
-    private func saveSearchHistoryCategory(date: String, title: String,url: String) {
+    private func saveSearchHistoryCategory(title: String,url: String) {
         viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         let searchHistoryCategory = SearchHistoryCategory(context: viewContext)
         searchHistoryCategory.title = title
-        searchHistoryCategory.date = date
+        
+        let formatter1 = DateFormatter()
+        formatter1.dateStyle = .short
+        
+        searchHistoryCategory.date = formatter1.string(from: Date.now)
         searchHistoryCategory.url = url
 
         do {

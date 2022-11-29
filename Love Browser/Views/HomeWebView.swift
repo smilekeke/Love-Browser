@@ -15,7 +15,7 @@ struct HomeWebView: View  {
     @State var model: HomeViewModel
     
     var decidePolicy: (String) -> Void
-    var didFinish:(String) -> Void
+    var didFinish:(String, String) -> Void
     var didScroll:(CGFloat) -> Void
 
     var clickHomePageItem: (String) -> Void
@@ -28,9 +28,9 @@ struct HomeWebView: View  {
                 
                 decidePolicy(url)
                 
-            } didFinish: { url in
+            } didFinish: { title, url in
                 
-                didFinish(url)
+                didFinish(title, url)
                 updatePreviewImage()
                 
             } didScroll: { offset in

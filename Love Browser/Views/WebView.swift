@@ -13,7 +13,7 @@ struct WebView: UIViewRepresentable {
     let webView: WKWebView
     
     var decidePolicy: (String) -> Void
-    var didFinish: (String) -> Void
+    var didFinish: (String, String) -> Void
     var didScroll:(CGFloat) -> Void
     
     func makeUIView(context: Context) -> some WKWebView {
@@ -38,9 +38,9 @@ struct WebView: UIViewRepresentable {
 
             decidePolicy(url)
 
-        } didFinish: { url in
+        } didFinish: { title, url in
 
-            didFinish(url)
+            didFinish(title, url)
 
         } didScroll: { offset in
 
@@ -55,10 +55,10 @@ struct WebView: UIViewRepresentable {
 class WebViewCoordinator: NSObject,WKNavigationDelegate, WKUIDelegate, UIScrollViewDelegate {
 
     var decidePolicy: (String) -> Void
-    var didFinish: (String) -> Void
+    var didFinish: (String, String) -> Void
     var didScroll:(CGFloat) -> Void
 
-    init(decidePolicy: @escaping (String) -> Void = {_ in}, didFinish: @escaping (String) ->Void = {_ in }, didScroll: @escaping (CGFloat) -> Void = {_ in}) {
+    init(decidePolicy: @escaping (String) -> Void = {_ in}, didFinish: @escaping (String, String) ->Void = {_, _ in }, didScroll: @escaping (CGFloat) -> Void = {_ in}) {
         self.decidePolicy = decidePolicy
         self.didFinish = didFinish
         self.didScroll = didScroll
@@ -71,7 +71,7 @@ class WebViewCoordinator: NSObject,WKNavigationDelegate, WKUIDelegate, UIScrollV
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
 
-        didFinish(webView.url?.absoluteString ?? "")
+        didFinish(webView.title ?? "" ,webView.url?.absoluteString ?? "")
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {

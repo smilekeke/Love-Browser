@@ -8,8 +8,39 @@
 import SwiftUI
 
 struct SettingView: View {
+    
+    @Environment(\.presentationMode) var presentationMode
+    let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        
+        NavigationView {
+            
+            VStack {
+                
+                List {
+                    HStack {
+                        Text("Version")
+                        Spacer()
+                        Text(version ?? "unknow")
+                    }
+                    
+                }
+            }
+            .navigationTitle("Setting")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image("vector_black")
+                    }
+                }
+                
+            }
+        }
     }
 }
 

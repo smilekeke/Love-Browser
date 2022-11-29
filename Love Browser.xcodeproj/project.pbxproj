@@ -20,7 +20,6 @@
 		171AED4D293316D4006C08F2 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED4C293316D4006C08F2 /* WebViewModel.swift */; };
 		171AED5B29338CF0006C08F2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED5A29338CF0006C08F2 /* HomeViewModel.swift */; };
 		171AED5D2933B468006C08F2 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED5C2933B468006C08F2 /* TabManager.swift */; };
-		171AED632934F8AC006C08F2 /* OpenTabsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED622934F8AC006C08F2 /* OpenTabsButton.swift */; };
 		171AED8729350058006C08F2 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED8629350058006C08F2 /* SettingView.swift */; };
 		171AED892935008C006C08F2 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED882935008C006C08F2 /* QRCodeView.swift */; };
 		171E435A291E3556007D1648 /* LBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4359291E3556007D1648 /* LBTextField.swift */; };
@@ -67,7 +66,6 @@
 		171AED4C293316D4006C08F2 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		171AED5A29338CF0006C08F2 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		171AED5C2933B468006C08F2 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
-		171AED622934F8AC006C08F2 /* OpenTabsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTabsButton.swift; sourceTree = "<group>"; };
 		171AED8629350058006C08F2 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		171AED882935008C006C08F2 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		171E4359291E3556007D1648 /* LBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBTextField.swift; sourceTree = "<group>"; };
@@ -150,18 +148,17 @@
 				1780EE5A29191783006B9FFC /* ContentView.swift */,
 				171AED4A2930D384006C08F2 /* HomeWebView.swift */,
 				171AED5A29338CF0006C08F2 /* HomeViewModel.swift */,
+				1780EE5929191783006B9FFC /* WebView.swift */,
+				171AED4C293316D4006C08F2 /* WebViewModel.swift */,
 				1780EE5B29191783006B9FFC /* HomePageView.swift */,
 				177EE2472923939B00CCACEB /* SearchView.swift */,
 				171E4359291E3556007D1648 /* LBTextField.swift */,
 				177EE2432923767F00CCACEB /* SearchWordsView.swift */,
-				1780EE5929191783006B9FFC /* WebView.swift */,
-				171AED4C293316D4006C08F2 /* WebViewModel.swift */,
 				1780EE5729191783006B9FFC /* BottomBar.swift */,
-				171AED622934F8AC006C08F2 /* OpenTabsButton.swift */,
+				171E436C291F815B007D1648 /* MenuView.swift */,
+				171E4370291FA810007D1648 /* TabsView.swift */,
 				1780EE6229192D9D006B9FFC /* HistoryView.swift */,
 				171E436E291FA434007D1648 /* BookMarkView.swift */,
-				171E4370291FA810007D1648 /* TabsView.swift */,
-				171E436C291F815B007D1648 /* MenuView.swift */,
 				171E4372291FB6F7007D1648 /* WallpaperView.swift */,
 				171AED882935008C006C08F2 /* QRCodeView.swift */,
 				171AED8629350058006C08F2 /* SettingView.swift */,
@@ -359,7 +356,6 @@
 				171AED2A292E11D5006C08F2 /* FindInPageView.swift in Sources */,
 				1767786C2927765100EDF706 /* LBAsyncImage.swift in Sources */,
 				171E435A291E3556007D1648 /* LBTextField.swift in Sources */,
-				171AED632934F8AC006C08F2 /* OpenTabsButton.swift in Sources */,
 				171E4379292246A6007D1648 /* CoreDataManager.swift in Sources */,
 				171AED10292BC801006C08F2 /* KeyboardHeightHelper.swift in Sources */,
 				171E4371291FA810007D1648 /* TabsView.swift in Sources */,

@@ -163,6 +163,10 @@ struct BottomBar: View {
                             openWallpaper.toggle()
                         }
                         
+                        if title == "Setting" {
+                            openSetting.toggle()
+                        }
+                        
                     }
                     
                 }
@@ -187,6 +191,12 @@ struct BottomBar: View {
                 } content: {
                     
                     BookMarkView()
+                }
+                .fullScreenCover(isPresented: $openSetting) {
+                    
+                } content: {
+                    
+                    SettingView()
                 }
                
             }
