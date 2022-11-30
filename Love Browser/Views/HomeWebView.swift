@@ -16,7 +16,6 @@ struct HomeWebView: View  {
     
     var decidePolicy: (String) -> Void
     var didFinish:(String, String) -> Void
-    var didScroll:(CGFloat) -> Void
 
     var clickHomePageItem: (String) -> Void
     
@@ -32,9 +31,6 @@ struct HomeWebView: View  {
                 
                 didFinish(title, url)
                 
-            } didScroll: { offset in
-             
-                didScroll(offset)
             }
              .edgesIgnoringSafeArea(.bottom)
              .opacity(model.isDesktop ? 0 : 1)

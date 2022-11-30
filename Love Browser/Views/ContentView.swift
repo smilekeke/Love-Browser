@@ -220,10 +220,6 @@ struct ContentView: View {
                 saveSearchHistoryCategory(title: title, url: url)
             }
             
-        } ,didScroll: { offset in
-         
-            setBarsVisibility(offset: offset)
-            
         }, clickHomePageItem: { url in
             showSearchIcon = false
             showBack = false
@@ -235,16 +231,6 @@ struct ContentView: View {
             currentModel.updateUrl(url: url)
             
         }).opacity(tabManagerModel.curUid == model.uid ? 1 : 0).environmentObject(tabManagerModel)
-    }
-    
-    func setBarsVisibility(offset: CGFloat, hide: Bool = false) {
-        if offset > 20{
-            hideSearchView = true
-            hideBottomView = true
-        } else {
-            hideSearchView = false
-            hideBottomView = false
-        }
     }
     
     

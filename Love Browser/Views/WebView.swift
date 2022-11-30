@@ -14,7 +14,6 @@ struct WebView: UIViewRepresentable {
     
     var decidePolicy: (String) -> Void
     var didFinish: (String, String) -> Void
-    var didScroll:(CGFloat) -> Void
     
     func makeUIView(context: Context) -> some WKWebView {
         
@@ -42,9 +41,6 @@ struct WebView: UIViewRepresentable {
 
             didFinish(title, url)
 
-        } didScroll: { offset in
-
-            didScroll(offset)
         }
     }
 
@@ -56,12 +52,10 @@ class WebViewCoordinator: NSObject,WKNavigationDelegate, WKUIDelegate, UIScrollV
 
     var decidePolicy: (String) -> Void
     var didFinish: (String, String) -> Void
-    var didScroll:(CGFloat) -> Void
 
-    init(decidePolicy: @escaping (String) -> Void = {_ in}, didFinish: @escaping (String, String) ->Void = {_, _ in }, didScroll: @escaping (CGFloat) -> Void = {_ in}) {
+    init(decidePolicy: @escaping (String) -> Void = {_ in}, didFinish: @escaping (String, String) ->Void = {_, _ in }) {
         self.decidePolicy = decidePolicy
         self.didFinish = didFinish
-        self.didScroll = didScroll
     }
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
@@ -101,26 +95,5 @@ class WebViewCoordinator: NSObject,WKNavigationDelegate, WKUIDelegate, UIScrollV
         
         decisionHandler(.allow)
     }
-
-    //UIScrollViewDelegate
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-        didScroll(scrollView.contentOffset.y)
-    }
-
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-
-    }
-
-    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
-
-    }
-
-    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
-
-        return true
-    }
-
-
 
 }
