@@ -132,8 +132,9 @@ struct ContentView: View {
                             isSearch = false
                             showMore = false
                             showSearchIcon = true
-                            currentModel?.isDesktop = true
                             currentModel.webViewModel.webView.backForwardList.perform(Selector(("_removeAllItems")))
+                            pausePlay()
+                            currentModel?.isDesktop = true
                             
                         } else {
                         
@@ -159,6 +160,14 @@ struct ContentView: View {
                         currentModel.updatePreviewImage()
                         
                     }, saveBookMarkCategory: {
+                       
+                        if !currentModel.isDesktop {
+                            
+                            if let str = currentModel.webViewModel.title, let link = currentModel.webViewModel.url?.absoluteString {
+                                saveBookMarkCategory(title: str, url: link)
+                            }
+                            
+                        } 
                         
                     }, openNewTabs: {
                         text = ""
@@ -166,7 +175,6 @@ struct ContentView: View {
                         isSearch = false
                         showMore = false
                         showSearchIcon = true
-                        currentModel?.isDesktop = true
                         tabManagerModel.addTab()
                         
                     },showHome: isSearch)
@@ -234,6 +242,19 @@ struct ContentView: View {
     }
     
     
+    
+    // 暂停播放网页内的音频、视频
+    func pausePlay() {
+        
+          if #available(iOS 15.0, *) {
+              currentModel.webViewModel.webView.pauseAllMediaPlayback()
+          } else {
+              // Fallback on earlier versions
+//              currentModel.updateUrl(url: "about:blank")
+          }
+    }
+    
+    
     // 添加到首页
     private func saveHomePageCategory(itemModel: HomePageItemModel) {
         viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
@@ -270,7 +291,7 @@ struct ContentView: View {
         let formatter1 = DateFormatter()
         formatter1.dateStyle = .short
         
-        searchHistoryCategory.date = formatter1.string(from: Date.now)
+        searchHistoryCategory.date = formatter1.string(from: Date())
         searchHistoryCategory.url = url
 
         do {
@@ -285,11 +306,11 @@ struct ContentView: View {
     }
     
     // 添加到书签
-    private func saveBookMarkCategory(itemModel: HomePageItemModel) {
+    private func saveBookMarkCategory(title: String, url: String) {
 
         let bookMarkCategory = BookMarkCategory(context: viewContext)
-        bookMarkCategory.title = itemModel.title
-        bookMarkCategory.url = "https://"
+        bookMarkCategory.title = title
+        bookMarkCategory.url = url
 
         do {
 

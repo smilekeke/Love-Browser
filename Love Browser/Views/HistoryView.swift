@@ -31,38 +31,46 @@ struct HistoryView: View {
                     
                 } else {
                     
-                    List {
+                    ScrollView {
                         
-                        let groupByCategory = Dictionary(grouping: searchHistoryCategorys) { (SearchHistoryCategory) in
-        
-                            return SearchHistoryCategory.date
-                        }
-                        
-                        ForEach(Array(groupByCategory.keys),id: \.self) { section in
+                        LazyVStack(alignment: .leading, spacing: 20, content: {
                             
-                            let searchHistorys =  groupByCategory[section]!
-                            
-                            Section {
-
-                                ForEach(searchHistorys) { searchHistoryCategory in
-
-                                    HStack {
-                                        Image("history")
-                                        Text(searchHistoryCategory.title ?? "")
-                                    }
-
-                                }
-
-                            } header: {
+                            let groupByCategory = Dictionary(grouping: searchHistoryCategorys) { (SearchHistoryCategory) in
                                 
-                                Text(dateIsToday(date: section))
-                            
+                                return SearchHistoryCategory.date
                             }
                             
-                        }
-                            .listRowSeparator(.hidden)
+                            ForEach(Array(groupByCategory.keys),id: \.self) { section in
+                                
+                                let searchHistorys =  groupByCategory[section]!
+                                
+                                Section {
+                                    
+                                    ForEach(searchHistorys) { searchHistoryCategory in
+                                        
+                                        HStack {
+                                            Image("history")
+                                                .padding(.leading, 17)
+                                            Text(searchHistoryCategory.title ?? "")
+                                                .lineLimit(1)
+                                                .padding(.trailing,20)
+                                        }
+                                        
+                                    }
+                                    
+                                } header: {
+                                    
+                                    Text(dateIsToday(date: section))
+                                        .foregroundColor(Color.lb_section)
+                                        .padding(.leading, 17)
+                                    
+                                }
+                                
+                            }
+                            
+                        }).padding(.top, 10)
+                        
                     }
-                    .listStyle(.plain)
                 }
                 
             }
@@ -114,7 +122,7 @@ struct HistoryView: View {
         let formatter1 = DateFormatter()
         formatter1.dateStyle = .short
         
-        if date == formatter1.string(from: Date.now) {
+        if date == formatter1.string(from: Date()) {
             return "Today"
         }
         

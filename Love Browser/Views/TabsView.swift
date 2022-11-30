@@ -116,7 +116,7 @@ struct TabsView: View {
                     .frame(height: 49)
                     .padding(.bottom)
             }
-               
+            
                 .navigationTitle("Open Tabs")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -135,6 +135,10 @@ struct TabsView: View {
     
     func removeAndDismiss(model: HomeViewModel?) {
     
+        if  tabManagerModel.list.count == 1 {
+            presentationMode.wrappedValue.dismiss()
+        }
+        
         tabManagerModel.removeTab(targetModel: model)
         
         if tabManagerModel.list.isEmpty {

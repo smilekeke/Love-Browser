@@ -29,28 +29,28 @@ struct BookMarkView: View {
                     Text(" No browsing record")
                     
                 } else {
-                    
-                    List {
-
-                        ForEach(bookMarkCategorys) { bookMarkCategory in
-
-                            HStack {
+                 
+                    ScrollView {
+                        
+                        LazyVStack(alignment: .leading, spacing: 20, content: {
+                                        
+                            ForEach(bookMarkCategorys) { bookMarkCategory in
                                 
-                                Image("bookmark")
-                                    .padding(.leading,20)
-                                Text(bookMarkCategory.title ?? "")
-                                    .padding(.leading,10)
+                                HStack {
+                                    
+                                    Image("bookmark")
+                                        .padding(.leading,20)
+                                    Text(bookMarkCategory.title ?? "")
+                                        .padding(.leading,10)
+                                }
+                                
                             }
-
-                        }
-                        .listRowSeparator(.hidden)
-
+                                        
+                        }).padding(.top, 10)
                     }
-                    
-                    .listStyle(.plain)
                 }
             }
-                .navigationTitle("bookmark")
+                .navigationTitle("Bookmark")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {

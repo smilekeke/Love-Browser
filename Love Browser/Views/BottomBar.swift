@@ -128,7 +128,7 @@ struct BottomBar: View {
                 
                 Button {
                     
-                    showMenu.toggle() 
+                    showMenu.toggle()
                 
                 } label: {
                     

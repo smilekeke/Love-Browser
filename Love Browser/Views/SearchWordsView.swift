@@ -17,9 +17,9 @@ struct SearchWordsView: View {
     
     var body: some View {
 
-        VStack{
+        ScrollView {
             
-            List {
+            LazyVStack {
                 
                 ForEach(searchWords, id: \.title) { searchWord in
                 
@@ -32,21 +32,22 @@ struct SearchWordsView: View {
                             HStack {
                                 
                                 Image("history")
+                                    .padding(.leading, 15)
                                 
                                 Text(searchWord.title ?? "")
                                     .foregroundColor(appSettings.darkModeSettings ? Color.lb_black : Color.white)
-                                    .frame(width: UIScreen.main.bounds.width-40, height: 40,alignment: .leading)
+                                    .frame(width: UIScreen.main.bounds.width-60, height: 40,alignment: .leading)
+                                    .padding(.leading, 10)
+                                    .padding(.trailing, 15)
                             }
                 
                         } 
                         .frame(width: UIScreen.main.bounds.width, height: 40,alignment: .leading)
                         .buttonStyle(BorderlessButtonStyle())
-                       
-                    .listRowBackground(appSettings.darkModeSettings ? Color.white : Color.gray.opacity(0.8))
-                    .listRowSeparator(.hidden)
+                
                 }
             }
-            .listStyle(.plain)
+            .background(appSettings.darkModeSettings ? Color.white : Color.gray.opacity(0.8))
 
         }
         .onTapGesture {

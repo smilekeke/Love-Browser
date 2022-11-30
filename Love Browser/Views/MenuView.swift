@@ -25,51 +25,55 @@ struct MenuView: View {
     let rows = [GridItem(.fixed(120)), GridItem(.fixed(120)), GridItem(.fixed(120))]
 
     var body: some View {
-    
-        ZStack {
+        
+        NavigationView {
             
-            Color.black.opacity(0.3)
-                .onTapGesture {
-                    presentationMode.wrappedValue.dismiss()
-                }
-            
-            LazyVGrid(columns: rows, spacing: 24) {
+            ZStack {
                 
-                ForEach(ItemModels, id: \.title) { item in
+                Color.black.opacity(0.3)
+                    .onTapGesture {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                
+                LazyVGrid(columns: rows, spacing: 24) {
                     
-                    VStack {
+                    ForEach(ItemModels, id: \.title) { item in
                         
-                        Button {
+                        VStack {
                             
-                            clickMenuView(item.title)
+                            Button {
+                                
+                                clickMenuView(item.title)
+                                
+                            } label: {
+                                
+                                Image(item.logo)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 24, height: 24)
+                                
+                            }
+                            .frame(width: 56, height: 56)
+                            .background(Color.lb_item)
+                            .cornerRadius(8)
                             
-                        } label: {
-                            
-                            Image(item.logo)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 24, height: 24)
+                            Text(item.title)
+                                .foregroundColor(Color.lb_black)
                             
                         }
-                        .frame(width: 56, height: 56)
-                        .background(Color.lb_item)
-                        .cornerRadius(8)
-                        
-                        Text(item.title)
-                            .foregroundColor(Color.lb_black)
                         
                     }
                     
                 }
-                
-            }
                 .frame(height: 267)
                 .background(Color.white)
                 .cornerRadius(12)
                 .padding(.top,(height - 287))
-            
+                
+            }
+                .edgesIgnoringSafeArea(.all)
+                .background(BackgroundBlurView())
         }
-            .edgesIgnoringSafeArea(.all)
             .background(BackgroundBlurView())
     
     }

@@ -20,6 +20,7 @@ struct WebView: UIViewRepresentable {
         print("webview makeUIView is called")
         
         webView.allowsLinkPreview = true
+        webView.allowsBackForwardNavigationGestures = true
         webView.navigationDelegate = context.coordinator
         webView.uiDelegate = context.coordinator
         webView.scrollView.delegate = context.coordinator
