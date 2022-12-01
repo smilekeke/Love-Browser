@@ -14,69 +14,87 @@ struct WallpaperView: View {
     var changeWallpaper: (String) -> Void
     
     let screenWidth = UIScreen.main.bounds.width
+    let screenHeight = UIScreen.main.bounds.height
     
     var body: some View {
         
         let rows = [GridItem(.fixed((screenWidth - 45) / 2)), GridItem(.fixed((screenWidth - 45) / 2))]
         
-        Color.black.opacity(0.3).edgesIgnoringSafeArea(.all)
-            .onTapGesture {
+        NavigationView {
+            
+            ZStack {
                 
-                presentationMode.wrappedValue.dismiss()
-            }
+                Color.black.opacity(0.3).edgesIgnoringSafeArea(.all)
+                    .onTapGesture {
+                        
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                
+                
+                ScrollView {
+                    
+                    Text("Wallpaper")
+                        .padding(.top, 15)
+                    
+                    LazyVGrid(columns: rows, spacing: 15) {
+                        
+                        ForEach(1...10, id: \.self) { value in
+                            
+                            Button {
+                                
+                                // 切换壁纸
+                                changeWallpaper("bg"+String(value))
+                                UserDefaults.standard.set("bg"+String(value), forKey: "SelectedWallpaper")
+                                presentationMode.wrappedValue.dismiss()
+                                
+                                
+                            } label: {
+                                
+                                Image("bg"+String(value))
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: (screenWidth - 45) / 2, height: 218)
+                                
+                            }
+                            .frame(width: (screenWidth - 45) / 2, height: 218)
+                            .cornerRadius(12)
+                            .background(Color.white)
+                            
+                        }
+                    }
+                    .padding(.top, 20)
 
-        
-        ScrollView {
-            
-            Text("Wallpaper")
-            
-            LazyVGrid(columns: rows, spacing: 15) {
-       
-                ForEach(1...10, id: \.self) { value in
                     
                     Button {
                         
-                        // 切换壁纸
-                        changeWallpaper("bg"+String(value))
-                        UserDefaults.standard.set("bg"+String(value), forKey: "SelectedWallpaper")
+                        changeWallpaper("default")
+                        UserDefaults.standard.set("default", forKey: "SelectedWallpaper")
                         presentationMode.wrappedValue.dismiss()
-                        
                         
                     } label: {
                         
-                        Image("bg"+String(value))
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: (screenWidth - 45) / 2, height: 218)
-                            
+                        Text("Defaut")
+                            .frame(width: screenWidth-40, height: 40, alignment: .center)
+                        
                     }
-                        .frame(width: (screenWidth - 45) / 2, height: 218)
-                        .cornerRadius(12)
-                        .background(Color.white)
-
+                    
+                    .background(Color.lb_item)
+                    .foregroundColor(Color.lb_black)
+                    .cornerRadius(8.0)
+                    .padding(.top, 10)
+                    .padding(.bottom, 20)
+                    
                 }
-            }
-            .padding(.top, 20)
-            
-            Button {
-                
-                changeWallpaper("default")
-                UserDefaults.standard.set("default", forKey: "SelectedWallpaper")
-                presentationMode.wrappedValue.dismiss()
-                
-            } label: {
-                
-                Text("Defaut")
-                    .frame(width: screenWidth-40, height: 40, alignment: .center)
+                .frame(height: 470)
+                .background(Color.white)
+                .cornerRadius(12)
+                .padding(.top,(screenHeight - 470))
                 
             }
-            
-            .background(Color.lb_item)
-            .foregroundColor(Color.lb_black)
-            .cornerRadius(8.0)
-    
+            .edgesIgnoringSafeArea(.all)
+            .background(BackgroundBlurView())
         }
-        .background(Color.white)
+        .background(BackgroundBlurView())
     
     }
 }

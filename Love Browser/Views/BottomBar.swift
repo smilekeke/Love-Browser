@@ -205,16 +205,9 @@ struct BottomBar: View {
         .frame(height: 30)
         .padding(.bottom,10)
         .padding([.horizontal,.top])
-        .onAppear {
-            registerChange()
-        }
         
     }
-    
-    func registerChange() {
-        
-    }
-    
+
 }
 
 //struct BottomBar_Previews: PreviewProvider {
