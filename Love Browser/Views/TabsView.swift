@@ -6,15 +6,12 @@
 //
 
 import SwiftUI
-import Foundation
 import WebKit
 
 // 标签页面
 struct TabsView: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @State private var isSearch = false
-    
     @EnvironmentObject var tabManagerModel: TabManagerModel
     
     var openNewTabs:() -> Void

@@ -121,8 +121,10 @@ struct BottomBar: View {
                 .fullScreenCover(isPresented: $openTabs) {
 
                 } content: {
- 
-                    TabsView(openNewTabs: openNewTabs).environmentObject(tabManagerModel)
+                    TabsView {
+                        openNewTabs()
+                    }.environmentObject(tabManagerModel)
+        
                 }
 
                 
