@@ -79,7 +79,7 @@ struct BottomBar: View {
                     
                 } label: {
                     
-                    Image(showHome ? "homepage" : (appSettings.darkModeSettings ? "home_search_black" : "home_search_white"))
+                    Image(showHome ? (appSettings.darkModeSettings ? "homepage" : "homepage_white") : (appSettings.darkModeSettings ? "home_search_black" : "home_search_white"))
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)

@@ -75,7 +75,7 @@ struct SearchView: View {
             }
             
             .frame(height: 44)
-            .padding(.leading,showBack ? 0 : -10)
+            .padding(.leading,showBack ? 0 : -20)
             .padding(.trailing, 15)
             
             HStack {
