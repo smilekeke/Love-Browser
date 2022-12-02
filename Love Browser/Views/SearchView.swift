@@ -51,109 +51,120 @@ struct SearchView: View {
                 
             })
             .opacity(showBack ? 1 : 0)
-            
-            LBTextField(text: $text,textField: textFieldManger.textField) {
-                
-                showBack = true
-                showSearchIcon = false
-                showMore = false
-                
-            } textDidChange: {
-                DispatchQueue.main.async {
-                    showSearchIcon = false
-                }
-                textDidChange()
-            } pressReturn: {
-                
-                changeToWebView(text)
-                if text !=  "" {
-                    saveSearchWord(title: text)
-                }
-               
-                showBack = false
-                showMore = true
-            }
-            
-            .frame(height: 44)
-            .padding(.leading,showBack ? 0 : -20)
-            .padding(.trailing, 15)
-            
+          
             HStack {
                 
-                Button(action: {
+                LBTextField(text: $text,textField: textFieldManger.textField) {
                     
-                }, label: {
-                    if appSettings.darkModeSettings {
-                        Image("search_black")
-                    } else {
-                        Image("search_white")
+                    showBack = true
+                    showSearchIcon = false
+                    showMore = false
+                    
+                } textDidChange: {
+                    DispatchQueue.main.async {
+                        showSearchIcon = false
                     }
-                })
-                .opacity(showSearchIcon ? 1 : 0)
+                    textDidChange()
+                } pressReturn: {
+                    
+                    changeToWebView(text)
+                    if text !=  "" {
+                        saveSearchWord(title: text)
+                    }
+                    
+                    showBack = false
+                    showMore = true
+                }
                 
-            }
-            .frame(width: 16, height: 16)
-            .padding(.leading, -60)
-            
-            if showMore {
-                HStack(spacing: 5) {
+                .frame(height: 44)
+                
+                if showSearchIcon {
                     
-                    Button {
-            
-                        refreshWebView()
-        
-                    } label: {
+                    HStack {
                         
-                        Image("refresh")
+                        Button(action: {
+                            
+                        }, label: {
+                            if appSettings.darkModeSettings {
+                                Image("search_black")
+                            } else {
+                                Image("search_white")
+                            }
+                        })
+                        
                     }
-                    .frame(width: 24, height: 24)
+                    .frame(width: 16, height: 16)
+                    .padding(.trailing, 10)
+                }
+                
+                if showMore {
                     
-                    
-                    Menu {
+                    HStack(spacing: 5) {
                         
                         Button {
                             
-                            addToHomePage()
+                            refreshWebView()
+                            
                         } label: {
-                            Image("addHomePage")
-                            Text("Add to Homepage")
+                            
+                            Image("refresh")
                         }
+                        .frame(width: 24, height: 24)
                         
-                        Button {
+                        
+                        Menu {
                             
-                            openQRCodeView()
-                            
-                        } label: {
-                            Image("QRCode")
-                            Text("Generate QR code")
-                        }
-
-                        Button {
-                            
-                        } label: {
-                            
-                            HStack{
+                            Button {
                                 
-                                Image("searchOnPage")
-                                Text("On page search")
+                                addToHomePage()
+                            } label: {
+                                Image("addHomePage")
+                                Text("Add to Homepage")
                             }
                             
+                            Button {
+                                
+                                openQRCodeView()
+                                
+                            } label: {
+                                Image("QRCode")
+                                Text("Generate QR code")
+                            }
+                            
+                            Button {
+                                
+                            } label: {
+                                
+                                HStack{
+                                    
+                                    Image("searchOnPage")
+                                    Text("On page search")
+                                }
+                                
+                            }
+                            
+                            
+                        } label: {
+                            
+                            Image("more")
                         }
+                        .frame(width: 24, height: 24)
                         
-                        
-                    } label: {
-                        
-                        Image("more")
                     }
-                    .frame(width: 24, height: 24)
-                    
+                    .background(appSettings.darkModeSettings ? Color.white : Color.clear)
+                    .padding(.trailing, 10)
                 }
-                .background(appSettings.darkModeSettings ? Color.white : Color.clear)
-                .padding(.leading, -90)
+                
             }
-            
-            
-        }.environmentObject(appSettings)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(appSettings.darkModeSettings ? Color.black : Color.white, lineWidth: 2)
+            )
+            .padding(.leading, showBack ? 0 : -20)
+            .padding(.trailing, 20)
+        }
+        
+        .environmentObject(appSettings)
 
     }
     
