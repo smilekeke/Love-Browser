@@ -17,6 +17,7 @@ struct BottomBar: View {
     var openTabsView:() -> Void // open tabs 标签页
     var saveBookMarkCategory:() -> Void
     var openNewTabs:() -> Void
+    var clickHistoryCell:(String) -> Void
     
     var showHome = false
 
@@ -186,13 +187,17 @@ struct BottomBar: View {
                     
                 } content: {
                     
-                    HistoryView()
+                    HistoryView { url in
+                        clickHistoryOrBookMarkCell(url: url)
+                    }
                 }
                 .fullScreenCover(isPresented: $openBookMark) {
                     
                 } content: {
                     
-                    BookMarkView()
+                    BookMarkView { url in
+                        clickHistoryOrBookMarkCell(url: url)
+                    }
                 }
                 .fullScreenCover(isPresented: $openSetting) {
                     
@@ -208,6 +213,10 @@ struct BottomBar: View {
         .padding(.bottom,10)
         .padding([.horizontal,.top])
         
+    }
+    
+    func clickHistoryOrBookMarkCell(url: String) {
+        clickHistoryCell(url)
     }
 
 }

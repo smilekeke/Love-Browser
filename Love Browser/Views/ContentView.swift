@@ -177,7 +177,12 @@ struct ContentView: View {
                         showSearchIcon = true
                         tabManagerModel.addTab()
                         
-                    },showHome: isSearch)
+                    }, clickHistoryCell: { url in
+                        
+                        currentModel.isDesktop = false
+                        currentModel.updateUrl(url: url)
+                        
+                    } ,showHome: isSearch)
                 }
 
             }

@@ -13,6 +13,7 @@ struct HistoryView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
     @State private var presentAlert = false
+    var clickHistoryCell:(String) -> Void
     
     
     @FetchRequest(fetchRequest: SearchHistoryCategory.all) private var searchHistoryCategorys:FetchedResults<SearchHistoryCategory>
@@ -55,6 +56,10 @@ struct HistoryView: View {
                                                 .lineLimit(1)
                                                 .padding(.trailing,20)
                                         }
+                                            .onTapGesture {
+                                                clickHistoryCell(searchHistoryCategory.url!)
+                                                presentationMode.wrappedValue.dismiss()
+                                            }
                                         
                                     }
                                     
@@ -150,6 +155,9 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView().environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
+        HistoryView(clickHistoryCell: { url in
+            
+        })
+            .environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
     }
 }

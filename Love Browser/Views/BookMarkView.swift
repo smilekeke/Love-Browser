@@ -13,6 +13,7 @@ struct BookMarkView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
     @State private var presentAlert = false
+    var clickBookMarkCell:(String) -> Void
     
     @FetchRequest(fetchRequest: BookMarkCategory.all) private var bookMarkCategorys:FetchedResults<BookMarkCategory>
     
@@ -42,6 +43,9 @@ struct BookMarkView: View {
                                         .padding(.leading,20)
                                     Text(bookMarkCategory.title ?? "")
                                         .padding(.leading,10)
+                                }.onTapGesture {
+                                    clickBookMarkCell(bookMarkCategory.url!)
+                                    presentationMode.wrappedValue.dismiss()
                                 }
                                 
                             }
@@ -112,6 +116,8 @@ struct BookMarkView: View {
 
 struct BookMarkView_Previews: PreviewProvider {
     static var previews: some View {
-        BookMarkView()
+        BookMarkView { url in
+            
+        }
     }
 }
