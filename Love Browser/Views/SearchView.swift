@@ -78,19 +78,26 @@ struct SearchView: View {
                 
                 .frame(height: 44)
                 
-                if showSearchIcon {
+                if showSearchIcon || (textFieldManger.textField.isFirstResponder && text != "") {
                     
-                    HStack {
+                    ZStack {
                         
                         Button(action: {
                             
                         }, label: {
-                            if appSettings.darkModeSettings {
-                                Image("search_black")
-                            } else {
-                                Image("search_white")
-                            }
-                        })
+                            
+                            Image(appSettings.darkModeSettings ? "search_black" : "search_white")
+                            
+                        }).opacity(showSearchIcon ? 1 : 0)
+                        
+                        Button(action: {
+                            text = ""
+                            
+                        }, label: {
+                            
+                            Image(appSettings.darkModeSettings ? "clearIcon_black" : "clearIcon_white")
+                            
+                        }).opacity(showSearchIcon ? 0 : 1)
                         
                     }
                     .frame(width: 16, height: 16)

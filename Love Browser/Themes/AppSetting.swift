@@ -13,15 +13,15 @@ class AppSetting: ObservableObject {
         
         didSet {
             
-            let scenes = UIApplication.shared.connectedScenes
-            let windowScene = scenes.first as? UIWindowScene
-            let window = windowScene?.windows.first
-            
-            if self.darkModeSettings {
-                window?.overrideUserInterfaceStyle = .light
-            } else {
-                window?.overrideUserInterfaceStyle = .dark
-            }
+//            let scenes = UIApplication.shared.connectedScenes
+//            let windowScene = scenes.first as? UIWindowScene
+//            let window = windowScene?.windows.first
+//
+//            if self.darkModeSettings {
+//                window?.overrideUserInterfaceStyle = .light
+//            } else {
+//                window?.overrideUserInterfaceStyle = .dark
+//            }
 
         }
     }

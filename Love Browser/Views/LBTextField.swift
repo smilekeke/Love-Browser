@@ -32,19 +32,6 @@ struct LBTextField: UIViewRepresentable {
         textField.leftView = leftView
         textField.leftViewMode = .always
         
-        // 右视图
-        
-        let rightButton = UIButton(type: .custom, primaryAction: UIAction(handler: { handler in
-            textField.text = ""
-            textField.rightView?.isHidden = true
-        }))
-        let image = appSettings.darkModeSettings ? UIImage(named: "clearIcon_black") : UIImage(named: "clearIcon_white")
-        rightButton.setImage(image, for: .normal)
-        rightButton.imageView?.contentMode = .scaleAspectFit
-        rightButton.frame = CGRect(x:0, y: 0, width: 20 , height: 16)
-        textField.rightView = rightButton
-        textField.rightViewMode = .whileEditing
-    
         textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return textField
         
@@ -54,10 +41,6 @@ struct LBTextField: UIViewRepresentable {
         if text != uiView.text {
             uiView.text = text
         }
-        
-        let image = appSettings.darkModeSettings ? UIImage(named: "clearIcon_black") : UIImage(named: "clearIcon_white")
-        let button = uiView.rightView as! UIButton
-        button.setImage(image, for: .normal)
         
         uiView.attributedPlaceholder = NSAttributedString(string: "search or enter url", attributes: [NSAttributedString.Key.foregroundColor:(appSettings.darkModeSettings ? UIColor(Color.lb_gray) : UIColor.white),NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)])
         uiView.textColor = appSettings.darkModeSettings ? UIColor(Color.lb_black) : UIColor.white
