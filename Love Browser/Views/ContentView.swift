@@ -21,6 +21,7 @@ struct ContentView: View {
     @State private var hideSearchView = false
     @State private var hideBottomView = false
     @State private var openQRCodeView = false
+    @State var openWallpaper = false
     @State var canBack = false
     @State var canForward = false
     
@@ -76,7 +77,9 @@ struct ContentView: View {
                         currentModel.webViewModel.webView.reload()
                     }, addToHomePage: {
                         
-                        saveHomePageCategory(itemModel: HomePageItemModel(title: currentModel.webViewModel.title ?? "", icon: "", link: currentModel.webViewModel.url?.absoluteString ?? ""))
+                        if let url = currentModel.webViewModel.url  {
+                            saveHomePageCategory(itemModel: HomePageItemModel(title: currentModel.webViewModel.title ?? "", image: "", icon: url.host!, link: currentModel.webViewModel.url?.absoluteString ?? ""))
+                        }
                         
                     }, openQRCodeView: {
                        
@@ -151,9 +154,7 @@ struct ContentView: View {
                         
                     }, changeWallpaper: { str in
                         
-                        // 切换壁纸
-                        backgroundImage = str
-                        appSettings.darkModeSettings = str == "default" ? true : false
+                        changeWallpaper(str: str)
                         
                     }, openTabsView: {
                         
@@ -234,18 +235,37 @@ struct ContentView: View {
             }
             
         }, clickHomePageItem: { url in
-            showSearchIcon = false
-            showBack = false
-            showMore = true
-            isSearch = true
-            showSearchedWords = false
-            text = url
-            textFieldManger.textField.resignFirstResponder()
-            currentModel.updateUrl(url: url)
+            if url == "Wallpaper" {
+                openWallpaper.toggle()
+            } else {
+                showSearchIcon = false
+                showBack = false
+                showMore = true
+                isSearch = true
+                showSearchedWords = false
+                text = url
+                textFieldManger.textField.resignFirstResponder()
+                currentModel.updateUrl(url: url)
+            }
             
         }).opacity(tabManagerModel.curUid == model.uid ? 1 : 0).environmentObject(tabManagerModel)
+            .fullScreenCover(isPresented: $openWallpaper) {
+                
+            } content: {
+                
+                WallpaperView { str in
+                    changeWallpaper(str: str)
+                }
+            }
     }
     
+    
+    func changeWallpaper(str: String) {
+     
+        // 切换壁纸
+        backgroundImage = str
+        appSettings.darkModeSettings = str == "default" ? true : false
+    }
     
     
     // 暂停播放网页内的音频、视频
@@ -265,6 +285,7 @@ struct ContentView: View {
         viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         let homePageCategory = HomePageCategory(context: viewContext)
         homePageCategory.title = itemModel.title
+        homePageCategory.image = itemModel.image
         homePageCategory.icon = itemModel.icon
         homePageCategory.link = itemModel.link
 
@@ -279,11 +300,12 @@ struct ContentView: View {
 
     }
 
-    func  saveHomePageData() {
-        saveHomePageCategory(itemModel: HomePageItemModel(title: "FaceBook", icon: "www.facebook.com".appendedString(), link: "https://www.facebook.com/"))
-        saveHomePageCategory(itemModel: HomePageItemModel(title: "Instagram", icon: "www.instagram.com".appendedString(), link: "https://www.instagram.com/"))
-        saveHomePageCategory(itemModel: HomePageItemModel(title: "Twitter", icon: "www.twitter.com".appendedString(), link: "https://twitter.com/"))
-        saveHomePageCategory(itemModel: HomePageItemModel(title: "Zoom", icon: "www.zoom.us".appendedString(), link: "https://zoom.com/"))
+    func saveHomePageData() {
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "Wallpaper", image: "menu_wallpaper", icon: "", link: "Wallpaper"))
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "FaceBook", image: "facebook", icon: "", link: "https://www.facebook.com/"))
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "Instagram", image: "instagram", icon: "", link: "https://www.instagram.com/"))
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "Twitter", image: "twitter", icon: "", link: "https://twitter.com/"))
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "Zoom", image: "zoom", icon: "", link: "https://zoom.com/"))
     }
 
 

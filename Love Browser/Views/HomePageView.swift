@@ -38,18 +38,27 @@ struct HomePageView: View {
 
                                 } label: {
                                     
-                                         AsyncImage(url: URL(string: homePageCategory.icon ?? "https://www.google.com/favicon.ico")) { image in
-                                             
-                                             image
-                                                 .aspectRatio(contentMode: .fill)
-                                                 .frame(width: 30, height: 30)
-                                             
-                                         } placeholder: {
-                                             
-                                             Color.white
-                                         }
-                                         .frame(width: 30, height: 30)
+                                    if homePageCategory.image != nil && homePageCategory.image != "" {
+                                        Image(homePageCategory.image!)
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 30, height: 30)
+                                        
+                                    } else {
                                     
+                                        
+                                        AsyncImage(url: URL(string: homePageCategory.icon ?? "https://www.google.com/favicon.ico")) { image in
+                                            
+                                            image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(width: 30, height: 30)
+                                            
+                                        } placeholder: {
+                                            
+                                            Color.white
+                                        }
+                                        .frame(width: 30, height: 30)
+                                    }
 
                                 }
                                 .frame(width: 56, height: 56)
