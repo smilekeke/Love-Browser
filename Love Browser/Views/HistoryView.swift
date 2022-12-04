@@ -41,9 +41,13 @@ struct HistoryView: View {
                                 return SearchHistoryCategory.date
                             }
                             
-                            ForEach(Array(groupByCategory.keys),id: \.self) { section in
+                            let sortedCategorys = groupByCategory.sorted { (aDic, bDic) -> Bool in
+                                return aDic.key! > bDic.key!
+                            }
+                            
+                            ForEach(Array(sortedCategorys),id: \.key) { category in
                                 
-                                let searchHistorys =  groupByCategory[section]!
+                                let searchHistorys = category.value
                                 
                                 Section {
                                     
@@ -65,7 +69,7 @@ struct HistoryView: View {
                                     
                                 } header: {
                                     
-                                    Text(dateIsToday(date: section))
+                                    Text(dateIsToday(date: category.key))
                                         .foregroundColor(Color.lb_section)
                                         .padding(.leading, 17)
                                     

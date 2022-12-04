@@ -114,7 +114,7 @@ struct SearchView: View {
                             
                         } label: {
                             
-                            Image("refresh")
+                            Image(appSettings.darkModeSettings ? "refresh" : "refresh_white")
                         }
                         .frame(width: 24, height: 24)
                         
@@ -153,7 +153,7 @@ struct SearchView: View {
                             
                         } label: {
                             
-                            Image("more")
+                            Image(appSettings.darkModeSettings ? "more" : "more_white")
                         }
                         .frame(width: 24, height: 24)
                         

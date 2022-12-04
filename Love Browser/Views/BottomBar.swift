@@ -152,7 +152,7 @@ struct BottomBar: View {
         
                         showMenu = false
             
-                        if title == "history" {
+                        if title == "History" {
                             openHistory.toggle()
                         }
                         if title == "Add Bookmark"{

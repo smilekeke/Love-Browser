@@ -15,7 +15,7 @@ struct MenuView: View {
     
     let height = UIScreen.main.bounds.height
     
-    let ItemModels = [MenuItemModel(logo: "menu_history", title: "history"),
+    let ItemModels = [MenuItemModel(logo: "menu_history", title: "History"),
                       MenuItemModel(logo: "menu_bookmark", title: "Bookmark"),
                       MenuItemModel(logo: "menu_addbookmark", title: "Add Bookmark"),
                       MenuItemModel(logo: "menu_wallpaper", title: "Wallpaper"),
@@ -30,7 +30,7 @@ struct MenuView: View {
             
             ZStack {
                 
-                Color.black.opacity(0.3)
+                Color.black.opacity(0.01)
                     .onTapGesture {
                         presentationMode.wrappedValue.dismiss()
                     }
