@@ -230,7 +230,11 @@ struct ContentView: View {
             
             currentModel.updatePreviewImage()
             
-            if title != "" && url != "" {
+            if url == "about:blank" {
+                text = ""
+            }
+            
+            if title != "" && url != "" && url != "about:blank" {
                 saveSearchHistoryCategory(title: title, url: url)
             }
             
@@ -274,8 +278,8 @@ struct ContentView: View {
           if #available(iOS 15.0, *) {
               currentModel.webViewModel.webView.pauseAllMediaPlayback()
           } else {
-              // Fallback on earlier versions
-//              currentModel.updateUrl(url: "about:blank")
+              // on earlier versions
+              currentModel.webViewModel.webView.load(URLRequest(url: URL(string: "about:blank")!))
           }
     }
     

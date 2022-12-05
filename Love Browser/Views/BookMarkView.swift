@@ -13,6 +13,7 @@ struct BookMarkView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
     @State private var presentAlert = false
+    @State private var offset = CGSize.zero
     var clickBookMarkCell:(String) -> Void
     
     @FetchRequest(fetchRequest: BookMarkCategory.all) private var bookMarkCategorys:FetchedResults<BookMarkCategory>
@@ -91,7 +92,17 @@ struct BookMarkView: View {
                     }
 
                 }
-        }
+        }.gesture( DragGesture()
+            .onChanged { gesture in
+                offset = gesture.translation
+            }
+            .onEnded { _ in
+                if offset.width > 50 {
+                    presentationMode.wrappedValue.dismiss()
+                } else {
+                    offset = .zero
+                }
+            })
     
     }
     

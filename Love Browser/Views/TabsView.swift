@@ -14,6 +14,7 @@ struct TabsView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var tabManagerModel: TabManagerModel
     
+    @State private var offset = CGSize.zero
     var openNewTabs:() -> Void
 
     let gridWidth = (UIScreen.main.bounds.width - 45) / 2
@@ -51,7 +52,8 @@ struct TabsView: View {
                                     } label: {
 
                                         Image("deleteTab")
-                                            .frame(width: 16, height: 16)
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 20, height: 20)
                                     }
                                     .buttonStyle(BorderlessButtonStyle())
                                     .padding(.top, 10)
@@ -83,7 +85,8 @@ struct TabsView: View {
                     .padding(.top,24)
                     
                 }
-                    .background(Color.lb_history)
+                .background(Color.lb_history)
+                .padding(.top, 1)
                 
                 HStack {
                     
@@ -126,7 +129,17 @@ struct TabsView: View {
                     }
                 }
             
-        }
+        }.gesture( DragGesture()
+            .onChanged { gesture in
+                offset = gesture.translation
+            }
+            .onEnded { _ in
+                if offset.width > 50 {
+                    presentationMode.wrappedValue.dismiss()
+                } else {
+                    offset = .zero
+                }
+            })
 
     }
     
