@@ -89,7 +89,7 @@ extension String {
     func appendedString() -> String {
 //    https://active-purple-earwig.faviconkit.com/
 //    https://www.google.com/s2/favicons?domain=&size=
-        let url = " https://active-purple-earwig.faviconkit.com/" + self + "/32"
+        let url = "https://active-purple-earwig.faviconkit.com/" + self + "/32"
         
         return url
         

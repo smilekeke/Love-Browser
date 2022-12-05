@@ -46,7 +46,7 @@ struct HomePageView: View {
                                     } else {
                                     
                                         
-                                        AsyncImage(url: URL(string: homePageCategory.icon ?? "https://www.google.com/favicon.ico")) { image in
+                                        AsyncImage(url: URL(string: homePageCategory.icon?.appendedString().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "https://www.google.com/favicon.ico")) { image in
                                             
                                             image
                                                 .resizable()
