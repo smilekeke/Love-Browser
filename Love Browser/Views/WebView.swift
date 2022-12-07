@@ -96,5 +96,16 @@ class WebViewCoordinator: NSObject,WKNavigationDelegate, WKUIDelegate, UIScrollV
         
         decisionHandler(.allow)
     }
+    
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        
+        if  navigationAction.targetFrame?.isMainFrame == nil {
+            
+            webView.load(navigationAction.request)
+            
+        }
+        
+        return nil
+    }
 
 }

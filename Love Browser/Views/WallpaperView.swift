@@ -24,7 +24,7 @@ struct WallpaperView: View {
             
             ZStack {
                 
-                Color.black.opacity(0.3).edgesIgnoringSafeArea(.all)
+                Color.black.opacity(0.01).edgesIgnoringSafeArea(.all)
                     .onTapGesture {
                         
                         presentationMode.wrappedValue.dismiss()

@@ -181,6 +181,9 @@ struct ContentView: View {
                     }, clickHistoryCell: { url in
                         
                         currentModel.isDesktop = false
+                        isSearch = true
+                        showMore = true
+                        showBack = false
                         currentModel.updateUrl(url: url)
                         
                     } ,showHome: isSearch)
@@ -292,6 +295,7 @@ struct ContentView: View {
         homePageCategory.image = itemModel.image
         homePageCategory.icon = itemModel.icon
         homePageCategory.link = itemModel.link
+        homePageCategory.date = Date()
 
         do {
 
@@ -319,10 +323,11 @@ struct ContentView: View {
         let searchHistoryCategory = SearchHistoryCategory(context: viewContext)
         searchHistoryCategory.title = title
         
-        let formatter1 = DateFormatter()
-        formatter1.dateStyle = .short
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        searchHistoryCategory.shortDate = formatter.string(from: Date())
         
-        searchHistoryCategory.date = formatter1.string(from: Date())
+        searchHistoryCategory.date = Date()
         searchHistoryCategory.url = url
 
         do {
@@ -342,6 +347,7 @@ struct ContentView: View {
         let bookMarkCategory = BookMarkCategory(context: viewContext)
         bookMarkCategory.title = title
         bookMarkCategory.url = url
+        bookMarkCategory.date = Date()
 
         do {
 

@@ -14,7 +14,7 @@ public class HomePageCategory: NSManagedObject {
     
     static var all: NSFetchRequest<HomePageCategory> {
         let request = HomePageCategory.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
         
         return request
     }

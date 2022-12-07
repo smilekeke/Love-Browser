@@ -14,7 +14,7 @@ public class BookMarkCategory: NSManagedObject {
     
     static var all: NSFetchRequest<BookMarkCategory> {
         let request = BookMarkCategory.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
         return request
     }

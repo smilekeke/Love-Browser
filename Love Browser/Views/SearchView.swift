@@ -179,6 +179,7 @@ struct SearchView: View {
         viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         let searchWordsCategory = SearchWordsCategory(context: viewContext)
         searchWordsCategory.title = title
+        searchWordsCategory.date = Date()
 
         do {
 

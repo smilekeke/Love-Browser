@@ -39,7 +39,7 @@ struct HistoryView: View {
                             
                             let groupByCategory = Dictionary(grouping: searchHistoryCategorys) { (SearchHistoryCategory) in
                                 
-                                return SearchHistoryCategory.date
+                                return SearchHistoryCategory.shortDate
                             }
                             
                             let sortedCategorys = groupByCategory.sorted { (aDic, bDic) -> Bool in

@@ -14,7 +14,7 @@ public class SearchWordsCategory: NSManagedObject {
     
     static var all: NSFetchRequest<SearchWordsCategory> {
         let request = SearchWordsCategory.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
         return request
     }

@@ -16,7 +16,7 @@ public class SearchHistoryCategory: NSManagedObject {
     static var all: NSFetchRequest<SearchHistoryCategory> {
         let request = SearchHistoryCategory.fetchRequest()
         request.entity = SearchHistoryCategory.entity()
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
         return request
     }
