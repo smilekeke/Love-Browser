@@ -19,7 +19,6 @@ struct ContentView: View {
     @State private var showSearchedWords = false
     @State private var backgroundImage = "default"
     @State private var hideSearchView = false
-    @State private var hideBottomView = false
     @State private var openQRCodeView = false
     @State var openWallpaper = false
     @State var canBack = false
@@ -125,69 +124,68 @@ struct ContentView: View {
                     
                 }
                 
-                if !hideBottomView {
                     
-                    BottomBar(clickHomeButton: {
-                        
-                        if isSearch {
-                            text = ""
-                            showBack = false
-                            isSearch = false
-                            showMore = false
-                            showSearchIcon = true
-                            currentModel.webViewModel.webView.backForwardList.perform(Selector(("_removeAllItems")))
-                            pausePlay()
-                            currentModel?.isDesktop = true
-                            
-                        } else {
-                        
-                            textFieldManger.textField.becomeFirstResponder()
-                        }
-                        
-                    }, clickBackButton: {
-                        
-                        currentModel?.webViewModel.goBack()
-                        
-                    }, clickForwardButton: {
-
-                        currentModel?.webViewModel.goForward()
-                        
-                    }, changeWallpaper: { str in
-                        
-                        changeWallpaper(str: str)
-                        
-                    }, openTabsView: {
-                        
-                        currentModel.updatePreviewImage()
-                        
-                    }, saveBookMarkCategory: {
-                       
-                        if !currentModel.isDesktop {
-                            
-                            if let str = currentModel.webViewModel.title, let link = currentModel.webViewModel.url?.absoluteString {
-                                saveBookMarkCategory(title: str, url: link)
-                            }
-                            
-                        } 
-                        
-                    }, openNewTabs: {
+                BottomBar(clickHomeButton: {
+                    
+                    if isSearch {
                         text = ""
                         showBack = false
                         isSearch = false
                         showMore = false
                         showSearchIcon = true
-                        tabManagerModel.addTab()
+                        currentModel.webViewModel.webView.backForwardList.perform(Selector(("_removeAllItems")))
+                        pausePlay()
+                        currentModel?.isDesktop = true
                         
-                    }, clickHistoryCell: { url in
+                    } else {
+                    
+                        textFieldManger.textField.becomeFirstResponder()
+                    }
+                    
+                }, clickBackButton: {
+                    
+                    currentModel?.webViewModel.goBack()
+                    
+                }, clickForwardButton: {
+
+                    currentModel?.webViewModel.goForward()
+                    
+                }, changeWallpaper: { str in
+                    
+                    changeWallpaper(str: str)
+                    
+                }, openTabsView: {
+                    
+                    currentModel.updatePreviewImage()
+                    
+                }, saveBookMarkCategory: {
+                   
+                    if !currentModel.isDesktop {
                         
-                        currentModel.isDesktop = false
-                        isSearch = true
-                        showMore = true
-                        showBack = false
-                        currentModel.updateUrl(url: url)
+                        if let str = currentModel.webViewModel.title, let link = currentModel.webViewModel.url?.absoluteString {
+                            saveBookMarkCategory(title: str, url: link)
+                        }
                         
-                    } ,showHome: isSearch)
-                }
+                    }
+                    
+                }, openNewTabs: {
+                    text = ""
+                    showBack = false
+                    isSearch = false
+                    showMore = false
+                    showSearchIcon = true
+                    tabManagerModel.addTab()
+                    
+                }, clickHistoryCell: { url in
+                    
+                    currentModel.isDesktop = false
+                    isSearch = true
+                    showMore = true
+                    showBack = false
+                    currentModel.updateUrl(url: url)
+                    
+                } ,showHome: isSearch)
+                
 
             }
             .environmentObject(appSettings)
