@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1716BC74294C2AE700DB3CB0 /* WebViewLoadHtmlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716BC73294C2AE700DB3CB0 /* WebViewLoadHtmlView.swift */; };
+		1716BC7C294C738600DB3CB0 /* SettingWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716BC7B294C738600DB3CB0 /* SettingWebView.swift */; };
 		171AED10292BC801006C08F2 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED0F292BC801006C08F2 /* KeyboardHeightHelper.swift */; };
 		171AED12292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED11292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift */; };
 		171AED1C292CB7B9006C08F2 /* TabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED1B292CB7B9006C08F2 /* TabsModel.swift */; };
@@ -34,7 +36,6 @@
 		177EE24229236F3100CCACEB /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE24129236F3100CCACEB /* String+Extensions.swift */; };
 		177EE2442923767F00CCACEB /* SearchWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE2432923767F00CCACEB /* SearchWordsView.swift */; };
 		177EE2482923939B00CCACEB /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE2472923939B00CCACEB /* SearchView.swift */; };
-		177EE24C2923B2C800CCACEB /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE24B2923B2C800CCACEB /* MaskView.swift */; };
 		177EE24F2923B75800CCACEB /* HomePageCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE24E2923B75800CCACEB /* HomePageCategory+CoreDataClass.swift */; };
 		177EE27E2923DD6C00CCACEB /* DataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 177EE27C2923DD6C00CCACEB /* DataBase.xcdatamodeld */; };
 		177EE2802923DE0B00CCACEB /* SearchWordsCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE27F2923DE0B00CCACEB /* SearchWordsCategory+CoreDataClass.swift */; };
@@ -53,6 +54,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1716BC73294C2AE700DB3CB0 /* WebViewLoadHtmlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewLoadHtmlView.swift; sourceTree = "<group>"; };
+		1716BC7B294C738600DB3CB0 /* SettingWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWebView.swift; sourceTree = "<group>"; };
 		171AED0F292BC801006C08F2 /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
 		171AED11292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewConfigurationExtension.swift; sourceTree = "<group>"; };
 		171AED1B292CB7B9006C08F2 /* TabsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsModel.swift; sourceTree = "<group>"; };
@@ -80,7 +83,6 @@
 		177EE24129236F3100CCACEB /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		177EE2432923767F00CCACEB /* SearchWordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWordsView.swift; sourceTree = "<group>"; };
 		177EE2472923939B00CCACEB /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		177EE24B2923B2C800CCACEB /* MaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskView.swift; sourceTree = "<group>"; };
 		177EE24E2923B75800CCACEB /* HomePageCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomePageCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		177EE27D2923DD6C00CCACEB /* DataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataBase.xcdatamodel; sourceTree = "<group>"; };
 		177EE27F2923DE0B00CCACEB /* SearchWordsCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchWordsCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -114,6 +116,8 @@
 		171E435F291EABB4007D1648 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
+				1716BC73294C2AE700DB3CB0 /* WebViewLoadHtmlView.swift */,
+				1716BC7B294C738600DB3CB0 /* SettingWebView.swift */,
 			);
 			path = CommonUI;
 			sourceTree = "<group>";
@@ -171,7 +175,6 @@
 		177EE23D29236E4100CCACEB /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				177EE24B2923B2C800CCACEB /* MaskView.swift */,
 				171AED0F292BC801006C08F2 /* KeyboardHeightHelper.swift */,
 				171AED25292E0AE7006C08F2 /* FaviconsHelper.swift */,
 			);
@@ -368,7 +371,6 @@
 				171AED4D293316D4006C08F2 /* WebViewModel.swift in Sources */,
 				171AED1E292DC99D006C08F2 /* AppSetting.swift in Sources */,
 				177EE27E2923DD6C00CCACEB /* DataBase.xcdatamodeld in Sources */,
-				177EE24C2923B2C800CCACEB /* MaskView.swift in Sources */,
 				177EE2862923F00B00CCACEB /* SearchHistoryCategory+CoreDataClass.swift in Sources */,
 				171AED8729350058006C08F2 /* SettingView.swift in Sources */,
 				177EE2482923939B00CCACEB /* SearchView.swift in Sources */,
@@ -378,10 +380,12 @@
 				1780EE5D29191783006B9FFC /* BottomBar.swift in Sources */,
 				171E437B29224D75007D1648 /* HomePageItemModel.swift in Sources */,
 				171AED28292E1111006C08F2 /* FindInPage.swift in Sources */,
+				1716BC74294C2AE700DB3CB0 /* WebViewLoadHtmlView.swift in Sources */,
 				177EE24229236F3100CCACEB /* String+Extensions.swift in Sources */,
 				171E436D291F815B007D1648 /* MenuView.swift in Sources */,
 				177EE2802923DE0B00CCACEB /* SearchWordsCategory+CoreDataClass.swift in Sources */,
 				1780EE6329192D9D006B9FFC /* HistoryView.swift in Sources */,
+				1716BC7C294C738600DB3CB0 /* SettingWebView.swift in Sources */,
 				171AED5D2933B468006C08F2 /* TabManager.swift in Sources */,
 				1780EE6129191783006B9FFC /* HomePageView.swift in Sources */,
 				1780EE5F29191783006B9FFC /* WebView.swift in Sources */,

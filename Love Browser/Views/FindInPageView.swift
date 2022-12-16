@@ -47,7 +47,7 @@ struct FindInPageView: View {
             
             Button {
                 webView.evaluateJavaScript("window.__firefox__.findDone()")
-                UIApplication.shared.keyWindow?.endEditing(true)
+//                UIApplication.shared.keyWindow?.endEditing(true)
             } label: {
                 Text("Done")
             }

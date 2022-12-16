@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WebKit
 
 struct SettingView: View {
     
@@ -24,6 +25,35 @@ struct SettingView: View {
                         Text("Version")
                         Spacer()
                         Text(version ?? "unknow")
+                    }
+                    
+                    
+                    NavigationLink {
+                       
+                        WebViewLoadHtmlView(urlString: "https://pages.flycricket.io/love-browser/terms.html")
+                            .navigationTitle("Terms of Use")
+                            .navigationBarTitleDisplayMode(.inline)
+                    } label: {
+                        
+                        HStack {
+                            Text("Terms of Use")
+                        }
+                        
+                    }
+
+                    
+                    NavigationLink {
+                        
+                        WebViewLoadHtmlView(urlString: "https://pages.flycricket.io/love-browser/privacy.html")
+                            .navigationTitle("Privacy Policy")
+                            .navigationBarTitleDisplayMode(.inline)
+                    } label: {
+                        
+                        HStack {
+                            Text("Privacy Policy")
+
+                        }
+                        
                     }
                     
                 }
