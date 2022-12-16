@@ -12,6 +12,7 @@ struct SettingView: View {
     
     @Environment(\.presentationMode) var presentationMode
     let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    @State private var offset = CGSize.zero
     
     var body: some View {
         
@@ -71,6 +72,17 @@ struct SettingView: View {
                 
             }
         }
+        .gesture( DragGesture()
+            .onChanged { gesture in
+                offset = gesture.translation
+            }
+            .onEnded { _ in
+                if offset.width > 50 {
+                    presentationMode.wrappedValue.dismiss()
+                } else {
+                    offset = .zero
+                }
+            })
     }
 }
 

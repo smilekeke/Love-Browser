@@ -22,8 +22,8 @@ struct SettingWebView: UIViewRepresentable {
         webView.allowsLinkPreview = true
         webView.allowsBackForwardNavigationGestures = true
         webView.load(URLRequest(url: URL(string: url)!))
-//        webView.scrollView.showsVerticalScrollIndicator = false
-//        webView.scrollView.showsHorizontalScrollIndicator = false
+        webView.scrollView.showsVerticalScrollIndicator = false
+        webView.scrollView.showsHorizontalScrollIndicator = false
         return webView
         
     }
