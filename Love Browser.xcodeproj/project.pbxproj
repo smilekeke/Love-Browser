@@ -51,6 +51,9 @@
 		1780EE6029191783006B9FFC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1780EE5A29191783006B9FFC /* ContentView.swift */; };
 		1780EE6129191783006B9FFC /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1780EE5B29191783006B9FFC /* HomePageView.swift */; };
 		1780EE6329192D9D006B9FFC /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1780EE6229192D9D006B9FFC /* HistoryView.swift */; };
+		17E611AB29D585D400ED0EB1 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 17E611AA29D585D400ED0EB1 /* GoogleMobileAds */; };
+		17E611B029D5A58A00ED0EB1 /* AdCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E611AF29D5A58A00ED0EB1 /* AdCoordinator.swift */; };
+		17E611B429D6B62B00ED0EB1 /* WaitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E611B329D6B62B00ED0EB1 /* WaitView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +102,8 @@
 		1780EE5A29191783006B9FFC /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1780EE5B29191783006B9FFC /* HomePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		1780EE6229192D9D006B9FFC /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		17E611AF29D5A58A00ED0EB1 /* AdCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCoordinator.swift; sourceTree = "<group>"; };
+		17E611B329D6B62B00ED0EB1 /* WaitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17E611AB29D585D400ED0EB1 /* GoogleMobileAds in Frameworks */,
 				171AED24292E0A74006C08F2 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,6 +237,7 @@
 				177EE24029236EE800CCACEB /* Extentions */,
 				177EE23D29236E4100CCACEB /* Utils */,
 				177EE23C2923608100CCACEB /* Views */,
+				17E611AE29D5A55000ED0EB1 /* AdManger */,
 				177EE24D2923B72A00CCACEB /* Models */,
 				171E437D2922A68A007D1648 /* Themes */,
 				171E437729224680007D1648 /* Managers */,
@@ -252,6 +259,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		17E611AE29D5A55000ED0EB1 /* AdManger */ = {
+			isa = PBXGroup;
+			children = (
+				17E611AF29D5A58A00ED0EB1 /* AdCoordinator.swift */,
+				17E611B329D6B62B00ED0EB1 /* WaitView.swift */,
+			);
+			path = AdManger;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -270,6 +286,7 @@
 			name = "Love Browser";
 			packageProductDependencies = (
 				171AED23292E0A74006C08F2 /* Kingfisher */,
+				17E611AA29D585D400ED0EB1 /* GoogleMobileAds */,
 			);
 			productName = "Love Browser";
 			productReference = 1780EE40291916EB006B9FFC /* Love Browser.app */;
@@ -325,6 +342,7 @@
 			mainGroup = 1780EE37291916EB006B9FFC;
 			packageReferences = (
 				171AED22292E0A74006C08F2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				17E611A929D585D300ED0EB1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 1780EE41291916EB006B9FFC /* Products */;
 			projectDirPath = "";
@@ -364,6 +382,7 @@
 				171E4371291FA810007D1648 /* TabsView.swift in Sources */,
 				1767786A2927420B00EDF706 /* Color+Extentions.swift in Sources */,
 				171AED4B2930D384006C08F2 /* HomeWebView.swift in Sources */,
+				17E611B429D6B62B00ED0EB1 /* WaitView.swift in Sources */,
 				1780EE50291916EC006B9FFC /* Love_Browser.xcdatamodeld in Sources */,
 				1780EE44291916EB006B9FFC /* Love_BrowserApp.swift in Sources */,
 				171AED892935008C006C08F2 /* QRCodeView.swift in Sources */,
@@ -391,6 +410,7 @@
 				1780EE5F29191783006B9FFC /* WebView.swift in Sources */,
 				171AED12292C90E3006C08F2 /* WKWebViewConfigurationExtension.swift in Sources */,
 				171E436F291FA434007D1648 /* BookMarkView.swift in Sources */,
+				17E611B029D5A58A00ED0EB1 /* AdCoordinator.swift in Sources */,
 				171E4373291FB6F7007D1648 /* WallpaperView.swift in Sources */,
 				177EE2842923EFF600CCACEB /* BookMarkCategory+CoreDataClass.swift in Sources */,
 			);
@@ -528,24 +548,29 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Love-Browser-Info.plist";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "此标识符将用于向您推荐个性化广告";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = UIUserInterfaceStyleLight;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lovebrowser.Love-Browser";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -562,24 +587,29 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Love-Browser-Info.plist";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "此标识符将用于向您推荐个性化广告";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = UIUserInterfaceStyleLight;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lovebrowser.Love-Browser";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -615,6 +645,14 @@
 				version = 7.2.2;
 			};
 		};
+		17E611A929D585D300ED0EB1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -622,6 +660,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 171AED22292E0A74006C08F2 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		17E611AA29D585D400ED0EB1 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17E611A929D585D300ED0EB1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 

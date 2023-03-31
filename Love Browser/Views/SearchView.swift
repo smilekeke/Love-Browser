@@ -138,17 +138,17 @@ struct SearchView: View {
                                 Text("Generate QR code")
                             }
                             
-                            Button {
-                                
-                            } label: {
-                                
-                                HStack{
-                                    
-                                    Image("searchOnPage")
-                                    Text("On page search")
-                                }
-                                
-                            }
+//                            Button {
+//
+//                            } label: {
+//
+//                                HStack{
+//
+//                                    Image("searchOnPage")
+//                                    Text("On page search")
+//                                }
+//
+//                            }
                             
                             
                         } label: {

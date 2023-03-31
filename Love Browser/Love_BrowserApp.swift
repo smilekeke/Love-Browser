@@ -6,20 +6,76 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
+import AppTrackingTransparency
+import AdSupport
 
 @available(iOS 14.0, *)
 @main
 
 struct Love_BrowserApp: App {
+    
+    @Environment(\.scenePhase) private var scenePhase
+    private let adCoordinator = AdCoordinator()
+    @State private var firstOpen = true
+    @State private var showWaitView = true
+    
+    init() {
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "760b5361226ad712153f99d122876fab" ]
+    }
+   
 
     var body: some Scene {
        
         WindowGroup {
             
-            ContentView()
-                .environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
+            if showWaitView {
+                WaitView()
+            } else {
+                ContentView()
+                    .environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
+            }
 
+        }
+        .onChange(of: scenePhase) { phase in
             
+            if phase == .active {
+                
+                requestTrackingAuthorization()
+                
+                if firstOpen {
+                    handleColdStart()
+                    firstOpen = false
+                }
+            }
+        }
+        
+    }
+    
+    private func handleColdStart() {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            adCoordinator.tryToPresentAd()
+            showWaitView = false
+        }
+    }
+    
+    private func requestTrackingAuthorization () {
+        
+        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+            
+            ATTrackingManager.requestTrackingAuthorization { status in
+                //弹出跟踪广告权限后获取广告ID
+                adCoordinator.requestAppOpenAd()
+                if status == .authorized {
+                    let idfa = AdSupport.ASIdentifierManager().advertisingIdentifier
+                    print("idfa==\(idfa)")
+                    
+                } else {
+                    
+                }
+            }
         }
     }
     
