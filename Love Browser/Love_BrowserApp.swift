@@ -40,14 +40,9 @@ struct Love_BrowserApp: App {
         }
         .onChange(of: scenePhase) { phase in
             
-            if phase == .active {
-                
+            if phase == .active && firstOpen {
+                firstOpen = false
                 requestTrackingAuthorization()
-                
-                if firstOpen {
-                    handleColdStart()
-                    firstOpen = false
-                }
             }
         }
         
@@ -55,31 +50,32 @@ struct Love_BrowserApp: App {
     
     private func handleColdStart() {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             adCoordinator.tryToPresentAd()
             showWaitView = false
         }
     }
     
     private func requestTrackingAuthorization () {
-            
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             ATTrackingManager.requestTrackingAuthorization { status in
                 //弹出跟踪广告权限后获取广告ID
                 adCoordinator.requestAppOpenAd()
                 switch status {
-                    case .notDetermined:
-                        break
-                    case .restricted:
-                        break
-                    case .denied:
-                        break
-                    case .authorized:
-                        break
-                    @unknown default:
-                        break
-                    }
+                case .notDetermined:
+                    break
+                case .restricted:
+                    break
+                case .denied:
+                    break
+                case .authorized:
+                    handleColdStart()
+                    break
+                @unknown default:
+                    break
+                }
             }
-        
+        }
     }
     
 }

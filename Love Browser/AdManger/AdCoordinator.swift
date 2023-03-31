@@ -18,7 +18,7 @@ final class AdCoordinator: NSObject, GADFullScreenContentDelegate {
                             self.ad = appOpenAdIn
                             self.ad?.fullScreenContentDelegate = self
                             self.loadTime = Date()
-                            print("[OPEN AD] Ad is ready")
+                            print(">>>>>>[OPEN AD] Ad is ready")
                          })
     }
    
