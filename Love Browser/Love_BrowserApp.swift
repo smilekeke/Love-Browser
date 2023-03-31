@@ -62,21 +62,24 @@ struct Love_BrowserApp: App {
     }
     
     private func requestTrackingAuthorization () {
-        
-        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
             
             ATTrackingManager.requestTrackingAuthorization { status in
                 //弹出跟踪广告权限后获取广告ID
                 adCoordinator.requestAppOpenAd()
-                if status == .authorized {
-                    let idfa = AdSupport.ASIdentifierManager().advertisingIdentifier
-                    print("idfa==\(idfa)")
-                    
-                } else {
-                    
-                }
+                switch status {
+                    case .notDetermined:
+                        break
+                    case .restricted:
+                        break
+                    case .denied:
+                        break
+                    case .authorized:
+                        break
+                    @unknown default:
+                        break
+                    }
             }
-        }
+        
     }
     
 }
