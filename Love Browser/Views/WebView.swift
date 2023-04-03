@@ -14,6 +14,8 @@ struct WebView: UIViewRepresentable {
     
     var decidePolicy: (String) -> Void
     var didFinish: (String, String) -> Void
+    var didScroll: () -> Void
+    var didEndScroll: () -> Void
     
     func makeUIView(context: Context) -> some WKWebView {
         
@@ -42,6 +44,14 @@ struct WebView: UIViewRepresentable {
 
             didFinish(title, url)
 
+        } didScroll: {
+            
+            didScroll()
+            
+        } didEndScroll: {
+            
+            didEndScroll()
+            
         }
     }
 
@@ -53,10 +63,14 @@ class WebViewCoordinator: NSObject,WKNavigationDelegate, WKUIDelegate, UIScrollV
 
     var decidePolicy: (String) -> Void
     var didFinish: (String, String) -> Void
+    var didScroll: () -> Void
+    var didEndScroll: () -> Void
 
-    init(decidePolicy: @escaping (String) -> Void = {_ in}, didFinish: @escaping (String, String) ->Void = {_, _ in }) {
+    init(decidePolicy: @escaping (String) -> Void = {_ in}, didFinish: @escaping (String, String) -> Void = {_, _ in }, didScroll:@escaping () -> Void, didEndScroll: @escaping () -> Void) {
         self.decidePolicy = decidePolicy
         self.didFinish = didFinish
+        self.didScroll = didScroll
+        self.didEndScroll = didEndScroll
     }
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
@@ -106,6 +120,20 @@ class WebViewCoordinator: NSObject,WKNavigationDelegate, WKUIDelegate, UIScrollV
         }
         
         return nil
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (scrollView.isDragging) {
+            didScroll()
+        }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        didEndScroll()
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        didEndScroll()
     }
 
 }

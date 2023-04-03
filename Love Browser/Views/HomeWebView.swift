@@ -16,6 +16,8 @@ struct HomeWebView: View  {
     
     var decidePolicy: (String) -> Void
     var didFinish:(String, String) -> Void
+    var didScroll:() -> Void
+    var didEndScroll:() -> Void
 
     var clickHomePageItem: (String) -> Void
     
@@ -30,6 +32,14 @@ struct HomeWebView: View  {
             } didFinish: { title, url in
                 
                 didFinish(title, url)
+                
+            } didScroll: {
+                
+                didScroll()
+                
+            } didEndScroll: {
+                
+                didEndScroll()
                 
             }
              .edgesIgnoringSafeArea(.bottom)
