@@ -123,17 +123,15 @@ class WebViewCoordinator: NSObject,WKNavigationDelegate, WKUIDelegate, UIScrollV
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (scrollView.isDragging) {
-            didScroll()
+        
+        let  translatedPoint = scrollView.panGestureRecognizer.translation(in: scrollView)
+
+        if(translatedPoint.y < 0){
+          didScroll()
         }
-    }
-    
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        didEndScroll()
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        didEndScroll()
+        if(translatedPoint.y > 0){
+            didEndScroll()
+        }
     }
 
 }
