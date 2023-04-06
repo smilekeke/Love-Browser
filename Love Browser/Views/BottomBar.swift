@@ -209,8 +209,8 @@ struct BottomBar: View {
             }
             
         }
-        .frame(height: 30)
-        .padding(.bottom,10)
+        .frame(height: 0)
+        .padding(.bottom,18)
         .padding([.horizontal,.top])
         
     }
