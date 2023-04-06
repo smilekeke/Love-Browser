@@ -14,8 +14,6 @@
 		171AED1C292CB7B9006C08F2 /* TabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED1B292CB7B9006C08F2 /* TabsModel.swift */; };
 		171AED1E292DC99D006C08F2 /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED1D292DC99D006C08F2 /* AppSetting.swift */; };
 		171AED20292E004C006C08F2 /* URL+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED1F292E004C006C08F2 /* URL+Extentions.swift */; };
-		171AED24292E0A74006C08F2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 171AED23292E0A74006C08F2 /* Kingfisher */; };
-		171AED26292E0AE7006C08F2 /* FaviconsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED25292E0AE7006C08F2 /* FaviconsHelper.swift */; };
 		171AED28292E1111006C08F2 /* FindInPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED27292E1111006C08F2 /* FindInPage.swift */; };
 		171AED2A292E11D5006C08F2 /* FindInPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED29292E11D5006C08F2 /* FindInPageView.swift */; };
 		171AED4B2930D384006C08F2 /* HomeWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171AED4A2930D384006C08F2 /* HomeWebView.swift */; };
@@ -62,7 +60,6 @@
 		171AED1D292DC99D006C08F2 /* AppSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = "<group>"; };
 		171AED1F292E004C006C08F2 /* URL+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extentions.swift"; sourceTree = "<group>"; };
 		171AED21292E047C006C08F2 /* Love-Browser-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Love-Browser-Info.plist"; sourceTree = SOURCE_ROOT; };
-		171AED25292E0AE7006C08F2 /* FaviconsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaviconsHelper.swift; sourceTree = "<group>"; };
 		171AED27292E1111006C08F2 /* FindInPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindInPage.swift; sourceTree = "<group>"; };
 		171AED29292E11D5006C08F2 /* FindInPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindInPageView.swift; sourceTree = "<group>"; };
 		171AED4A2930D384006C08F2 /* HomeWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWebView.swift; sourceTree = "<group>"; };
@@ -106,7 +103,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				171AED24292E0A74006C08F2 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +172,6 @@
 			isa = PBXGroup;
 			children = (
 				171AED0F292BC801006C08F2 /* KeyboardHeightHelper.swift */,
-				171AED25292E0AE7006C08F2 /* FaviconsHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -269,7 +264,6 @@
 			);
 			name = "Love Browser";
 			packageProductDependencies = (
-				171AED23292E0A74006C08F2 /* Kingfisher */,
 			);
 			productName = "Love Browser";
 			productReference = 1780EE40291916EB006B9FFC /* Love Browser.app */;
@@ -324,7 +318,6 @@
 			);
 			mainGroup = 1780EE37291916EB006B9FFC;
 			packageReferences = (
-				171AED22292E0A74006C08F2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 1780EE41291916EB006B9FFC /* Products */;
 			projectDirPath = "";
@@ -376,7 +369,6 @@
 				177EE2482923939B00CCACEB /* SearchView.swift in Sources */,
 				171AED1C292CB7B9006C08F2 /* TabsModel.swift in Sources */,
 				177EE24F2923B75800CCACEB /* HomePageCategory+CoreDataClass.swift in Sources */,
-				171AED26292E0AE7006C08F2 /* FaviconsHelper.swift in Sources */,
 				1780EE5D29191783006B9FFC /* BottomBar.swift in Sources */,
 				171E437B29224D75007D1648 /* HomePageItemModel.swift in Sources */,
 				171AED28292E1111006C08F2 /* FindInPage.swift in Sources */,
@@ -450,7 +442,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -505,7 +497,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -533,19 +525,22 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = UIUserInterfaceStyleLight;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lovebrowser.Love-Browser";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -567,19 +562,22 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = UIUserInterfaceStyleLight;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lovebrowser.Love-Browser";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -605,25 +603,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		171AED22292E0A74006C08F2 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = exactVersion;
-				version = 7.2.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		171AED23292E0A74006C08F2 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 171AED22292E0A74006C08F2 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		177EE27C2923DD6C00CCACEB /* DataBase.xcdatamodeld */ = {
