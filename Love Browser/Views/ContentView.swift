@@ -187,6 +187,7 @@ struct ContentView: View {
                         currentModel.updateUrl(url: url)
                         
                     } ,showHome: isSearch)
+                    .padding(.top, -12)
                 }
                 
                 
@@ -323,6 +324,7 @@ struct ContentView: View {
         saveHomePageCategory(itemModel: HomePageItemModel(title: "Instagram", image: "instagram", icon: "", link: "https://www.instagram.com/"))
         saveHomePageCategory(itemModel: HomePageItemModel(title: "Twitter", image: "twitter", icon: "", link: "https://twitter.com/"))
         saveHomePageCategory(itemModel: HomePageItemModel(title: "Zoom", image: "zoom", icon: "", link: "https://zoom.com/"))
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "TV", image: "tvIcon", icon: "", link: "https://viewasian.co/country/korean/"))
     }
 
 

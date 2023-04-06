@@ -12,6 +12,15 @@ struct WaitView: View {
         
         NavigationView {
             
+            VStack {
+               
+                Image("activeLogo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100, alignment: .center)
+                    .padding(.top, -100)
+
+            }
         }
     }
 }

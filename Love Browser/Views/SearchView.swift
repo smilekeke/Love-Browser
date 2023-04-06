@@ -118,6 +118,15 @@ struct SearchView: View {
                         }
                         .frame(width: 24, height: 24)
                         
+                        Button {
+                          
+                            UIPasteboard.general.string = text
+                            
+                        } label: {
+                            
+                            Image(appSettings.darkModeSettings ? "copyLink" : "copyLink_white")
+                        }
+                        .frame(width: 24, height: 24)
                         
                         Menu {
                             

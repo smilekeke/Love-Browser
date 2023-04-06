@@ -61,18 +61,11 @@ struct Love_BrowserApp: App {
             ATTrackingManager.requestTrackingAuthorization { status in
                 //弹出跟踪广告权限后获取广告ID
                 adCoordinator.requestAppOpenAd()
-                switch status {
-                case .notDetermined:
-                    break
-                case .restricted:
-                    break
-                case .denied:
-                    break
-                case .authorized:
+                
+                if status == .authorized {
                     handleColdStart()
-                    break
-                @unknown default:
-                    break
+                } else {
+                    showWaitView = false
                 }
             }
         }
