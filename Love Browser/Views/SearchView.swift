@@ -21,6 +21,7 @@ struct SearchView: View {
     var refreshWebView:() -> Void
     var addToHomePage:() -> Void
     var openQRCodeView:() -> Void
+    var showToastView:() -> Void
     
     var textFieldManger: TextFieldManger
     
@@ -121,6 +122,7 @@ struct SearchView: View {
                         Button {
                           
                             UIPasteboard.general.string = text
+                            showToastView()
                             
                         } label: {
                             

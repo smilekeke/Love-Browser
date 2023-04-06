@@ -13,12 +13,19 @@ struct WaitView: View {
         NavigationView {
             
             VStack {
-               
+                
                 Image("activeLogo")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100, alignment: .center)
-                    .padding(.top, -100)
+                    .padding(.top, 180)
+                
+                Spacer()
+                
+                Text("HiTV Browser")
+                    .font(.system(size: 20))
+                    .foregroundColor(Color.lb_black)
+                    .padding(.top, -50)
 
             }
         }

@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import WebKit
+import AlertToast
 
 struct ContentView: View {
     
@@ -16,6 +17,7 @@ struct ContentView: View {
     @State private var showMore = false
     @State private var showSearchIcon = true
     @State private var showBack = false
+    @State private var showToast = false
     @State private var showSearchedWords = false
     @State private var backgroundImage = "default"
     @State private var hideSearchView = false
@@ -85,6 +87,10 @@ struct ContentView: View {
                     }, openQRCodeView: {
                        
                         openQRCodeView.toggle()
+                        
+                    }, showToastView: {
+                        
+                        showToast = true
                         
                     },textFieldManger: textFieldManger)
                     .fullScreenCover(isPresented: $openQRCodeView) {
@@ -206,6 +212,9 @@ struct ContentView: View {
             
             .navigationBarHidden(true)
             .ignoresSafeArea(.keyboard, edges: .bottom)
+            .toast(isPresenting: $showToast) {
+                AlertToast(displayMode: .alert, type: .regular, title: "copied!")
+            }
             
         }
         .background(Color.white)

@@ -29,6 +29,7 @@
 		171E4373291FB6F7007D1648 /* WallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4372291FB6F7007D1648 /* WallpaperView.swift */; };
 		171E4379292246A6007D1648 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E4378292246A6007D1648 /* CoreDataManager.swift */; };
 		171E437B29224D75007D1648 /* HomePageItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171E437A29224D75007D1648 /* HomePageItemModel.swift */; };
+		1728288E29DEE622006F6EC3 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 1728288D29DEE622006F6EC3 /* AlertToast */; };
 		1767786A2927420B00EDF706 /* Color+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176778692927420B00EDF706 /* Color+Extentions.swift */; };
 		1767786C2927765100EDF706 /* LBAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767786B2927765100EDF706 /* LBAsyncImage.swift */; };
 		177EE24229236F3100CCACEB /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177EE24129236F3100CCACEB /* String+Extensions.swift */; };
@@ -109,6 +110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17E611AB29D585D400ED0EB1 /* GoogleMobileAds in Frameworks */,
+				1728288E29DEE622006F6EC3 /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +283,7 @@
 			name = "Love Browser";
 			packageProductDependencies = (
 				17E611AA29D585D400ED0EB1 /* GoogleMobileAds */,
+				1728288D29DEE622006F6EC3 /* AlertToast */,
 			);
 			productName = "Love Browser";
 			productReference = 1780EE40291916EB006B9FFC /* Love Browser.app */;
@@ -336,6 +339,7 @@
 			mainGroup = 1780EE37291916EB006B9FFC;
 			packageReferences = (
 				17E611A929D585D300ED0EB1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				1728288C29DEE622006F6EC3 /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 1780EE41291916EB006B9FFC /* Products */;
 			projectDirPath = "";
@@ -540,8 +544,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Love-Browser-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "HiTV Browser";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "该ID将用于向您推送个性化广告";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This ID will be used to send you a personalized advertisement";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -580,8 +583,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Love-Browser-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "HiTV Browser";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "该ID将用于向您推送个性化广告";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This ID will be used to send you a personalized advertisement";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -631,6 +633,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1728288C29DEE622006F6EC3 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		17E611A929D585D300ED0EB1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
@@ -642,6 +652,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1728288D29DEE622006F6EC3 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1728288C29DEE622006F6EC3 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
 		17E611AA29D585D400ED0EB1 /* GoogleMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 17E611A929D585D300ED0EB1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
