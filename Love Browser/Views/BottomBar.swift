@@ -33,6 +33,9 @@ struct BottomBar: View {
     @State var openWallpaper = false
     @State var openSetting = false
     
+    let screenWidth = UIScreen.main.bounds.width
+    let screenHeight = UIScreen.main.bounds.height
+    
     @EnvironmentObject var appSettings: AppSetting
     @EnvironmentObject var tabManagerModel: TabManagerModel
         
@@ -210,7 +213,7 @@ struct BottomBar: View {
             
         }
         .frame(height: 0)
-        .padding(.bottom,18)
+        .padding(.bottom, (screenHeight*375 == screenWidth*667) || (screenHeight*414 == screenWidth*736) ? 35 : 18)
         .padding([.horizontal,.top])
         
     }
