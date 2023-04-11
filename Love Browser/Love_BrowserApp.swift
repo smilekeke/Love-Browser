@@ -43,12 +43,13 @@ struct Love_BrowserApp: App {
             if phase == .active && firstOpen {
                 firstOpen = false
                 requestTrackingAuthorization()
+                showAdView()
             }
         }
         
     }
     
-    private func handleColdStart() {
+    private func showAdView() {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             adCoordinator.tryToPresentAd()
@@ -63,9 +64,7 @@ struct Love_BrowserApp: App {
                 adCoordinator.requestAppOpenAd()
                 
                 if status == .authorized {
-                    handleColdStart()
-                } else {
-                    showWaitView = false
+
                 }
             }
         }
