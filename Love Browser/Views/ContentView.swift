@@ -274,6 +274,14 @@ struct ContentView: View {
                 currentModel.updateUrl(url: url)
             }
             
+        },clickCancleButton: {
+            showSearchedWords = false
+            text = ""
+            showBack = false
+            showSearchIcon = true
+            textFieldManger.textField.resignFirstResponder()
+            UIApplication.shared.windows.first?.endEditing(true)
+            
         }).opacity(tabManagerModel.curUid == model.uid ? 1 : 0).environmentObject(tabManagerModel)
             .fullScreenCover(isPresented: $openWallpaper) {
                 
@@ -332,7 +340,7 @@ struct ContentView: View {
         saveHomePageCategory(itemModel: HomePageItemModel(title: "FaceBook", image: "facebook", icon: "", link: "https://www.facebook.com/"))
         saveHomePageCategory(itemModel: HomePageItemModel(title: "Instagram", image: "instagram", icon: "", link: "https://www.instagram.com/"))
         saveHomePageCategory(itemModel: HomePageItemModel(title: "Twitter", image: "twitter", icon: "", link: "https://twitter.com/"))
-        saveHomePageCategory(itemModel: HomePageItemModel(title: "Zoom", image: "zoom", icon: "", link: "https://zoom.com/"))
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "YouTube", image: "youtube", icon: "", link: "https://www.youtube.com/"))
         saveHomePageCategory(itemModel: HomePageItemModel(title: "TV", image: "tvIcon", icon: "", link: "https://viewasian.co/country/korean/"))
     }
 

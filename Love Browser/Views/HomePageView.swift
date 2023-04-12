@@ -17,6 +17,7 @@ struct HomePageView: View {
     @State  var longPressTap = false
     
     var clickHomePageItem: (String) -> Void
+    var clickCancleButton:() -> Void
     
     let rows = [GridItem(.fixed(80)), GridItem(.fixed(80)), GridItem(.fixed(80)), GridItem(.fixed(80))]
     
@@ -97,7 +98,7 @@ struct HomePageView: View {
                                 .frame(width: 32, height: 32)
                                 .padding(.leading, -24)
                                 .padding(.top, -30)
-                                .opacity(longPressTap ? 1 : 0)
+                                .opacity(longPressTap ? (homePageCategory.title == "Wallpaper" ? 0 : 1) : 0)
                                 
                             }
 
@@ -105,6 +106,7 @@ struct HomePageView: View {
                                 .foregroundColor(appSettings.darkModeSettings ? Color.lb_black : Color.white)
                                 .font(.system(size: 12).weight(.medium))
                                 .lineLimit(1)
+                                .padding(.leading, -12)
 
                         }
                         .highPriorityGesture(TapGesture()
@@ -123,6 +125,11 @@ struct HomePageView: View {
                     }
                 }
                 .padding(.top, 10)
+            }
+            .onTapGesture {
+                longPressTap = false
+                // 隐藏键盘
+                clickCancleButton()
             }
             .padding(.top, 20)
 
@@ -152,6 +159,8 @@ struct HomePageView_Previews: PreviewProvider {
     static var previews: some View {
         
         HomePageView() { query  in
+            
+        } clickCancleButton: {
             
         }
     }

@@ -20,6 +20,7 @@ struct HomeWebView: View  {
     var didEndScroll:() -> Void
 
     var clickHomePageItem: (String) -> Void
+    var clickCancleButton:() -> Void
     
     var body: some View {
     
@@ -54,6 +55,8 @@ struct HomeWebView: View  {
             HomePageView { url in
     
                 clickHomePageItem(url)
+            } clickCancleButton: {
+                clickCancleButton()
             }
             .background(Color.white.opacity(appSettings.darkModeSettings ? 1 : 0))
             .opacity(model.isDesktop ? 1 : 0)

@@ -38,6 +38,7 @@ struct SearchView: View {
                 showBack = false
                 showSearchIcon = true
                 textFieldManger.textField.resignFirstResponder()
+                UIApplication.shared.windows.first?.endEditing(true)
                 clickCancleButton()
                 
             }, label: {
