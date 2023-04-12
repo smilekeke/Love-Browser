@@ -10,7 +10,11 @@ import SwiftUI
 struct HomePageView: View {
 
     @EnvironmentObject var appSettings: AppSetting
+    @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(fetchRequest: HomePageCategory.all) private var  homePgaeCategorys:FetchedResults<HomePageCategory>
+    @State private var scale: CGFloat = 1.0
+//    @State private var rotation: CGFloat = 0.0
+    @State  var longPressTap = false
     
     var clickHomePageItem: (String) -> Void
     
@@ -27,43 +31,74 @@ struct HomePageView: View {
                     ForEach(homePgaeCategorys, id: \.title) { homePageCategory in
 
                         VStack {
-
-                            NavigationLink {
-
-                            } label: {
-
-                                Button {
-
-                                    clickHomePageItem(homePageCategory.link ?? "")
-
+                            
+                            HStack {
+                                
+                                NavigationLink {
+                                    
                                 } label: {
                                     
-                                    if homePageCategory.image != nil && homePageCategory.image != "" {
-                                        Image(homePageCategory.image!)
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: 30, height: 30)
+                                    Button {
+                             
+                                    } label: {
                                         
-                                    } else {
-                                    
-                                        
-                                        AsyncImage(url: URL(string: homePageCategory.icon?.appendedString().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "https://www.google.com/favicon.ico")) { image in
-                                            
-                                            image
-                                                .resizable()
+                                        if homePageCategory.image != nil && homePageCategory.image != "" {
+                                            Image(homePageCategory.image!)
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 30, height: 30)
                                             
-                                        } placeholder: {
+                                        } else {
                                             
-                                            Color.white
+                                            
+                                            AsyncImage(url: URL(string: homePageCategory.icon?.appendedString().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "https://www.google.com/favicon.ico")) { image in
+                                                
+                                                image
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fit)
+                                                    .frame(width: 30, height: 30)
+                                                
+                                            } placeholder: {
+                                                
+                                                Color.white
+                                            }
+                                            .frame(width: 30, height: 30)
                                         }
-                                        .frame(width: 30, height: 30)
+                                        
                                     }
-
+                                    .frame(width: 56, height: 56)
+                                    .background(appSettings.darkModeSettings ? Color.lb_item : Color.white.opacity(0.2))
+                                    .cornerRadius(8)
+                                    .scaleEffect(longPressTap ? scale : 1.0)
+//                                    .transition(.scale(scale: longPressTap ? scale : 1.0))
+//                                    .rotationEffect(.degrees(longPressTap ? rotation : 0.0))
+                                    .animation(longPressTap ? Animation.easeInOut(duration: 3).repeatForever(autoreverses: true).speed(20) : Animation.default, value: longPressTap)
+                                    .simultaneousGesture(LongPressGesture(minimumDuration: 0.5)
+                                        .onEnded { _ in
+                                            longPressTap = true
+                                            scale = 1.1
+                                            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                                        })
                                 }
-                                .frame(width: 56, height: 56)
-                                .background(appSettings.darkModeSettings ? Color.lb_item : Color.white.opacity(0.2))
-                                .cornerRadius(8)
+                                
+                              
+                                Button(action: {
+                                  
+                                    
+                                }, label: {
+                                    
+                                    Image("deleteHomeItem")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 16, height: 16)
+                                        .padding(.top, -14)
+                                    
+                                })
+                                .buttonStyle(BorderlessButtonStyle())
+                                .frame(width: 32, height: 32)
+                                .padding(.leading, -24)
+                                .padding(.top, -30)
+                                .opacity(longPressTap ? 1 : 0)
+                                
                             }
 
                             Text(homePageCategory.title ?? "")
@@ -72,12 +107,41 @@ struct HomePageView: View {
                                 .lineLimit(1)
 
                         }
+                        .highPriorityGesture(TapGesture()
+                            .onEnded { _ in
+                                if longPressTap {
+                                    longPressTap.toggle()
+                                    if  homePageCategory.title != "Wallpaper" {
+                                        deleteSelectedItem(homePageCategory: homePageCategory)
+                                    }
+                                    
+                                } else {
+                                    clickHomePageItem(homePageCategory.link ?? "")
+                                }
+                            })
 
                     }
                 }
+                .padding(.top, 10)
             }
             .padding(.top, 20)
 
+        }
+        
+    }
+    
+    
+    func deleteSelectedItem(homePageCategory: HomePageCategory) -> () {
+
+        viewContext.delete(homePageCategory)
+
+        do {
+
+            try viewContext.save()
+
+        } catch {
+
+            print(error)
         }
         
     }
