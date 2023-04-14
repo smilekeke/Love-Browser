@@ -11,7 +11,7 @@ import WebKit
 struct HomeWebView: View  {
     
     @EnvironmentObject var appSettings: AppSetting
-    
+    @Binding var tvViewModel: [ListModel]
     @State var model: HomeViewModel
     
     var decidePolicy: (String) -> Void
@@ -21,6 +21,7 @@ struct HomeWebView: View  {
 
     var clickHomePageItem: (String) -> Void
     var clickCancleButton:() -> Void
+    var clickTVListItem: (ListModel) -> Void
     
     var body: some View {
     
@@ -52,11 +53,18 @@ struct HomeWebView: View  {
 //            }
             
             
-            HomePageView { url in
-    
+            HomePageView (tvViewModel: $tvViewModel) { url in
+
                 clickHomePageItem(url)
+                
             } clickCancleButton: {
+                
                 clickCancleButton()
+                
+            }  clickTVListItem: { listModel in
+                
+                clickTVListItem(listModel)
+                
             }
             .background(Color.white.opacity(appSettings.darkModeSettings ? 1 : 0))
             .opacity(model.isDesktop ? 1 : 0)

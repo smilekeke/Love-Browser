@@ -13,7 +13,7 @@ import AlertToast
 struct ContentView: View {
     
     @State private var text = ""
-    
+    @State private var tvViewModel:  [ListModel] = []
     @State private var showMore = false
     @State private var showSearchIcon = true
     @State private var showBack = false
@@ -30,6 +30,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
     @ObservedObject var textFieldManger = TextFieldManger()
+    @ObservedObject var urlSessionManager = URLSessionManager()
     @StateObject var appSettings = AppSetting()
 
     var homeViewModelList : Array<HomeViewModel> {
@@ -76,8 +77,8 @@ struct ContentView: View {
                         
                         currentModel.updateUrl(url: text)
                     }, refreshWebView: {
-                    
-                        currentModel.webViewModel.webView.reload()
+                        currentModel.updateUrl(url: text)
+//                        currentModel.webViewModel.webView.reload()
                     }, addToHomePage: {
                         
                         if let url = currentModel.webViewModel.url  {
@@ -103,6 +104,13 @@ struct ContentView: View {
                     .padding(.top, 10)
                 }
                 
+                SegmentedView(array: []) { model in
+
+                    tvViewModel = model
+                }
+                .frame(height: isSearch ? 0 : 44)
+                    .opacity(isSearch ? 0 : 1)
+
                 ZStack {
                     
                     ForEach(homeViewModelList, id: \.uid) { model in
@@ -135,20 +143,7 @@ struct ContentView: View {
                 if !hideBottomView {
                     BottomBar(clickHomeButton: {
                         
-                        if isSearch {
-                            text = ""
-                            showBack = false
-                            isSearch = false
-                            showMore = false
-                            showSearchIcon = true
-                            currentModel.webViewModel.webView.backForwardList.perform(Selector(("_removeAllItems")))
-                            pausePlay()
-                            currentModel?.isDesktop = true
-                            
-                        } else {
-                            
-                            textFieldManger.textField.becomeFirstResponder()
-                        }
+                        clickHomeButton()
                         
                     }, clickBackButton: {
                         
@@ -234,10 +229,28 @@ struct ContentView: View {
 
     }
     
+    func clickHomeButton() {
+        if isSearch {
+            text = ""
+            showBack = false
+            isSearch = false
+            showMore = false
+            showSearchIcon = true
+            currentModel.webViewModel.webView.backForwardList.perform(Selector(("_removeAllItems")))
+            currentModel.webViewModel.webView.load(URLRequest(url: URL(string: "about:blank")!))
+            pausePlay()
+            currentModel?.isDesktop = true
+            
+        } else {
+            
+            textFieldManger.textField.becomeFirstResponder()
+        }
+    }
+    
     
     func addHomeWebView(model: HomeViewModel) -> some View {
-
-        HomeWebView(model: model,decidePolicy: { url in
+        
+        HomeWebView(tvViewModel: $tvViewModel, model: model,decidePolicy: { url in
             text = url
             
         }, didFinish: {title, url in
@@ -282,6 +295,14 @@ struct ContentView: View {
             textFieldManger.textField.resignFirstResponder()
             UIApplication.shared.windows.first?.endEditing(true)
             
+        }, clickTVListItem: { model in
+            isSearch = true
+            showMore = true
+            showSearchIcon = false
+            showSearchedWords = false
+          
+            currentModel.updateUrl(url: model.url ?? "")
+    
         }).opacity(tabManagerModel.curUid == model.uid ? 1 : 0).environmentObject(tabManagerModel)
             .fullScreenCover(isPresented: $openWallpaper) {
                 
