@@ -16,6 +16,7 @@ struct TabsView: View {
     
     @State private var offset = CGSize.zero
     var openNewTabs:() -> Void
+    var clickCurrentTab:(Bool) -> Void
 
     let gridWidth = (UIScreen.main.bounds.width - 45) / 2
 
@@ -77,6 +78,7 @@ struct TabsView: View {
                             )
                             .onTapGesture {
                                 tabManagerModel.selectTab(targetModel: homeViewModel)
+                                clickCurrentTab(homeViewModel.webViewModel.title == "" ? true : false)
                                 presentationMode.wrappedValue.dismiss()
                             }
                             

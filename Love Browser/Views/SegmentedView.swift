@@ -9,10 +9,11 @@ import SwiftUI
 
 struct SegmentedView: View {
     
-    @ObservedObject var urlSessionManager = URLSessionManager()
+    @EnvironmentObject var appSettings: AppSetting
+    @State var segmentModels: [SegmentModel]
     @State var array: [SegmentModel]
 
-    var clickSegmentItem: ([ListModel]) -> Void
+    var clickSegmentItem: (SegmentModel) -> Void
 
     var body: some View {
 
@@ -20,28 +21,29 @@ struct SegmentedView: View {
 
             HStack {
                 
-                ForEach($urlSessionManager.results, id: \.label) { $model in
+                ForEach($segmentModels, id: \.label) { $model in
                     Button  {
-                        changeLinearGradient()
-                        model.isSelected = true
-                        clickSegmentItem(model.items ?? [])
+                        
+                        changeLinearGradient(label: model.label)
+                        clickSegmentItem(model)
 
                     } label: {
-
+ 
                         VStack {
 
                             Text(model.label)
-                                .foregroundColor(Color.lb_segment)
+                                .foregroundColor(model.isSelected ?? false ? (appSettings.darkModeSettings ?  Color.lb_segment_selected : Color.white) : (appSettings.darkModeSettings ? Color.lb_segment : Color(white: 0.8)))
                                 .font(.system(size: 16))
-                            LinearGradient(colors: [Color.blue], startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 30, y: 0))
-                                .frame(height: 3)
+                            
+                            Rectangle()
+                                .foregroundColor(Color.blue)
+                                .frame(height: (3.0))
                                 .opacity(model.isSelected ?? false ? 1 : 0)
                                 .padding(.top, -2)
-
-
                         }
 
                     }
+//                    .background(Color.red)
                     .buttonStyle(BorderlessButtonStyle())
                     .padding(.leading, 10)
 
@@ -50,21 +52,30 @@ struct SegmentedView: View {
             }
 
         }
-        .padding(.top, 10)
+        .padding(.top, 8)
         .padding(.leading, 20)
         .padding(.trailing, 20)
 
     }
     
-    func changeLinearGradient() {
-     
-        for model in urlSessionManager.results {
-            var result = model
-            result.isSelected = false
-            self.array.append(result)
-        }
+    func changeLinearGradient(label: String) {
+    
+        array.removeAll()
         
-        urlSessionManager.results = array
+        for model in segmentModels {
+            
+            var result = model
+            
+            if result.label == label {
+                
+                result.isSelected = true
+            } else {
+                result.isSelected = false
+            }
+            
+            array.append(result)
+        }
+        segmentModels = array
     }
 }
 

@@ -17,6 +17,7 @@ struct Love_BrowserApp: App {
     
     @Environment(\.scenePhase) private var scenePhase
     private let adCoordinator = AdCoordinator()
+    private let urlSessionManager = URLSessionManager()
     @State private var firstOpen = true
     @State private var showWaitView = true
     
@@ -34,7 +35,7 @@ struct Love_BrowserApp: App {
             if showWaitView {
                 WaitView()
             } else {
-                ContentView()
+                ContentView(segmentModels: urlSessionManager.results)
                     .environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
             }
 

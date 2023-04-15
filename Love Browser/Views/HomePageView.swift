@@ -135,7 +135,7 @@ struct HomePageView: View {
                     // 隐藏键盘
                     clickCancleButton()
                 }
-                .padding(.top, 20)
+                .padding(.top, 5)
                 
             }
             .opacity(tvViewModel.count != 0 ? 0 : 1)

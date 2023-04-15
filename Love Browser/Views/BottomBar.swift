@@ -17,6 +17,7 @@ struct BottomBar: View {
     var openTabsView:() -> Void // open tabs 标签页
     var saveBookMarkCategory:() -> Void
     var openNewTabs:() -> Void
+    var clickCurrentTab:(Bool) -> Void
     var clickHistoryCell:(String) -> Void
     
     var showHome = false
@@ -52,7 +53,7 @@ struct BottomBar: View {
                 } label: {
                     
                     
-                    Image(tabManagerModel.canBack ? (appSettings.darkModeSettings ? "back_black" : "back_white") : (appSettings.darkModeSettings ? "back_grey" : "back_white"))
+                    Image(showHome ? (appSettings.darkModeSettings ? "back_black" : "back_white") : (appSettings.darkModeSettings ? "back_grey" : "back_white"))
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -125,8 +126,11 @@ struct BottomBar: View {
                 .fullScreenCover(isPresented: $openTabs) {
 
                 } content: {
+                    
                     TabsView {
                         openNewTabs()
+                    } clickCurrentTab: { isHome in
+                        clickCurrentTab(isHome)
                     }.environmentObject(tabManagerModel)
         
                 }

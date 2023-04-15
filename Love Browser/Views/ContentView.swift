@@ -14,6 +14,7 @@ struct ContentView: View {
     
     @State private var text = ""
     @State private var tvViewModel:  [ListModel] = []
+    @State var segmentModels: [SegmentModel]
     @State private var showMore = false
     @State private var showSearchIcon = true
     @State private var showBack = false
@@ -30,7 +31,6 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
     @ObservedObject var textFieldManger = TextFieldManger()
-    @ObservedObject var urlSessionManager = URLSessionManager()
     @StateObject var appSettings = AppSetting()
 
     var homeViewModelList : Array<HomeViewModel> {
@@ -104,11 +104,17 @@ struct ContentView: View {
                     .padding(.top, 10)
                 }
                 
-                SegmentedView(array: []) { model in
-
-                    tvViewModel = model
+                SegmentedView(segmentModels: segmentModels, array: []) { model in
+                    
+                    tvViewModel = model.items ?? []
+                    
+                    if model.label == "Home" {
+                         
+                        clickHomeButton()
+                        textFieldManger.textField.resignFirstResponder()
+                    }
                 }
-                .frame(height: isSearch ? 0 : 44)
+                .frame(height: isSearch ? 0 : 47)
                     .opacity(isSearch ? 0 : 1)
 
                 ZStack {
@@ -142,12 +148,21 @@ struct ContentView: View {
                 
                 if !hideBottomView {
                     BottomBar(clickHomeButton: {
-                        
-                        clickHomeButton()
+                        if isSearch {
+                            clickHomeButton()
+                        } else {
+                            textFieldManger.textField.becomeFirstResponder()
+                        }
                         
                     }, clickBackButton: {
                         
-                        currentModel?.webViewModel.goBack()
+                        if currentModel.webViewModel.webView.backForwardList.backList.count == 0 || currentModel.webViewModel.webView.backForwardList.backList.first?.url.absoluteString == "about:blank" {
+                
+                            clickHomeButton()
+                           
+                        } else {
+                            currentModel?.webViewModel.goBack()
+                        }
                         
                     }, clickForwardButton: {
                         
@@ -179,6 +194,9 @@ struct ContentView: View {
                         showSearchIcon = true
                         tabManagerModel.addTab()
                         
+                    }, clickCurrentTab: { isHome in
+                        
+                        isSearch = !isHome
                     }, clickHistoryCell: { url in
                         
                         currentModel.isDesktop = false
@@ -230,21 +248,15 @@ struct ContentView: View {
     }
     
     func clickHomeButton() {
-        if isSearch {
             text = ""
             showBack = false
             isSearch = false
             showMore = false
             showSearchIcon = true
-            currentModel.webViewModel.webView.backForwardList.perform(Selector(("_removeAllItems")))
             currentModel.webViewModel.webView.load(URLRequest(url: URL(string: "about:blank")!))
+            currentModel.webViewModel.webView.backForwardList.perform(Selector(("_removeAllItems")))
             pausePlay()
             currentModel?.isDesktop = true
-            
-        } else {
-            
-            textFieldManger.textField.becomeFirstResponder()
-        }
     }
     
     

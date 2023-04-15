@@ -33,7 +33,8 @@ class URLSessionManager: ObservableObject {
                            
                            results.insert(SegmentModel(label: "Home", items: [], isSelected: true), at: 0)
                            self.results = results
-                        
+                        // 存储数据
+                           
                            print("data is ok")
                         }
 

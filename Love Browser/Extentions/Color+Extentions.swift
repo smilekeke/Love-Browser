@@ -16,6 +16,7 @@ public extension Color {
     static let lb_history = Color.init(0xF4F4F4)
     static let lb_section = Color.init(0x666666)
     static let lb_segment = Color.init(0x969799)
+    static let lb_segment_selected = Color.init(0x323233)
     
 }
 
