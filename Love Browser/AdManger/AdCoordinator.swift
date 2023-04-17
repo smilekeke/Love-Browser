@@ -23,7 +23,7 @@ final class AdCoordinator: NSObject, GADFullScreenContentDelegate {
     }
    
     func tryToPresentAd() {
-        if let gOpenAd = self.ad, wasLoadTimeLessThanNHoursAgo(thresholdN: 3) {
+        if let gOpenAd = self.ad, wasLoadTimeLessThanNHoursAgo(thresholdN: 4) {
             gOpenAd.present(fromRootViewController: (UIApplication.shared.windows.first?.rootViewController)!)
         } else {
             self.requestAppOpenAd()

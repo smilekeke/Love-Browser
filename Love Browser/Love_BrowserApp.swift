@@ -35,8 +35,20 @@ struct Love_BrowserApp: App {
             if showWaitView {
                 WaitView()
             } else {
-                ContentView(segmentModels: urlSessionManager.results)
-                    .environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
+                
+                if urlSessionManager.results.count == 0 {
+                    
+                    if let data = UserDefaults.standard.data(forKey: "SegmentViewData") {
+                        if let decoded = try? JSONDecoder().decode([SegmentModel].self, from: data) {
+                            ContentView(segmentModels: decoded)
+                                .environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
+                        }
+                    }
+    
+                } else {
+                    ContentView(segmentModels: urlSessionManager.results )
+                        .environment(\.managedObjectContext, CoreDataManager.shared.persistentContainer.viewContext)
+                }
             }
 
         }
@@ -62,8 +74,8 @@ struct Love_BrowserApp: App {
     private func requestTrackingAuthorization () {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             ATTrackingManager.requestTrackingAuthorization { status in
-                //弹出跟踪广告权限后获取广告ID
-                adCoordinator.requestAppOpenAd()
+//                //弹出跟踪广告权限后获取广告ID
+//                adCoordinator.requestAppOpenAd()
                 
                 if status == .authorized {
 

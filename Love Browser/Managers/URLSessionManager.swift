@@ -34,7 +34,10 @@ class URLSessionManager: ObservableObject {
                            results.insert(SegmentModel(label: "Home", items: [], isSelected: true), at: 0)
                            self.results = results
                         // 存储数据
-                           
+                           if let encoded = try? JSONEncoder().encode(results) {
+                               UserDefaults.standard.set(encoded, forKey: "SegmentViewData")
+                           }
+
                            print("data is ok")
                         }
 
