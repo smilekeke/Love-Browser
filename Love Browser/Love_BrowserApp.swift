@@ -21,10 +21,11 @@ struct Love_BrowserApp: App {
     @State private var firstOpen = true
     @State private var showWaitView = true
     
+    //使用 init() 代替 ApplicationDidFinishLaunchWithOptions
     init() {
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "7536558ae3f1b23c56535c44b46640ec" ]
-        adCoordinator.requestAppOpenAd()
+        requestTrackingAuthorization()
     }
    
 
@@ -56,7 +57,7 @@ struct Love_BrowserApp: App {
             
             if phase == .active && firstOpen {
                 firstOpen = false
-                requestTrackingAuthorization()
+                adCoordinator.requestAppOpenAd()
                 showAdView()
             }
         }
@@ -65,9 +66,9 @@ struct Love_BrowserApp: App {
     
     private func showAdView() {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            adCoordinator.tryToPresentAd()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             showWaitView = false
+            adCoordinator.tryToPresentAd()
         }
     }
     
