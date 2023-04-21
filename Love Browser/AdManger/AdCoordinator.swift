@@ -6,25 +6,37 @@
 //
 import GoogleMobileAds
 
-final class AdCoordinator: NSObject, GADFullScreenContentDelegate {
+class AdCoordinator: NSObject, GADFullScreenContentDelegate, ObservableObject {
+    
+    @Published var appOpenAdLoaded: Bool = false
     var ad: GADAppOpenAd?
     var loadTime = Date()
-   
+
+    override init() {
+        super.init()
+        requestAppOpenAd()
+    }
+
     func requestAppOpenAd() {
         GADAppOpenAd.load(withAdUnitID: "ca-app-pub-9608024198628702/6854868529",
-                          request: GADRequest(),
-                          orientation: UIInterfaceOrientation.portrait,
-                          completionHandler: { (appOpenAdIn, _) in
-                            self.ad = appOpenAdIn
-                            self.ad?.fullScreenContentDelegate = self
-                            self.loadTime = Date()
-                            print(">>>>>>[OPEN AD] Ad is ready")
-                         })
+                          request: GADRequest()) { appOpenAdIn, error in
+            if let error = error {
+                self.ad = nil
+                print("App open ad failed to load with error: \(error.localizedDescription).")
+                return
+            }
+            self.ad = appOpenAdIn
+            self.ad?.fullScreenContentDelegate = self
+            self.loadTime = Date()
+            self.appOpenAdLoaded = true
+            print("[OPEN AD]>>>>>>appAd is ok")
+        }
     }
    
     func tryToPresentAd() {
         if let gOpenAd = self.ad, wasLoadTimeLessThanNHoursAgo(thresholdN: 4) {
             gOpenAd.present(fromRootViewController: (UIApplication.shared.windows.first?.rootViewController)!)
+            print("[OPEN AD]>>>>>>Ad is show")
         } else {
             self.requestAppOpenAd()
         }

@@ -8,7 +8,17 @@
 import SwiftUI
 import GoogleMobileAds
 import AppTrackingTransparency
-import AdSupport
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
+    ) -> Bool {
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "7536558ae3f1b23c56535c44b46640ec" ]
+        return true
+    }
+}
 
 @available(iOS 14.0, *)
 @main
@@ -16,19 +26,11 @@ import AdSupport
 struct Love_BrowserApp: App {
     
     @Environment(\.scenePhase) private var scenePhase
-    private let adCoordinator = AdCoordinator()
     private let urlSessionManager = URLSessionManager()
+    @ObservedObject var adCoordinator = AdCoordinator()
     @State private var firstOpen = true
     @State private var showWaitView = true
-    
-    //使用 init() 代替 ApplicationDidFinishLaunchWithOptions
-    init() {
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
-        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "7536558ae3f1b23c56535c44b46640ec" ]
-        requestTrackingAuthorization()
-    }
    
-
     var body: some Scene {
        
         WindowGroup {
@@ -57,15 +59,14 @@ struct Love_BrowserApp: App {
             
             if phase == .active && firstOpen {
                 firstOpen = false
-                adCoordinator.requestAppOpenAd()
-                showAdView()
+                requestTrackingAuthorization()
+                hideWaitView()
             }
         }
         
     }
     
-    private func showAdView() {
-        
+    private func hideWaitView() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             showWaitView = false
             adCoordinator.tryToPresentAd()
