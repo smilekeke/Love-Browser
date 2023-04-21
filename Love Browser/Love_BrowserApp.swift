@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseCore
 import GoogleMobileAds
 import AppTrackingTransparency
 
@@ -14,6 +15,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
+        FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "7536558ae3f1b23c56535c44b46640ec" ]
         return true
@@ -25,6 +27,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 struct Love_BrowserApp: App {
     
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @Environment(\.scenePhase) private var scenePhase
     private let urlSessionManager = URLSessionManager()
     @ObservedObject var adCoordinator = AdCoordinator()
