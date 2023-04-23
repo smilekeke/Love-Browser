@@ -31,6 +31,7 @@ struct Love_BrowserApp: App {
     @Environment(\.scenePhase) private var scenePhase
     private let urlSessionManager = URLSessionManager()
     @ObservedObject var adCoordinator = AdCoordinator()
+    @State private var firstOpen = true
     @State private var showWaitView = true
    
     var body: some Scene {
@@ -60,6 +61,7 @@ struct Love_BrowserApp: App {
         .onChange(of: scenePhase) { phase in
             
             if phase == .active {
+                firstOpen = false
                 requestTrackingAuthorization()
                 hideWaitView()
             }
@@ -68,7 +70,8 @@ struct Love_BrowserApp: App {
     }
     
     private func hideWaitView() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + (firstOpen ? 3 : 1)) {
             showWaitView = false
             adCoordinator.tryToPresentAd()
         }
