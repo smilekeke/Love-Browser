@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct TVListView: View {
     
@@ -24,27 +25,21 @@ struct TVListView: View {
                 
                 LazyVGrid(columns: rows, spacing: 15) {
                     
-                    ForEach(items, id: \.cover) { homeViewModel in
+                    ForEach(items, id: \.title) { homeViewModel in
                         
                         VStack(spacing: 0) {
-                        
-                            AsyncImage(url: URL(string: homeViewModel.cover ?? "")) { image in
-                                
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: gridWidth, height: 155)
-                                    .clipped()
-                                    .cornerRadius(12)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 12, style: .continuous)
-                                            .stroke(Color.lb_item, lineWidth: 2)
-                                    )
-                                
-                            } placeholder: {
-                                
-                                Color.white
-                            }
+                            
+                            KFImage(URL(string: homeViewModel.cover ?? ""))
+//                                        .placeholder()
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: gridWidth, height: 155)
+                                .clipped()
+                                .cornerRadius(12)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                        .stroke(Color.lb_item, lineWidth: 2)
+                                )
                             
                             Text(homeViewModel.title ?? "")
                                 .lineLimit(1)

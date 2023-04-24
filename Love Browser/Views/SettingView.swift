@@ -67,7 +67,12 @@ struct SettingView: View {
                         HStack {
                             Text("Rate App")
                             Spacer()
-                            Image(systemName: "chevron.right")
+                            Image("list_arrow")
+                                .resizable()
+                                .frame(width: 24,height: 24)
+                                .scaledToFit()
+                                .padding(.trailing, -5)
+                            
                         }
                     }.buttonStyle(.plain)
                     
@@ -80,7 +85,11 @@ struct SettingView: View {
                         HStack {
                             Text("Share App")
                             Spacer()
-                            Image(systemName: "chevron.right")
+                            Image("list_arrow")
+                                .resizable()
+                                .frame(width: 24,height: 24)
+                                .scaledToFit()
+                                .padding(.trailing, -5)
                         }
                         
                     }.buttonStyle(.plain)

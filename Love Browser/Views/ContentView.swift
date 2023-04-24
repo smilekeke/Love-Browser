@@ -401,12 +401,12 @@ struct ContentView: View {
 
     func saveHomePageData() {
         saveHomePageCategory(itemModel: HomePageItemModel(title: "Wallpaper", image: "menu_wallpaper", icon: "", link: "Wallpaper"))
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "Watch List", image: "watch_list", icon: "", link: "WatchList"))
         saveHomePageCategory(itemModel: HomePageItemModel(title: "FaceBook", image: "facebook", icon: "", link: "https://www.facebook.com/"))
         saveHomePageCategory(itemModel: HomePageItemModel(title: "Instagram", image: "instagram", icon: "", link: "https://www.instagram.com/"))
         saveHomePageCategory(itemModel: HomePageItemModel(title: "Twitter", image: "twitter", icon: "", link: "https://twitter.com/"))
         saveHomePageCategory(itemModel: HomePageItemModel(title: "YouTube", image: "youtube", icon: "", link: "https://www.youtube.com/"))
         saveHomePageCategory(itemModel: HomePageItemModel(title: "TV", image: "tvIcon", icon: "", link: "https://viewasian.co/country/korean/"))
-        saveHomePageCategory(itemModel: HomePageItemModel(title: "WatchList", image: "tvIcon", icon: "", link: "WatchList"))
     }
 
 

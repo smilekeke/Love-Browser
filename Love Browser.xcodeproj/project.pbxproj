@@ -61,6 +61,7 @@
 		17CDDB9729F51AA90087BA2B /* WatchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CDDB9629F51AA90087BA2B /* WatchListView.swift */; };
 		17CDDB9F29F5298C0087BA2B /* InterstitialAdCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CDDB9E29F5298C0087BA2B /* InterstitialAdCoordinator.swift */; };
 		17CDDBA129F53BA30087BA2B /* WatchListCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CDDBA029F53BA30087BA2B /* WatchListCategory+CoreDataClass.swift */; };
+		17CDDBA629F65DCF0087BA2B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 17CDDBA529F65DCF0087BA2B /* Kingfisher */; };
 		17E611AB29D585D400ED0EB1 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 17E611AA29D585D400ED0EB1 /* GoogleMobileAds */; };
 		17E611B029D5A58A00ED0EB1 /* AdCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E611AF29D5A58A00ED0EB1 /* AdCoordinator.swift */; };
 		17E611B429D6B62B00ED0EB1 /* WaitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E611B329D6B62B00ED0EB1 /* WaitView.swift */; };
@@ -128,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17CDDBA629F65DCF0087BA2B /* Kingfisher in Frameworks */,
 				17E611AB29D585D400ED0EB1 /* GoogleMobileAds in Frameworks */,
 				1728288E29DEE622006F6EC3 /* AlertToast in Frameworks */,
 				17CDDB7329F26FC50087BA2B /* FirebaseAnalytics in Frameworks */,
@@ -318,6 +320,7 @@
 				17CDDB7229F26FC50087BA2B /* FirebaseAnalytics */,
 				17CDDB7429F26FC50087BA2B /* FirebaseAnalyticsOnDeviceConversion */,
 				17CDDB7629F26FC50087BA2B /* FirebaseAnalyticsSwift */,
+				17CDDBA529F65DCF0087BA2B /* Kingfisher */,
 			);
 			productName = "Love Browser";
 			productReference = 1780EE40291916EB006B9FFC /* Love Browser.app */;
@@ -375,6 +378,7 @@
 				17E611A929D585D300ED0EB1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				1728288C29DEE622006F6EC3 /* XCRemoteSwiftPackageReference "AlertToast" */,
 				17CDDB7129F26FC50087BA2B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				17CDDBA429F65DCF0087BA2B /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 1780EE41291916EB006B9FFC /* Products */;
 			projectDirPath = "";
@@ -717,6 +721,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		17CDDBA429F65DCF0087BA2B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		17E611A929D585D300ED0EB1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
@@ -747,6 +759,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 17CDDB7129F26FC50087BA2B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsSwift;
+		};
+		17CDDBA529F65DCF0087BA2B /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17CDDBA429F65DCF0087BA2B /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		17E611AA29D585D400ED0EB1 /* GoogleMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;
