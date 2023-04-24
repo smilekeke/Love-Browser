@@ -70,7 +70,7 @@ struct Love_BrowserApp: App {
     
     private func hideWaitView() {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + (firstOpen ? 3 : 1)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + (firstOpen ? 3 : 0)) {
             firstOpen = false
             showWaitView = false
             adCoordinator.tryToPresentAd()

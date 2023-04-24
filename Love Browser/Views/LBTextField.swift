@@ -109,6 +109,8 @@ struct LBTextField: UIViewRepresentable {
 
 class TextFieldManger: ObservableObject {
 
+    static let shared = TextFieldManger()
+    
     let textField: TextFieldWithPadding
 
     init(){

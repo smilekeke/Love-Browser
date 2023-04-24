@@ -26,15 +26,15 @@ struct ContentView: View {
     @State private var openQRCodeView = false
     @State var openWallpaper = false
     @State var openWatchList = false
+    @State var openAdView = false
     @State var canBack = false
     @State var canForward = false
     
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
-    @ObservedObject var textFieldManger = TextFieldManger()
-    @ObservedObject var adCoordinator = InterstitialAdCoordinator()
-    private let adViewControllerRepresentable = AdViewControllerRepresentable()
+    @ObservedObject var textFieldManger = TextFieldManger.shared
     @StateObject var appSettings = AppSetting()
+    let adCoordinator = InterstitialAdCoordinator.shared
 
     var homeViewModelList : Array<HomeViewModel> {
         return tabManagerModel.list
@@ -119,8 +119,6 @@ struct ContentView: View {
                 }
                 .frame(height: isSearch ? 0 : 47)
                     .opacity(isSearch ? 0 : 1)
-                    .background(adViewControllerRepresentable
-                        .frame(width: .zero, height: .zero))
 
                 ZStack {
                     
@@ -239,7 +237,7 @@ struct ContentView: View {
         .onAppear {
             
             tabManagerModel.addTab()
-            
+            adCoordinator.loadInterstitialAd()
             if !UserDefaults.standard.bool(forKey: "WriteHomePageData") {
                 saveHomePageData()
             }
@@ -325,7 +323,7 @@ struct ContentView: View {
             showSearchedWords = false
             currentModel.updateUrl(url: model.url ?? "")
             
-            adCoordinator.showAd(from: adViewControllerRepresentable.viewController)
+            openAdView.toggle()
     
         }).opacity(tabManagerModel.curUid == model.uid ? 1 : 0).environmentObject(tabManagerModel)
             .fullScreenCover(isPresented: $openWallpaper) {
@@ -355,6 +353,9 @@ struct ContentView: View {
                 }
 
             }
+            .fullScreenCover(isPresented: $openAdView, content: {
+                InterstitialAdView(openAdView: $openAdView)
+            })
     }
     
     
