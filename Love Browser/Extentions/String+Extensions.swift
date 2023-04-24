@@ -101,10 +101,10 @@ extension String {
     // watchurl: https://viewasian.co/watch/2019-one-k-concert/watching.html
     func TransUrlStringToTitle() -> String {
         if self.contains("https://viewasian.co/watch/") {
-            guard var str = self.components(separatedBy: "watch/").last?.components(separatedBy: "/").first else{ return ""}
+            guard let str = self.components(separatedBy: "watch/").last?.components(separatedBy: "/").first else{ return ""}
             return str
         } else if self.contains("https://viewasian.co//drama/"){
-            guard var str = self.components(separatedBy: "drama/").last?.components(separatedBy: "/").first else{ return ""}
+            guard let str = self.components(separatedBy: "drama/").last?.components(separatedBy: "/").first else{ return ""}
             return str
         }
         return ""
