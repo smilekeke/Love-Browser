@@ -25,17 +25,21 @@ struct ContentView: View {
     @State private var hideBottomView = false
     @State private var openQRCodeView = false
     @State var openWallpaper = false
+    @State var openWatchList = false
     @State var canBack = false
     @State var canForward = false
     
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
     @ObservedObject var textFieldManger = TextFieldManger()
+    @ObservedObject var adCoordinator = InterstitialAdCoordinator()
+    private let adViewControllerRepresentable = AdViewControllerRepresentable()
     @StateObject var appSettings = AppSetting()
 
     var homeViewModelList : Array<HomeViewModel> {
         return tabManagerModel.list
     }
+    
     
     var currentIndex: Int {
         return tabManagerModel.getCurIndex()
@@ -52,7 +56,6 @@ struct ContentView: View {
     
     
     var body: some View {
-        
         
         NavigationView {
             
@@ -104,7 +107,7 @@ struct ContentView: View {
                     .padding(.top, 10)
                 }
                 
-                SegmentedView(segmentModels: segmentModels, array: []) { model in
+                SegmentedView(segmentModels: $segmentModels, array: []) { model in
                     
                     tvViewModel = model.items ?? []
                     
@@ -116,6 +119,8 @@ struct ContentView: View {
                 }
                 .frame(height: isSearch ? 0 : 47)
                     .opacity(isSearch ? 0 : 1)
+                    .background(adViewControllerRepresentable
+                        .frame(width: .zero, height: .zero))
 
                 ZStack {
                     
@@ -277,6 +282,10 @@ struct ContentView: View {
                 saveSearchHistoryCategory(title: title, url: url)
             }
             
+            if url.contains("https://viewasian.co") {
+                saveWatchListCategory(url: url)
+            }
+            
         }, didScroll: {
             
             hideBottomView = true
@@ -288,6 +297,8 @@ struct ContentView: View {
         }, clickHomePageItem: { url in
             if url == "Wallpaper" {
                 openWallpaper.toggle()
+            } else if url == "WatchList" {
+                openWatchList.toggle()
             } else {
                 showSearchIcon = false
                 showBack = false
@@ -312,8 +323,9 @@ struct ContentView: View {
             showMore = true
             showSearchIcon = false
             showSearchedWords = false
-          
             currentModel.updateUrl(url: model.url ?? "")
+            
+            adCoordinator.showAd(from: adViewControllerRepresentable.viewController)
     
         }).opacity(tabManagerModel.curUid == model.uid ? 1 : 0).environmentObject(tabManagerModel)
             .fullScreenCover(isPresented: $openWallpaper) {
@@ -323,6 +335,25 @@ struct ContentView: View {
                 WallpaperView { str in
                     changeWallpaper(str: str)
                 }
+            }
+            .fullScreenCover(isPresented: $openWatchList) {
+               
+            } content: {
+                
+                WatchListView { url in
+                    isSearch = true
+                    showMore = true
+                    showSearchIcon = false
+                    showSearchedWords = false
+                    currentModel.updateUrl(url: url)
+                } clickGoToWatchButton: {
+                    if segmentModels.count > 1 {
+                        segmentModels[0].isSelected = false
+                        segmentModels[1].isSelected = true
+                        tvViewModel = segmentModels[1].items ?? []
+                    }
+                }
+
             }
     }
     
@@ -375,6 +406,7 @@ struct ContentView: View {
         saveHomePageCategory(itemModel: HomePageItemModel(title: "Twitter", image: "twitter", icon: "", link: "https://twitter.com/"))
         saveHomePageCategory(itemModel: HomePageItemModel(title: "YouTube", image: "youtube", icon: "", link: "https://www.youtube.com/"))
         saveHomePageCategory(itemModel: HomePageItemModel(title: "TV", image: "tvIcon", icon: "", link: "https://viewasian.co/country/korean/"))
+        saveHomePageCategory(itemModel: HomePageItemModel(title: "WatchList", image: "tvIcon", icon: "", link: "WatchList"))
     }
 
 
@@ -400,6 +432,24 @@ struct ContentView: View {
             print(error)
         }
 
+    }
+    
+    // 保存watchListHistory数据
+    private func saveWatchListCategory(url: String) {
+        
+        let watchListCategory = WatchListCategory(context: viewContext)
+        watchListCategory.url = url
+        watchListCategory.cover = "https://imagecdn.me/cover/"+url.TransUrlStringToTitle()+".png"
+        watchListCategory.title = url.TransUrlStringToTitle()
+        
+        do {
+
+            try viewContext.save()
+    
+        } catch {
+
+            print(error)
+        }
     }
     
     // 添加到书签

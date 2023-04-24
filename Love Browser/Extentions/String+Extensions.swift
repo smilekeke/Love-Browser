@@ -95,6 +95,20 @@ extension String {
         
     }
     
+    // watchListHistory
+    // cover: https://imagecdn.me/cover/2019-one-k-concert.png"
+    // url: https://viewasian.co//drama/2019-one-k-concert
+    // watchurl: https://viewasian.co/watch/2019-one-k-concert/watching.html
+    func TransUrlStringToTitle() -> String {
+        if self.contains("https://viewasian.co/watch/") {
+            guard var str = self.components(separatedBy: "watch/").last?.components(separatedBy: "/").first else{ return ""}
+            return str
+        } else if self.contains("https://viewasian.co//drama/"){
+            guard var str = self.components(separatedBy: "drama/").last?.components(separatedBy: "/").first else{ return ""}
+            return str
+        }
+        return ""
+    }
 }
 
 public extension StringProtocol {

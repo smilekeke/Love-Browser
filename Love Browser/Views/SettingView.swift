@@ -13,6 +13,8 @@ struct SettingView: View {
     @Environment(\.presentationMode) var presentationMode
     let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     @State private var offset = CGSize.zero
+    @State private var isSharePresented: Bool = false
+    @State var items:[Any] = [URL(string: "itms-apps://itunes.apple.com/cn/app/hitv-browser/id1659403927?")!]
     
     var body: some View {
         
@@ -57,6 +59,40 @@ struct SettingView: View {
                         
                     }
                     
+                    Button {
+                        UIApplication.shared.open(URL(string: "itms-apps://itunes.apple.com/cn/app/hitv-browser/id1659403927?action=write-review")!)
+                        
+                    } label: {
+                    
+                        HStack {
+                            Text("Rate App")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                    }.buttonStyle(.plain)
+                    
+                    Button {
+                       
+                        isSharePresented = true
+                     
+                    } label: {
+                        
+                        HStack {
+                            Text("Share App")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        
+                    }.buttonStyle(.plain)
+                    .sheet(isPresented: $isSharePresented,
+                        onDismiss: {
+                            print("Dismiss")
+                        }, content: {
+                            //share sheet
+                            ShareSheet(items: $items)
+                        }
+                    )
+                    
                 }
             }
             .navigationTitle("Setting")
@@ -83,6 +119,19 @@ struct SettingView: View {
                     offset = .zero
                 }
             })
+    }
+}
+
+struct ShareSheet:UIViewControllerRepresentable {
+    //你想分享的数据
+   @Binding var items:[Any]
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        
+        return controller
+    }
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        
     }
 }
 

@@ -61,7 +61,6 @@ struct Love_BrowserApp: App {
         .onChange(of: scenePhase) { phase in
             
             if phase == .active {
-                firstOpen = false
                 requestTrackingAuthorization()
                 hideWaitView()
             }
@@ -72,6 +71,7 @@ struct Love_BrowserApp: App {
     private func hideWaitView() {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + (firstOpen ? 3 : 1)) {
+            firstOpen = false
             showWaitView = false
             adCoordinator.tryToPresentAd()
         }

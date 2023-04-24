@@ -10,7 +10,7 @@ import SwiftUI
 struct SegmentedView: View {
     
     @EnvironmentObject var appSettings: AppSetting
-    @State var segmentModels: [SegmentModel]
+    @Binding var segmentModels: [SegmentModel]
     @State var array: [SegmentModel]
 
     var clickSegmentItem: (SegmentModel) -> Void
