@@ -54,7 +54,7 @@ struct WatchListView: View {
                         
                         LazyVGrid(columns: rows, spacing: 15) {
                             
-                            ForEach(watchListCategorys, id: \.self) { homeViewModel in
+                            ForEach(watchListCategorys, id: \.title) { homeViewModel in
                                 
                                 VStack(spacing: 0) {
                                     

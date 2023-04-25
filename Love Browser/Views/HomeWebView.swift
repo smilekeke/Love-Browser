@@ -14,7 +14,7 @@ struct HomeWebView: View  {
     @Binding var tvViewModel: [ListModel]
     @State var model: HomeViewModel
     
-    var decidePolicy: (String) -> Void
+    var decidePolicy: (String, String) -> Void
     var didFinish:(String, String) -> Void
     var didScroll:() -> Void
     var didEndScroll:() -> Void
@@ -27,9 +27,9 @@ struct HomeWebView: View  {
     
         ZStack {
             
-            WebView(webView: model.webViewModel.webView) { url in
+            WebView(webView: model.webViewModel.webView) { title, url in
                 
-                decidePolicy(url)
+                decidePolicy(title, url)
                 
             } didFinish: { title, url in
                 

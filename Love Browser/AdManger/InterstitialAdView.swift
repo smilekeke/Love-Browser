@@ -77,9 +77,14 @@ class InterstitialAdCoordinator: NSObject, GADFullScreenContentDelegate, Observa
         showAdView = true
     }
     
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+        loadInterstitialAd()
+    }
+    
     func showAd(from viewController: UIViewController) {
         guard let interstitial = interstitial else {
             showAdView = true
+            loadInterstitialAd()
             return print("Ad wasn't ready")
         }
 

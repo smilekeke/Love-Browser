@@ -265,8 +265,16 @@ struct ContentView: View {
     
     func addHomeWebView(model: HomeViewModel) -> some View {
         
-        HomeWebView(tvViewModel: $tvViewModel, model: model,decidePolicy: { url in
+        HomeWebView(tvViewModel: $tvViewModel, model: model,decidePolicy: {title, url in
             text = url
+            
+            if  title != "" && url != "" && url != "about:blank" {
+                saveSearchHistoryCategory(title: title, url: url)
+            }
+            
+            if url.contains("https://viewasian.co/watch") {
+                saveWatchListCategory(url: url)
+            }
             
         }, didFinish: {title, url in
             
@@ -278,10 +286,6 @@ struct ContentView: View {
             
             if title != "" && url != "" && url != "about:blank" {
                 saveSearchHistoryCategory(title: title, url: url)
-            }
-            
-            if url.contains("https://viewasian.co") {
-                saveWatchListCategory(url: url)
             }
             
         }, didScroll: {

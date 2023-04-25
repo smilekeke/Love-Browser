@@ -12,7 +12,7 @@ struct WebView: UIViewRepresentable {
     
     let webView: WKWebView
     
-    var decidePolicy: (String) -> Void
+    var decidePolicy: (String, String) -> Void
     var didFinish: (String, String) -> Void
     var didScroll: () -> Void
     var didEndScroll: () -> Void
@@ -36,9 +36,9 @@ struct WebView: UIViewRepresentable {
     
     func makeCoordinator() -> WebViewCoordinator {
 
-        WebViewCoordinator { url in
+        WebViewCoordinator {title, url in
 
-            decidePolicy(url)
+            decidePolicy(title, url)
 
         } didFinish: { title, url in
 
@@ -61,12 +61,12 @@ struct WebView: UIViewRepresentable {
 
 class WebViewCoordinator: NSObject,WKNavigationDelegate, WKUIDelegate, UIScrollViewDelegate {
 
-    var decidePolicy: (String) -> Void
+    var decidePolicy: (String, String) -> Void
     var didFinish: (String, String) -> Void
     var didScroll: () -> Void
     var didEndScroll: () -> Void
 
-    init(decidePolicy: @escaping (String) -> Void = {_ in}, didFinish: @escaping (String, String) -> Void = {_, _ in }, didScroll:@escaping () -> Void, didEndScroll: @escaping () -> Void) {
+    init(decidePolicy: @escaping (String, String) -> Void = {_, _ in}, didFinish: @escaping (String, String) -> Void = {_, _ in }, didScroll:@escaping () -> Void, didEndScroll: @escaping () -> Void) {
         self.decidePolicy = decidePolicy
         self.didFinish = didFinish
         self.didScroll = didScroll
@@ -75,7 +75,7 @@ class WebViewCoordinator: NSObject,WKNavigationDelegate, WKUIDelegate, UIScrollV
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
 
-        decidePolicy(webView.url?.absoluteString ?? "")
+        decidePolicy(webView.title ?? "", webView.url?.absoluteString ?? "")
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -102,7 +102,7 @@ class WebViewCoordinator: NSObject,WKNavigationDelegate, WKUIDelegate, UIScrollV
 
             if let url = navigationAction.request.url   {
 
-                decidePolicy(url.absoluteString)
+                decidePolicy(webView.title ?? "", url.absoluteString)
 
             }
  
