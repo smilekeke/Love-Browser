@@ -32,7 +32,7 @@ struct InterstitialAdView: View {
                 openAdView = false
             } else {
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                     adCoordinator.showAd(from: adViewControllerRepresentable.viewController)
                     
                 }

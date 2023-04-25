@@ -35,6 +35,7 @@ struct ContentView: View {
     @ObservedObject var textFieldManger = TextFieldManger.shared
     @StateObject var appSettings = AppSetting()
     let adCoordinator = InterstitialAdCoordinator.shared
+    
 
     var homeViewModelList : Array<HomeViewModel> {
         return tabManagerModel.list
@@ -237,7 +238,6 @@ struct ContentView: View {
         .onAppear {
             
             tabManagerModel.addTab()
-            adCoordinator.loadInterstitialAd()
             if !UserDefaults.standard.bool(forKey: "WriteHomePageData") {
                 saveHomePageData()
             }
@@ -273,6 +273,7 @@ struct ContentView: View {
             }
             
             if url.contains("https://viewasian.co/watch") {
+                deleteSameWatchListData(url: url)
                 saveWatchListCategory(url: url)
             }
             
@@ -286,6 +287,10 @@ struct ContentView: View {
             
             if title != "" && url != "" && url != "about:blank" {
                 saveSearchHistoryCategory(title: title, url: url)
+            }
+            
+            if url.contains("https://viewasian.co//drama") {
+                saveWatchListCategory(url: url)
             }
             
         }, didScroll: {
@@ -446,6 +451,7 @@ struct ContentView: View {
         watchListCategory.url = url
         watchListCategory.cover = "https://imagecdn.me/cover/"+url.TransUrlStringToTitle()+".png"
         watchListCategory.title = url.TransUrlStringToTitle()
+        watchListCategory.date = Date()
         
         do {
 
@@ -454,6 +460,23 @@ struct ContentView: View {
         } catch {
 
             print(error)
+        }
+    }
+    
+    //删除已存的watchListHistory数据
+    private func deleteSameWatchListData(url: String) {
+        let fetchWatchListResults = NSFetchRequest<WatchListCategory>(entityName: "WatchListCategory")
+        fetchWatchListResults.predicate = NSPredicate(format: "title == %@", url.TransUrlStringToTitle())
+        do {
+            let watchListResults = try viewContext.fetch(fetchWatchListResults)
+            for watchList in watchListResults {
+                viewContext.delete(watchList)
+            }
+            if viewContext.hasChanges {
+                try viewContext.save()
+            }
+        } catch {
+            print("\(error)")
         }
     }
     

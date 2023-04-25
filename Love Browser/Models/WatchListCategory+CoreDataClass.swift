@@ -16,18 +16,9 @@ public class WatchListCategory: NSManagedObject {
     static var all: NSFetchRequest<WatchListCategory> {
         let request = WatchListCategory.fetchRequest()
         request.entity = WatchListCategory.entity()
-        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         request.returnsDistinctResults = true
         
-        return request
-    }
-    
-    static func gitItemByTitle(title: String) -> NSFetchRequest<WatchListCategory> {
-        let request = WatchListCategory.fetchRequest()
-        request.entity = WatchListCategory.entity()
-        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: false)]
-        request.predicate = NSPredicate(format: "title == %@", title)
-
         return request
     }
     
