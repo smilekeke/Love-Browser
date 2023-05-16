@@ -120,6 +120,9 @@ struct ContentView: View {
                 }
                 .frame(height: isSearch ? 0 : 47)
                     .opacity(isSearch ? 0 : 1)
+                    .onAppear {
+                        goToWatchButton()
+                    }
 
                 ZStack {
                     
@@ -354,11 +357,7 @@ struct ContentView: View {
                     showSearchedWords = false
                     currentModel.updateUrl(url: url)
                 } clickGoToWatchButton: {
-                    if segmentModels.count > 1 {
-                        segmentModels[0].isSelected = false
-                        segmentModels[1].isSelected = true
-                        tvViewModel = segmentModels[1].items ?? []
-                    }
+                    goToWatchButton()
                 }
 
             }
@@ -373,6 +372,14 @@ struct ContentView: View {
         // 切换壁纸
         backgroundImage = str
         appSettings.darkModeSettings = str == "default" ? true : false
+    }
+    
+    func goToWatchButton() {
+        if segmentModels.count > 1 {
+            segmentModels[0].isSelected = false
+            segmentModels[1].isSelected = true
+            tvViewModel = segmentModels[1].items ?? []
+        }
     }
     
     
